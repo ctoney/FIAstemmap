@@ -1,0 +1,20 @@
+Package: stemmap2
+Title: FIA stem map
+Version: 0.0.0.9000
+Authors@R: 
+    person("Chris", "Toney", , "chris.toney@usda.gov", role = c("aut", "cre"))
+Description: Maps individual tree stem locations on Forest Inventory and
+    Analysis field plots. Stem locations are mapped in cartesian coordinate
+    space based on distance and azimuth offsets from subplot and microplot
+    centers. Per-tree crown widths are estimated using a set of allometric
+    equations with coverage for the conterminous US. The crown width estimates
+    are provided as an optional output. Spatial descriptors of point pattern
+    are computed at the whole plot level. Several plot-level stand height
+    metrics are also computed and provided in the output. Tree crowns are
+    modeled as discs and used to produce modeled estimates of plot-level tree
+    canopy cover.
+License: MIT + file LICENSE
+Imports: gdalraster
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
