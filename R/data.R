@@ -3,7 +3,7 @@
 #' An example tree list for an FIA plot in a loblolly pine plantation.
 #'
 #' @format ## `plantation`
-#' A data frame with 91 rows and 13 columns:
+#' A data frame with 91 rows and 14 columns:
 #' \describe{
 #'   \item{PLT_CN}{Plot unique identifier}
 #'   \item{SUBP}{Subplot number}
@@ -18,6 +18,7 @@
 #'   \item{ACTUALHT}{Actual height in ft (ACTUALHT < HT indicates a broken top)}
 #'   \item{CCLCD}{Tree crown class code}
 #'   \item{TPA_UNADJ}{Trees per acre expansion factor}
+#'   \item{CRWIDTH}{Estimated tree crown width in feet}
 #' }
 #' @source <https://research.fs.usda.gov/programs/nfi>
 "plantation"
