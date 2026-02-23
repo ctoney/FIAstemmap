@@ -16,7 +16,7 @@ crown_overlay_pct(radius, trees)
 }
 \value{
 A numeric value for tree canopy cover as percent of the subplot/microplot
-covered by a vertical projection of crowns modeled as discs.
+covered by a vertical projection of circular crowns.
 }
 \description{
 Compute fractional tree canopy cover of a subplot/microplot by crown overlay

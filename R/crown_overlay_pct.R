@@ -7,22 +7,21 @@
 #' `CRWIDTH` (tree crown width in the same units as `radius` and `DIST`).
 #' @return 
 #' A numeric value for tree canopy cover as percent of the subplot/microplot
-#' covered by a vertical projection of crowns modeled as discs.
+#' covered by a vertical projection of circular crowns.
 #' 
 #' @export
 crown_overlay_pct <- function(radius, trees) {
-    crowns <- gdalraster::g_create("GEOMETRYCOLLECTION")
+    x <- trees$DIST * sin(trees$AZIMUTH * (pi / 180))
+    y <- trees$DIST * cos(trees$AZIMUTH * (pi / 180))
 
-    for (i in seq_len(nrow(trees))) {
-        x <- trees$DIST[i] * sin(trees$AZIMUTH[i] * (pi / 180))
-        y <- trees$DIST[i] * cos(trees$AZIMUTH[i] * (pi / 180))
-        crowns <- gdalraster::g_create("POINT", c(x, y)) |>
-            gdalraster::g_buffer(trees$CRWIDTH[i] / 2) |>
-            gdalraster::g_add_geom(crowns)
-    }
-
+    crowns <- lapply(seq_len(nrow(trees)), \(i) {
+        gdalraster::g_create("POINT", c(x[i], y[i])) |>
+            gdalraster::g_buffer(trees$CRWIDTH[i] / 2)
+    })
+    
+    crowns_poly <- gdalraster::g_build_collection(crowns) |>
+        gdalraster::g_unary_union() 
     plot_poly <- gdalraster::g_buffer("POINT (0 0)", radius, quad_segs = 60L)
-    crowns_poly <- gdalraster::g_unary_union(crowns)
 
     gdalraster::g_intersection(plot_poly, crowns_poly) |>
         gdalraster::g_area() / gdalraster::g_area(plot_poly) * 100
