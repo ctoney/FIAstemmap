@@ -2,10 +2,10 @@
 % Please edit documentation in R/crown_overlay_pct.R
 \name{crown_overlay_pct}
 \alias{crown_overlay_pct}
-\title{Compute tree canopy cover of a subplot/microplot by crown overlay}
+\title{Compute tree canopy cover percent of a subplot/microplot by crown overlay}
 \usage{
-crown_overlay_pct(plot_radius, trees)
+crown_overlay_pct(radius, trees)
 }
 \description{
-Compute tree canopy cover of a subplot/microplot by crown overlay
+Compute tree canopy cover percent of a subplot/microplot by crown overlay
 }
