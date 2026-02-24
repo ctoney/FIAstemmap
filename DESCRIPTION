@@ -1,7 +1,7 @@
 Package: stemmap2
 Title: FIA stem map
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R:
     person("Chris", "Toney", , "chris.toney@usda.gov", role = c("aut", "cre"))
 Description: Maps individual tree stem locations on Forest Inventory and
     Analysis field plots. Stem locations are mapped in cartesian coordinate

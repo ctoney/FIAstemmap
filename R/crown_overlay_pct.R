@@ -5,10 +5,10 @@
 #' (stem distance from subplot center in same units as `radius`), `AZIMUTH`
 #' (horizontal angle from subplot center to the stem location, `0:359`) and
 #' `CRWIDTH` (tree crown width in the same units as `radius` and `DIST`).
-#' @return 
+#' @return
 #' A numeric value for tree canopy cover as percent of the subplot/microplot
 #' covered by a vertical projection of circular crowns.
-#' 
+#'
 #' @export
 crown_overlay_pct <- function(radius, trees) {
     x <- trees$DIST * sin(trees$AZIMUTH * (pi / 180))
@@ -18,9 +18,9 @@ crown_overlay_pct <- function(radius, trees) {
         gdalraster::g_create("POINT", c(x[i], y[i])) |>
             gdalraster::g_buffer(trees$CRWIDTH[i] / 2)
     })
-    
+
     crowns_poly <- gdalraster::g_build_collection(crowns) |>
-        gdalraster::g_unary_union() 
+        gdalraster::g_unary_union()
     plot_poly <- gdalraster::g_buffer("POINT (0 0)", radius, quad_segs = 60L)
 
     gdalraster::g_intersection(plot_poly, crowns_poly) |>
