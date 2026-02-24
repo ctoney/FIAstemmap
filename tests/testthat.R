@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(stemmap2)
+library(FIAstemmap)
 
 test_check("stemmap2")

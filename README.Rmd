@@ -13,20 +13,20 @@ knitr::opts_chunk$set(
 )
 ```
 
-# FIA stem-map
+# FIA stem map
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of stemmap2 is to ...
+The goal of FIAstemmap is to ...
 
 ## Installation
 
-You can install the development version of stemmap2 from [GitHub](https://github.com/) with:
+You can install the development version of FIAstemmap with:
 
 ``` r
 # install.packages("pak")
-pak::pak("ctoney/stemmap2")
+pak::pak("ctoney/FIAstemmap")
 ```
 
 ## Example
@@ -34,7 +34,7 @@ pak::pak("ctoney/stemmap2")
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library(stemmap2)
+library(FIAstemmap)
 ## basic example code
 ```
 
