@@ -18,14 +18,14 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-**FIAstemmap** provides utilities for mapping tree stem locations on Forest Inventory and Analysis (FIA) plots, modeling crown dimensions, and generating plot-level estimates of fractional tree canopy cover based on inventory field data. Several stand height metrics can also be computed. Point pattern analysis is facilitated for the FIA plot footprint via functionality provided in the **spatstat** packages. Efficient data processing supports national applications. The package provides an updated version of the code originally described in Toney et al. (2009) [1], along with additional functionality.
+**FIAstemmap** provides functions for mapping tree stem locations on Forest Inventory and Analysis (FIA) plots, modeling crown dimensions, and generating plot-level estimates of fractional tree canopy cover based on inventory field measurements. Several stand height metrics can also be calculated. Point pattern analysis is facilitated for the FIA plot footprint using functionality provided by the **spatstat** packages. Efficient data processing supports national applications. The package provides an updated implementation of the code originally described in Toney et al. (2009) [[1]](#References).
 
-The stem-map model as implemented here for estimating plot-level tree canopy cover has been used in several applications since its original development, including:
+Since its original development, the stem-map model for estimating plot-level canopy cover has supported several applications of FIA field data including:
 
-* Reference data for vegetation classification and tree canopy cover mapping in LANDFIRE [2, 3]
-* National Land Cover Database (NLCD) tree canopy cover (TCC) science support [4]
-* Wildlife habitat analysis [5]
-* Comparative assessments of tree canopy cover estimation methods [6, 7]
+* Reference data for vegetation classification and tree canopy cover mapping in LANDFIRE [[2, 3]](#References)
+* National Land Cover Database (NLCD) Tree Canopy Cover science support [[4]](#References)
+* Wildlife habitat analysis [[5]](#References)
+* Comparative assessments of tree canopy cover estimation methods [[6, 7]](#References)
 
 ## Installation
 
@@ -57,6 +57,6 @@ library(FIAstemmap)
 
 [5] Tavernia, B., Nelson, M., Goerndt, M., Walters, B., & Toney, C. (2013). Changes in forest habitat classes under alternative climate and land-use change scenarios in the northeast and midwest, USA. _Mathematical and Computational Forestry & Natural-Resource Sciences_ (MCFNS), **5**:2, 135-150(15). Retrieved from https://www.mcfns.com/index.php/Journal/article/view/MCFNS_165.
 
-[6] Riemann, R., Liknes, G., O’Neil-Dunne, J., Toney, C., Lister, T. (2016). Comparative assessment of methods for estimating tree canopy cover across a rural-to-urban gradient in the mid-Atlantic region of the USA. _Environ Monit Assess_ **188**:297. https://doi.org/10.1007/s10661-016-5281-8.
+[6] Riemann, R., Liknes, G., O’Neil-Dunne, J., Toney, C., Lister, T. (2016). Comparative assessment of methods for estimating tree canopy cover across a rural-to-urban gradient in the mid-Atlantic region of the USA. _Environmental Monitoring and Assessment_ **188**:297. https://doi.org/10.1007/s10661-016-5281-8.
 
 [7] Andrew N. Gray, Anne C.S. McIntosh, Steven L. Garman, Michael A. Shettles. 2021. Predicting canopy cover of diverse forest types from individual tree measurements. _Forest Ecology and Management_, Volume 501, 119682, ISSN 0378-1127, https://doi.org/10.1016/j.foreco.2021.119682.
