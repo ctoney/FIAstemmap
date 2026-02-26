@@ -9,14 +9,18 @@
 
 A data frame with 430 rows and 8 columns:
 \describe{
-\item{symbol}{USDA PLANTS Database species symbol}
-\item{SPCD}{FIA tree species code}
-\item{common_name}{FIA tree species common name}
-\item{surrogate}{Common name of surrogate species if applicable}
-\item{b0}{Regression b0 coefficient}
-\item{b1}{Regression b1 coefficient}
-\item{b1}{Regression b2 coefficient}
-\item{reference}{Reference for source of the coefficients}
+\item{\code{symbol}}{\code{\link{character}},
+USDA PLANTS Database species symbol}
+\item{\code{SPCD}}{\code{\link{integer}}, FIA tree species code}
+\item{\code{common_name}}{\code{\link{character}},
+FIA tree species common name}
+\item{\code{surrogate}}{\code{\link{character}},
+Common name of surrogate species if applicable}
+\item{\code{b0}}{\code{\link{numeric}}, Regression b0 coefficient}
+\item{\code{b1}}{\code{\link{numeric}}, Regression b1 coefficient}
+\item{\code{b1}}{\code{\link{numeric}}, Regression b2 coefficient}
+\item{\code{reference}}{\code{\link{character}},
+Literature source of the species coefficients (see References)}
 }
 }
 }
@@ -25,7 +29,7 @@ crwidth_coef
 }
 \description{
 A curated set of linear regression coefficients for predicting crown width
-from stem diamater of tree species in the conterminous US.
+from stem diameter of tree species in the conterminous US.
 }
 \details{
 The regression equation is of the general form:
@@ -33,13 +37,13 @@ The regression equation is of the general form:
 \if{html}{\out{<div class="sourceCode">}}\preformatted{CRWIDTH = b0 + b1 * DIA + b2 * DIA^2
 }\if{html}{\out{</div>}}
 
-but with a quadratic term not included in all cases. CRWIDTH is the
-predicted tree crown diamater in feet, and DIA is FIA stem diameter in
+A quadratic term is not included in all cases. \code{CRWIDTH} is the
+predicted tree crown diameter in feet, and \code{DIA} is FIA stem diameter in
 inches.
 
 In cases that a species-specific equation was not available in the
-literature, an equation was assigned from a surrogate species based on
-subjectively similar tree physiognomy.
+literature, a surrogate species was assigned subjectively based on similar
+tree physiognomy.
 }
 \references{
 Bechtold, W.A. 2003. Crown-Diameter Prediction Models for 87 Species of

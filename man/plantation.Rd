@@ -9,20 +9,27 @@
 
 A data frame with 91 rows and 14 columns:
 \describe{
-\item{PLT_CN}{Plot unique identifier}
-\item{SUBP}{Subplot number}
-\item{TREE}{Tree number}
-\item{AZIMUTH}{Horizontal angle from subplot center to the stem location}
-\item{DIST}{Distance in feet from subplot center to the stem location}
-\item{STATUSCD}{Tree status code: 1 = live, 2 = standing dead}
-\item{SPCD}{FIA tree species code}
-\item{SPGRPCD}{FIA tree species group code}
-\item{DIA}{Tree diameter at breast height in inches}
-\item{HT}{Tree height in feet}
-\item{ACTUALHT}{Actual height in ft (ACTUALHT < HT indicates a broken top)}
-\item{CCLCD}{Tree crown class code}
-\item{TPA_UNADJ}{Trees per acre expansion factor}
-\item{CRWIDTH}{Estimated tree crown width in feet}
+\item{\code{PLT_CN}}{\code{\link{character}}, Plot unique identifier}
+\item{\code{SUBP}}{\code{\link{integer}}, Subplot number}
+\item{\code{TREE}}{\code{\link{integer}}, Tree number}
+\item{\code{AZIMUTH}}{\code{\link{integer}},
+Horizontal angle from subplot center to the stem location}
+\item{\code{DIST}}{\code{\link{numeric}},
+Distance in feet from subplot center to the stem location}
+\item{\code{STATUSCD}}{\code{\link{integer}},
+Tree status code: 1 = live, 2 = standing dead}
+\item{\code{SPCD}}{\code{\link{integer}}, FIA tree species code}
+\item{\code{SPGRPCD}}{\code{\link{integer}}, FIA tree species group code}
+\item{\code{DIA}}{\code{\link{numeric}},
+Tree diameter at breast height in inches}
+\item{\code{HT}}{\code{\link{integer}}, Tree height in feet}
+\item{\code{ACTUALHT}}{\code{\link{integer}},
+Actual height in ft (ACTUALHT < HT indicates a broken top)}
+\item{\code{CCLCD}}{\code{\link{integer}}, Tree crown class code}
+\item{\code{TPA_UNADJ}}{\code{\link{numeric}},
+Trees per acre expansion factor}
+\item{\code{CRWIDTH}}{\code{\link{numeric}},
+Estimated tree crown width in feet}
 }
 }
 }
