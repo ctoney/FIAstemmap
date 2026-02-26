@@ -4,15 +4,17 @@
 \alias{crown_overlay_pct}
 \title{Compute fractional tree canopy cover of a subplot/microplot by crown overlay}
 \usage{
-crown_overlay_pct(radius, trees)
+crown_overlay_pct(plot_radius, tree_list)
 }
 \arguments{
-\item{radius}{A numeric value giving the radius of the subplot/microplot}
+\item{plot_radius}{A numeric value giving the radius of the
+subplot/microplot.}
 
-\item{trees}{A data frame containing the tree list. Must have columns \code{DIST}
-(stem distance from subplot center in same units as \code{radius}), \code{AZIMUTH}
-(horizontal angle from subplot center to the stem location, \code{0:359}) and
-\code{CRWIDTH} (tree crown width in the same units as \code{radius} and \code{DIST}).}
+\item{tree_list}{A data frame containing tree records for the
+subplot/microplot. Must have columns \code{DIST} (stem distance from subplot
+center in same units as \code{plot_radius}), \code{AZIMUTH} (horizontal angle from
+subplot/microplot center to the stem location, in the range \code{0:359}) and
+\code{CRWIDTH} (tree crown width in the same units as \code{plot_radius} and \code{DIST}).}
 }
 \value{
 A numeric value for tree canopy cover as percent of the subplot/microplot
