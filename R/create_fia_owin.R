@@ -1,9 +1,9 @@
 #' Create a 'spatstat' observation window for the FIA plot footprint
 #' 
 #' `create_fia_owin()` returns an object of class `"owin"` representing the
-#' observation window of an FIA plot in the 2-D plane. Class `"owin"` defines
-#' such window for working with an FIA tree list as a point pattern dataset
-#' via functions of the \pkg{spatstat} package.
+#' observation window of an FIA plot in the 2-D plane. The returned object is
+#' needed for creating a point pattern dataset to use an FIA plot tree list
+#' with functions of the \pkg{spatstat} package.
 #' 
 #' @param linear_unit An optional character string specifying the linear
 #' distance unit. Defaults to the native FIA unit of `"ft"``, but may be set to
@@ -17,6 +17,9 @@
 #' @return
 #' An object of class `"owin"` which defines the observation window for a point
 #' pattern in the \pkg{spatstat} library.
+#' 
+#' @seealso
+#' [create_fia_ppp()]
 #' 
 #' @examples
 #' w <- create_fia_owin()

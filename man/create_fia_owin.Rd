@@ -23,12 +23,15 @@ pattern in the \pkg{spatstat} library.
 }
 \description{
 \code{create_fia_owin()} returns an object of class \code{"owin"} representing the
-observation window of an FIA plot in the 2-D plane. Class \code{"owin"} defines
-such window for working with an FIA tree list as a point pattern dataset
-via functions of the \pkg{spatstat} package.
+observation window of an FIA plot in the 2-D plane. The returned object is
+needed for creating a point pattern dataset to use an FIA plot tree list
+with functions of the \pkg{spatstat} package.
 }
 \examples{
 w <- create_fia_owin()
 plot(w, main = "FIA standard four-subplot design")
 
+}
+\seealso{
+\code{\link[=create_fia_ppp]{create_fia_ppp()}}
 }
