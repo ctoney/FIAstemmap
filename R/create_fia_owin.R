@@ -33,32 +33,37 @@
 #' plot(w, main = "FIA standard four-subplot design")
 #' @export
 create_fia_owin <- function(linear_unit = "ft", macroplot = FALSE,
-                            npoly = 720L) {
+                            npoly = 360) {
 
-    if (missing(linear_unit) || is.null(linear_unit))
+    if (is.null(linear_unit))
         linear_unit <- "ft"
     else if (!(is.character(linear_unit) && length(linear_unit) == 1))
         stop("'linear_unit' must be a single character string", call. = FALSE)
     else
         linear_unit <- tolower(linear_unit)
 
-    if (missing(macroplot) || is.null(macroplot))
+    if (!(linear_unit %in% c("ft", "foot", "m", "meter", "metre")))
+        stop("'linear_unit' is invalid", call. = FALSE)
+
+    if (is.null(macroplot))
         macroplot <- FALSE
     else if (!(is.logical(macroplot) && length(macroplot) == 1))
         stop("'macroplot' must be a single logical value", call. = FALSE)
 
-    if (missing(npoly) || is.null(npoly))
+    if (is.null(npoly))
         npoly <- 720L
     else if (!(is.numeric(npoly) && length(npoly) == 1))
         stop("'npoly' must be a single integer value", call. = FALSE)
 
-    subp_radius <- 24.0
+    # avoid points falling outside a subplot boundary due to rounding error by
+    # adding 0.001 here
+    subp_radius <- 24.001
     if (macroplot)
-        subp_radius <- 59.8
+        subp_radius <- 59.801
 
-    unit_conv <- 1  # FIA native unit of foot
+    unit_conv <- 1  # FIA native unit ft
     unit_names <- c("foot", "feet")
-    if (linear_unit == "m") {
+    if (linear_unit %in% c("m", "meter", "metre")) {
         unit_conv <- 0.3048  # ft to m
         unit_names <- c("meter", "meters")
         subp_radius <- subp_radius * unit_conv

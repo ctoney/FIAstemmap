@@ -4,7 +4,7 @@
 \alias{create_fia_owin}
 \title{Create a 'spatstat' observation window for the FIA plot footprint}
 \usage{
-create_fia_owin(linear_unit = "ft", macroplot = FALSE, npoly = 720L)
+create_fia_owin(linear_unit = "ft", macroplot = FALSE, npoly = 360)
 }
 \arguments{
 \item{linear_unit}{An optional character string specifying the linear
