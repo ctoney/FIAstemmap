@@ -4,33 +4,40 @@
 \alias{create_fia_owin}
 \title{Create a 'spatstat' observation window for the FIA plot footprint}
 \usage{
-create_fia_owin(linear_unit = "ft", macroplot = FALSE)
+create_fia_owin(linear_unit = "ft", macroplot = FALSE, npoly = 720L)
 }
 \arguments{
 \item{linear_unit}{An optional character string specifying the linear
-distance unit. Defaults to the native FIA unit of \verb{"ft"``, but may be set to }"m"`.}
+distance unit. Defaults to the native FIA unit of \verb{"ft"``, but may be set to }"m"` instead.}
 
-\item{macroplot}{An optional logical value. The default is \code{FALSE} with the
-FIA plot footprint defined in terms of the standard four-subplot
+\item{macroplot}{An optional logical value. The default is \code{FALSE}, which
+defines the FIA plot footprint in terms of the standard four-subplot
 configuration with subplot radius of 24 ft (7.3152 m). May be set to \code{TRUE}
-in which case the observation window will be defined in terms of the FIA
-optional macroplot dimension instead (58.9 ft / 18.227 m raduis, used only
-in certain areas of the Pacific Northwest FIA region).}
+in which case the observation window will be defined using the FIA optional
+"macroplot" dimension instead (58.9 ft or 18.227 m radius, used only in
+certain areas of the Pacific Northwest FIA region).}
+
+\item{npoly}{Integer value giving the number of edges to use for polygon
+approximation. Defaults to \code{720}.}
 }
 \value{
 An object of class \code{"owin"} which defines the observation window for a point
 pattern in the \pkg{spatstat} library.
 }
 \description{
-\code{create_fia_owin()} returns an object of class \code{"owin"} representing the
-observation window of an FIA plot in the 2-D plane. The returned object is
-needed for creating a point pattern dataset to use an FIA plot tree list
-with functions of the \pkg{spatstat} package.
+\code{create_fia_owin()} returns an object of class \code{"owin"} from the
+\pkg{spatstat} library, representing the observation window of an FIA plot
+in the 2-D plane. The returned object is used when creating a \pkg{spatstat}
+point pattern for an FIA plot tree list.
 }
 \examples{
 w <- create_fia_owin()
-plot(w, main = "FIA standard four-subplot design")
+summary(w)
 
+w <- create_fia_owin("m")
+summary(w)
+
+plot(w, main = "FIA standard four-subplot design")
 }
 \seealso{
 \code{\link[=create_fia_ppp]{create_fia_ppp()}}
