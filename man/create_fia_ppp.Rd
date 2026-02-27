@@ -16,8 +16,8 @@ create_fia_ppp(
 )
 }
 \description{
-\code{create_fia_ppp()} returns an object of class \code{"ppp"} representing a point
+\code{create_fia_ppp()} returns an object of class \code{"ppp"} representing the point
 pattern of an FIA tree list in the 2-D plane. A point pattern object defines
-the dataset for working with a stem-mapped FIA plot via functions of the
-\pkg{spatstat} package.
+the dataset for using a stem-mapped FIA plot with functions of the
+\pkg{spatstat} library.
 }
