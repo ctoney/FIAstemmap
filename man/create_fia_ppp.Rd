@@ -11,13 +11,71 @@ create_fia_ppp(
   linear_unit = "ft",
   macroplot = FALSE,
   window = create_fia_owin(linear_unit, macroplot),
-  mark_cols = c("SPCD", "DIA", "ACTUALHT", "CRWIDTH"),
-  mark_as_factor = c("SPCD")
+  mark_cols = NULL,
+  mark_as_factor = NULL
 )
+}
+\arguments{
+\item{tree_list}{A data frame containing a set of tree records for one FIA
+plot (see Deatils).}
+
+\item{live_only}{A logical value, \code{TRUE} to include live trees only (the
+default, i.e., \code{STATUSCD == 1}).}
+
+\item{min_dia}{A numeric value specifying the minimum diameter threshold
+for included trees. The default is \code{5.0}. Trees less than 5-in. diameter but
+\>= 1.0-in. diameter, denoted as "saplings", are only recorded in FIA
+microplots so cannot be stem-mapped across the 4-subplot footprint.}
+
+\item{linear_unit}{An optional character string specifying the linear
+distance unit. Defaults to the native FIA unit of \verb{"ft"``, but may be set to }"m"` instead.}
+
+\item{macroplot}{An optional logical value. The default is \code{FALSE}, which
+defines the FIA plot footprint in terms of the standard four-subplot
+configuration with subplot radius of 24 ft (7.3152 m). See
+\code{\link[=create_fia_owin]{create_fia_owin()}}. By default, "macroplot trees" having \code{DIST} outside the
+subplot boundary are not included.}
+
+\item{window}{An object of class \code{"owin"} defining the observation window of
+an FIA plot in the 2-D plane. See \code{\link[=create_fia_owin]{create_fia_owin()}}.}
+
+\item{mark_cols}{An optional character vector of column names in \code{tree_list}
+to designate as \pkg{spatstat} \code{marks} which carry additional information for
+each data point in a point pattern object.}
+
+\item{mark_as_factor}{An optional subset of \code{mark_cols} to be treated as
+\code{factor} marks. If not already \code{factor}, these will be corced as such upon
+input. \code{factor} marks are those that take only a finite number of possible
+values (e.g. colors or types).}
+}
+\value{
+An object of class \code{"ppp"} which defines a point pattern dataset for use
+with functions of the \pkg{spatstat} library.
 }
 \description{
 \code{create_fia_ppp()} returns an object of class \code{"ppp"} representing the point
 pattern of an FIA tree list in the 2-D plane. A point pattern object defines
 the dataset for using a stem-mapped FIA plot with functions of the
 \pkg{spatstat} library.
+}
+\details{
+The standard set of columns for tree list data in \pkg{FIAstemmap} is given
+below, along with their status as required or optional for
+\code{create_fia_ppp()}:
+\itemize{
+\item \code{PLT_CN}: optional, \code{create_fia_ppp()} assumes input is for one plot
+\item \code{SUBP}: required subplot number
+\item \code{TREE}: required tree number within a subplot
+\item \code{AZIMUTH}: required horizontal angle from subplot center
+\item \code{DIST}: required distance from subplot center
+\item \code{STATUSCD}: required tree status code (1 = live, 2 = dead)
+\item \code{SPCD}: optional FIA species code
+\item \code{SPGRPCD}: optional FIA species group code
+\item \code{DIA}: optional tree diameter
+\item \code{HT}: optional tree height
+\item \code{ACTUALHT}: optional tree actual height (accounts for broken top)
+\item \code{CCLCD}: optional crown class code
+\item \code{TPA_UNADJ}: optional tree expansion factor (per acre)
+\item \code{CRWIDTH}: optional crown width
+}
 }
