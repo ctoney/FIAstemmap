@@ -1,0 +1,8 @@
+url: https://ctoney.github.io/FIAstemmap/
+
+template:
+  bootstrap: 5
+  light-switch: true
+  bslib:
+    preset: bootstrap
+
