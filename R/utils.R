@@ -1,9 +1,9 @@
 #' Get stem xy coordinates for a tree list
-#' 
+#'
 #' `.get_tree_list_xy()` returns a named list with two elemnts each containing
 #' a numeric vector of the x and y coordinates for trees within the FIA
 #' 4-subplot configuration.
-#' 
+#'
 #' @param tree_list A data frame containing the standard tree list columns for
 #' a plot. This input generally has been pre-filtered, e.g., to live trees with
 #' `DIA >= 5.0`.
@@ -46,5 +46,5 @@
     x[tree_list$SUBP == 4] <- dist * sin(azimuth * (pi / 180)) + xoff4
     y[tree_list$SUBP == 4] <- dist * cos(azimuth * (pi / 180)) + yoff4
 
-    return(list(x = x, y = y))
+    list(x = x, y = y)
 }

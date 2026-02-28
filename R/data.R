@@ -14,8 +14,8 @@
 #' predicted tree crown diameter in feet, and `DIA` is FIA stem diameter in
 #' inches.
 #'
-#' In cases that a species-specific equation was not available in the
-#' literature, a surrogate species was assigned subjectively based on similar
+#' In cases that species-specific equations were not available in the
+#' literature, surrogate species were assigned based on subjectively similar
 #' tree physiognomy.
 #'
 #' @format ## `crwidth_coef`

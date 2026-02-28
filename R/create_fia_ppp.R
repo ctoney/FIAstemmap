@@ -4,7 +4,7 @@
 #' pattern of an FIA tree list in the 2-D plane. A point pattern object defines
 #' the dataset for using a stem-mapped FIA plot with functions of the
 #' \pkg{spatstat} library.
-#' 
+#'
 #' @details
 #' The standard set of columns for tree list data in \pkg{FIAstemmap} is given
 #' below, along with their status as required or optional for
@@ -52,16 +52,16 @@
 #' @return
 #' An object of class `"ppp"` which defines a point pattern dataset for use
 #' with functions of the \pkg{spatstat} library.
-#' 
+#'
 #' @seealso
 #' [create_fia_owin()]
 #'
 #' @examples
 #' X <- create_fia_ppp(plantation)
 #' summary(X)
-#' 
+#'
 #' plot(X, main = "Pine plantation stem map")
-#' 
+#'
 #' # plot trees as trees :)
 #' X <- create_fia_ppp(plantation, mark_cols = "SPCD")
 #' plot(X, main = "Pine plantation stem map",
@@ -137,7 +137,7 @@ create_fia_ppp <- function(tree_list, live_trees = TRUE, min_dia = 5,
     } else {
         tree_list_in <- tree_list[tree_list$DIA >= min_dia, ]
     }
-    
+
     xy <- .get_tree_list_xy(tree_list_in)
 
     marks <- NULL
