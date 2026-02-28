@@ -15,7 +15,8 @@ Description: Maps individual tree stem locations on Forest Inventory and
     fractional tree canopy cover at the microplot, subplot and whole plot
     levels.
 License: MIT + file LICENSE
-Imports: gdalraster, spatstat.geom
+Depends: R (>= 4.1.0)
+Imports: gdalraster, methods, spatstat.geom
 Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Encoding: UTF-8
