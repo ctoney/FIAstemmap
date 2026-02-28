@@ -15,13 +15,11 @@ modeling individual crown dimensions, and generating plot-level
 estimates of fractional tree canopy cover. Several stand height metrics
 can be calculated. Spatial analysis of tree point pattern is facilitated
 for the standard FIA four-point cluster plot design. Efficient data
-processing supports national applications. The R package provides an
+processing supports national applications. This R package provides an
 updated implementation of the software originally described by Toney et
-al. 2009 [\[1\]](#References).
-
-Since its original development, the stem-map model for estimating plot
-canopy cover from field measurements has supported several applications
-of FIA data, including:
+al. 2009 [\[1\]](#References). Since that original development, the
+stem-map model for estimating plot canopy cover from tree measurements
+has supported several applications of FIA data, including:
 
 - reference data for classifying vegetation types and mapping tree
   canopy cover in the LANDFIRE Program [\[2, 3\]](#References)
