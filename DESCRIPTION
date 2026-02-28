@@ -1,19 +1,20 @@
 Package: FIAstemmap
-Title: Stem-mapping utilities for stand structure analysis of FIA plots
+Title: Stand structure analysis of US national forest inventory plots
 Version: 0.0.0.9000
 Authors@R:
     person("Chris", "Toney", , "chris.toney@usda.gov", role = c("aut", "cre"))
-Description: Maps individual tree stem locations on Forest Inventory and
-    Analysis field plots. Stem locations are mapped in cartesian coordinate
-    space based on distance and azimuth offsets from subplot and microplot
-    centers. Per-tree crown widths are estimated using a set of allometric
-    equations with coverage for the conterminous US. The crown width estimates
-    are provided as an optional output. Spatial descriptors of point pattern
-    are computed at the whole plot level. Several plot-level stand height
-    metrics are also computed and provided in the output. The spatial
+Description: Maps individual tree stem locations on field plots of the Forest
+    Inventory and Analysis (FIA) Program of USDA Forest Service. Stem locations
+    are mapped in cartesian coordinate space based on distance and azimuth
+    offsets from subplot and microplot centers. Per-tree crown widths are
+    estimated using a set of allometric equations with coverage for the
+    conterminous US, and provided as an optional output. Spatial descriptors of
+    tree point pattern are computed at the whole plot level. Several stand
+    height metrics are also computed and provided in the output. The spatial
     representation of modeled tree crowns is used to generate estimates of
     fractional tree canopy cover at the microplot, subplot and whole plot
-    levels.
+    levels. Provides facilities for exploratory data analysis and integration
+    with the 'spatstat' library.
 License: MIT + file LICENSE
 Depends: R (>= 4.1.0)
 Imports: gdalraster, methods, spatstat.geom
