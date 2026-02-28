@@ -7,19 +7,21 @@
 
 <!-- badges: end -->
 
+**This is an implementation update, currently in-development**
+
 The Forest Inventory and Analysis (FIA) Program of USDA Forest Service
 provide tree-level measurements from a systematic grid of field plots
-across all forest land uses and ownerships in the US. **FIAstemmap**
-provides functions for mapping tree stem locations on FIA plots,
-modeling individual crown dimensions, and generating plot-level
-estimates of fractional tree canopy cover. Several stand height metrics
-can be calculated. Spatial analysis of tree point pattern is facilitated
-for the standard FIA four-point cluster plot design. Efficient data
-processing supports national applications. This R package provides an
+across all forest land uses and ownerships in the US. **FIAstemmap** is
+an R package for mapping tree stem locations on FIA plots, modeling
+individual crown dimensions, and generating plot-level estimates of
+fractional tree canopy cover. Several stand height metrics can be
+calculated. Spatial analysis of tree point pattern is facilitated for
+the standard FIA four-point cluster plot design. Efficient data
+processing supports national applications. The package provides an
 updated implementation of the software originally described by Toney et
-al. 2009 [\[1\]](#References). Since that original development, the
-stem-map model for estimating plot canopy cover from tree measurements
-has supported several applications of FIA data, including:
+al. 2009 [\[1\]](#References). The original implementation for modeling
+plot canopy cover from individual tree measurements has supported
+several applications of FIA data, including:
 
 - reference data for classifying vegetation types and mapping tree
   canopy cover in the LANDFIRE Program [\[2, 3\]](#References)
