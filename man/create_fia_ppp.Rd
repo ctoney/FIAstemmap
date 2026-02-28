@@ -90,7 +90,7 @@ plot(X, main = "Pine plantation stem map")
 X <- create_fia_ppp(plantation, mark_cols = "SPCD")
 plot(X, main = "Pine plantation stem map",
      shape = "arrows", direction = 90, size = 12, cols = "darkgreen",
-     legend = FALSE)
+     background = "gray90", legend = FALSE)
 }
 \seealso{
 \code{\link[=create_fia_owin]{create_fia_owin()}}

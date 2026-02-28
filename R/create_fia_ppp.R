@@ -66,7 +66,7 @@
 #' X <- create_fia_ppp(plantation, mark_cols = "SPCD")
 #' plot(X, main = "Pine plantation stem map",
 #'      shape = "arrows", direction = 90, size = 12, cols = "darkgreen",
-#'      legend = FALSE)
+#'      background = "gray90", legend = FALSE)
 #' @export
 create_fia_ppp <- function(tree_list, live_trees = TRUE, min_dia = 5,
                            linear_unit = "ft", macroplot = FALSE, window = NULL,
