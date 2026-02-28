@@ -9,4 +9,4 @@
 library(testthat)
 library(FIAstemmap)
 
-test_check("stemmap2")
+test_check("FIAstemmap")
