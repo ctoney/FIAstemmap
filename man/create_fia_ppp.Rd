@@ -6,11 +6,11 @@
 \usage{
 create_fia_ppp(
   tree_list,
-  live_only = TRUE,
+  live_trees = TRUE,
   min_dia = 5,
   linear_unit = "ft",
   macroplot = FALSE,
-  window = create_fia_owin(linear_unit, macroplot),
+  window = NULL,
   mark_cols = NULL,
   mark_as_factor = NULL
 )
@@ -19,7 +19,7 @@ create_fia_ppp(
 \item{tree_list}{A data frame containing a set of tree records for one FIA
 plot (see Deatils).}
 
-\item{live_only}{A logical value, \code{TRUE} to include live trees only (the
+\item{live_trees}{A logical value, \code{TRUE} to include live trees only (the
 default, i.e., \code{STATUSCD == 1}).}
 
 \item{min_dia}{A numeric value specifying the minimum diameter threshold
@@ -36,8 +36,9 @@ configuration with subplot radius of 24 ft (7.3152 m). See
 \code{\link[=create_fia_owin]{create_fia_owin()}}. By default, "macroplot trees" having \code{DIST} outside the
 subplot boundary are not included.}
 
-\item{window}{An object of class \code{"owin"} defining the observation window of
-an FIA plot in the 2-D plane. See \code{\link[=create_fia_owin]{create_fia_owin()}}.}
+\item{window}{An optional object of class \code{"owin"} defining the observation
+window of an FIA plot in the 2-D plane. Defaults to
+\code{create_fia_owin(linear_unit, macroplot)}.}
 
 \item{mark_cols}{An optional character vector of column names in \code{tree_list}
 to designate as \pkg{spatstat} \code{marks} which carry additional information for
@@ -78,4 +79,19 @@ below, along with their status as required or optional for
 \item \code{TPA_UNADJ}: optional tree expansion factor (per acre)
 \item \code{CRWIDTH}: optional crown width
 }
+}
+\examples{
+X <- create_fia_ppp(plantation)
+summary(X)
+
+plot(X, main = "Pine plantation stem map")
+
+# plot trees as trees :)
+X <- create_fia_ppp(plantation, mark_cols = "SPCD")
+plot(X, main = "Pine plantation stem map",
+     shape = "arrows", direction = 90, size = 12, cols = "darkgreen",
+     legend = FALSE)
+}
+\seealso{
+\code{\link[=create_fia_owin]{create_fia_owin()}}
 }

@@ -25,7 +25,7 @@
 #' * `CRWIDTH`: optional crown width
 #' @param tree_list A data frame containing a set of tree records for one FIA
 #' plot (see Deatils).
-#' @param live_only A logical value, `TRUE` to include live trees only (the
+#' @param live_trees A logical value, `TRUE` to include live trees only (the
 #' default, i.e., `STATUSCD == 1`).
 #' @param min_dia A numeric value specifying the minimum diameter threshold
 #' for included trees. The default is `5.0`. Trees less than 5-in. diameter but
@@ -39,8 +39,9 @@
 #' configuration with subplot radius of 24 ft (7.3152 m). See
 #' [create_fia_owin()]. By default, "macroplot trees" having `DIST` outside the
 #' subplot boundary are not included.
-#' @param window An object of class `"owin"` defining the observation window of
-#' an FIA plot in the 2-D plane. See [create_fia_owin()].
+#' @param window An optional object of class `"owin"` defining the observation
+#' window of an FIA plot in the 2-D plane. Defaults to
+#' `create_fia_owin(linear_unit, macroplot)`.
 #' @param mark_cols An optional character vector of column names in `tree_list`
 #' to designate as \pkg{spatstat} `marks` which carry additional information for
 #' each data point in a point pattern object.
@@ -51,15 +52,30 @@
 #' @return
 #' An object of class `"ppp"` which defines a point pattern dataset for use
 #' with functions of the \pkg{spatstat} library.
+#' 
+#' @seealso
+#' [create_fia_owin()]
 #'
-create_fia_ppp <- function(tree_list, live_only = TRUE, min_dia = 5.0,
-                           linear_unit = "ft", macroplot = FALSE,
-                           window = create_fia_owin(linear_unit, macroplot),
+#' @examples
+#' X <- create_fia_ppp(plantation)
+#' summary(X)
+#' 
+#' plot(X, main = "Pine plantation stem map")
+#' 
+#' # plot trees as trees :)
+#' X <- create_fia_ppp(plantation, mark_cols = "SPCD")
+#' plot(X, main = "Pine plantation stem map",
+#'      shape = "arrows", direction = 90, size = 12, cols = "darkgreen",
+#'      legend = FALSE)
+#' @export
+create_fia_ppp <- function(tree_list, live_trees = TRUE, min_dia = 5,
+                           linear_unit = "ft", macroplot = FALSE, window = NULL,
                            mark_cols = NULL, mark_as_factor = NULL) {
 
     if (missing(tree_list) || is.null(tree_list))
         stop("'tree_list' is required", call. = FALSE)
-    else if (!is.data.frame(tree_list))
+
+    if (!is.data.frame(tree_list))
         stop("'tree_list' must be a data frame", call. = FALSE)
 
     required_cols <- c("SUBP", "TREE", "AZIMUTH", "DIST", "STATUSCD")
@@ -72,13 +88,13 @@ create_fia_ppp <- function(tree_list, live_only = TRUE, min_dia = 5.0,
     if (any(tree_list$AZIMUTH < 0) || any(tree_list$AZIMUTH > 360))
         stop("'tree_list$AZIMUTH' contains values out of range", call. = FALSE)
 
-    if (is.null(live_only))
-        live_only <- TRUE
-    else if (!(is.logical(live_only) && length(live_only) == 1))
-        stop("'live_only' must be a single logical value", call. = FALSE)
+    if (is.null(live_trees))
+        live_trees <- TRUE
+    else if (!(is.logical(live_trees) && length(live_trees) == 1))
+        stop("'live_trees' must be a single logical value", call. = FALSE)
 
     if (is.null(min_dia))
-        min_dia <- 5.0
+        min_dia <- 5
     else if (!(is.numeric(min_dia) && length(min_dia) == 1))
         stop("'min_dia' must be a single numeric value", call. = FALSE)
 
@@ -97,7 +113,9 @@ create_fia_ppp <- function(tree_list, live_only = TRUE, min_dia = 5.0,
     else if (!(is.logical(macroplot) && length(macroplot) == 1))
         stop("'macroplot' must be a single logical value", call. = FALSE)
 
-    if (!is(window, "owin"))
+    if (is.null(window))
+        window <- create_fia_owin(linear_unit, macroplot)
+    else if (!methods::is(window, "owin"))
         stop("'window' must be an object of class `owin`", call. = FALSE)
 
     if (!is.null(mark_cols) && !is.character(mark_cols))
@@ -113,7 +131,7 @@ create_fia_ppp <- function(tree_list, live_only = TRUE, min_dia = 5.0,
              call. = FALSE)
 
     tree_list_in <- tree_list
-    if (live_only) {
+    if (live_trees) {
         tree_list_in <- tree_list[tree_list$STATUSCD == 1 &
                                   tree_list$DIA >= min_dia, ]
     } else {
@@ -127,9 +145,14 @@ create_fia_ppp <- function(tree_list, live_only = TRUE, min_dia = 5.0,
         marks <- tree_list_in[, mark_cols]
 
     if (!is.null(mark_as_factor)) {
-        for (col in mark_as_factor) {
-            if (!is.factor(marks[, col]))
-                marks[, col] <- as.factor(marks[, col])
+        if (is.vector(marks)) {
+            if (!is.factor(marks))
+                marks <- as.factor(marks)
+        } else {
+            for (col in mark_as_factor) {
+                if (!is.factor(marks[, col]))
+                    marks[, col] <- as.factor(marks[, col])
+            }
         }
     }
 
