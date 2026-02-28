@@ -7,26 +7,28 @@
 
 <!-- badges: end -->
 
-**FIAstemmap** provides functions for mapping tree stem locations on
-Forest Inventory and Analysis (FIA) plots, modeling crown dimensions,
-and generating plot-level estimates of fractional tree canopy cover
-based on inventory field measurements. Several stand height metrics can
-also be calculated. Point pattern analysis is facilitated for the FIA
-plot footprint using functionality provided by the **spatstat**
-packages. Efficient data processing supports national applications. The
-package provides an updated implementation of the code originally
-described in Toney et al. (2009) [\[1\]](#References).
+The Forest Inventory and Analysis (FIA) Program of USDA Forest Service
+provide tree-level measurements from a systematic grid of field plots
+across all forest land uses and ownerships in the US. **FIAstemmap**
+provides functions for mapping tree stem locations on FIA plots,
+modeling individual crown dimensions, and generating plot-level
+estimates of fractional tree canopy cover. Several stand height metrics
+can be calculated. Spatial analysis of tree point pattern is facilitated
+for the standard FIA four-point cluster plot design. Efficient data
+processing supports national applications. The R package provides an
+updated implementation of the software originally described by Toney et
+al. 2009 [\[1\]](#References).
 
-Since its original development, the stem-map model for estimating
-plot-level canopy cover has supported several applications of FIA field
-data including:
+Since its original development, the stem-map model for estimating plot
+canopy cover from field measurements has supported several applications
+of FIA data, including:
 
-- Reference data for vegetation classification and tree canopy cover
-  mapping in LANDFIRE [\[2, 3\]](#References)
-- National Land Cover Database (NLCD) Tree Canopy Cover science support
-  [\[4\]](#References)
-- Wildlife habitat analysis [\[5\]](#References)
-- Comparative assessments of tree canopy cover estimation methods [\[6,
+- reference data for classifying vegetation types and mapping tree
+  canopy cover in the LANDFIRE Program [\[2, 3\]](#References)
+- National Land Cover Database (NLCD) Tree Canopy Cover (TCC) science
+  and development [\[4\]](#References)
+- wildlife habitat analysis [\[5\]](#References)
+- comparative assessments of tree canopy cover estimation methods [\[6,
   7\]](#References)
 
 ## Installation
@@ -40,7 +42,7 @@ pak::pak("ctoney/FIAstemmap")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+TODO…
 
 ``` r
 library(FIAstemmap)
