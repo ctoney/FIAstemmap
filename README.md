@@ -11,7 +11,7 @@
 
 The Forest Inventory and Analysis (FIA) Program of USDA Forest Service
 provide tree-level measurements from a systematic grid of field plots
-across all forest land uses and ownerships in the US. **FIAstemmap** is
+across all forest ownerships and land uses in the US. **FIAstemmap** is
 an R package for mapping tree stem locations on FIA plots, modeling
 individual crown dimensions, and generating plot-level estimates of
 fractional tree canopy cover. Several stand height metrics can be
