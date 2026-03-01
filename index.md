@@ -1,15 +1,16 @@
 # FIA stem map
 
-**This is an implementation update, currently in-development**
+## NOTE: this repo is an implementation update currently in-development
 
-The Forest Inventory and Analysis (FIA) Program of USDA Forest Service
-provide tree-level measurements from a systematic grid of field plots
-across all forest ownerships and land uses in the US. **FIAstemmap** is
-an R package for mapping tree stem locations on FIA plots, modeling
-individual crown dimensions, and generating plot-level estimates of
-fractional tree canopy cover. Several stand height metrics can be
-calculated. Spatial analysis of tree point pattern is facilitated for
-the standard FIA four-point cluster plot design. Efficient data
+The Forest Inventory and Analysis Program
+([FIA](https://research.fs.usda.gov/programs/nfi)) of USDA Forest
+Service provide tree-level measurements from a systematic grid of field
+plots across all forest ownerships and land uses in the US.
+**FIAstemmap** is an R package for mapping tree stem locations on FIA
+plots, modeling individual crown dimensions, and generating plot-level
+estimates of fractional tree canopy cover. Several stand height metrics
+can be calculated. Spatial analysis of tree point pattern is facilitated
+for the standard FIA four-point cluster plot design. Efficient data
 processing supports national applications. The package provides an
 updated implementation of the software originally described by Toney et
 al. 2009 [\[1\]](#References). The original implementation for modeling
@@ -55,7 +56,7 @@ Station. 19 p. Available:
 <https://research.fs.usda.gov/treesearch/33381>.
 
 \[2\] LANDFIRE: LANDFIRE Existing Vegetation Cover layer. (LF2024
-version releasd 2025 - last update). U.S. Department of Interior,
+version released 2025 - last update). U.S. Department of Interior,
 Geological Survey, and U.S. Department of Agriculture. \[Online\].
 Available: <https://landfire.gov/vegetation/evc> \[accessed 2026, Feb
 24\].

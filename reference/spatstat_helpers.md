@@ -1,7 +1,7 @@
-# Helper functions for spatial point pattern analysis of FIA plots
+# Analyze tree spatial pattern on FIA plots
 
-Functions that facilitate analysis of FIA tree data using the spatstat
-library.
+Functions that facilitate point pattern analysis of FIA tree data using
+the spatstat library.
 
 ## Usage
 
@@ -47,7 +47,7 @@ create_fia_ppp(
 - tree_list:
 
   A data frame containing a set of tree records for one FIA plot (see
-  Deatils).
+  Details).
 
 - live_trees:
 
@@ -77,7 +77,7 @@ create_fia_ppp(
 - mark_as_factor:
 
   An optional subset of `mark_cols` to be treated as `factor` marks. If
-  not already `factor`, these will be corced as such upon input.
+  not already `factor`, these will be coerced as such upon input.
   `factor` marks are those that take only a finite number of possible
   values (e.g. colors or types).
 
@@ -164,7 +164,7 @@ summary(w)
 plot(w, main = "FIA standard four-subplot design")
 
 
-# point pattern object for the plantation example dataset
+# point pattern object for the plantation example data
 X <- create_fia_ppp(plantation)
 summary(X)
 #> Planar point pattern:  89 points
@@ -185,12 +185,12 @@ summary(X)
 #> Unit of length: 1 foot
 #> Fraction of frame area: 0.124
 
-plot(X, main = "Pine plantation stem map")
+plot(X, pch = 16, main = "Loblolly pine plantation")
 
 
 # plot trees as trees :)
 X <- create_fia_ppp(plantation, mark_cols = "SPCD")
-plot(X, main = "Pine plantation stem map",
+plot(X, main = "Loblolly pine plantation",
      shape = "arrows", direction = 90, size = 12, cols = "darkgreen",
      background = "gray90", legend = FALSE)
 
