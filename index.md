@@ -1,6 +1,7 @@
 # FIA stem map
 
-## NOTE: this repo is an implementation update currently in-development
+NOTE: this repository is for an implementation update *currently under
+development*
 
 The Forest Inventory and Analysis Program
 ([FIA](https://research.fs.usda.gov/programs/nfi)) of USDA Forest
