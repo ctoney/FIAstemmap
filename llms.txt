@@ -1,12 +1,13 @@
 # FIA stem map
 
-NOTE: this repository is for an implementation update *currently under
-development*
+**NOTE: this repository is for an implementation update *currently under
+development***
 
 The Forest Inventory and Analysis Program
 ([FIA](https://research.fs.usda.gov/programs/nfi)) of USDA Forest
 Service provide tree-level measurements from a systematic grid of field
 plots across all forest ownerships and land uses in the US.
+
 **FIAstemmap** is an R package for mapping tree stem locations on FIA
 plots, modeling individual crown dimensions, and generating plot-level
 estimates of fractional tree canopy cover. Several stand height metrics
@@ -36,7 +37,7 @@ You can install the development version of **FIAstemmap** with:
 pak::pak("ctoney/FIAstemmap")
 ```
 
-## Example
+## Examples
 
 TODO…
 
