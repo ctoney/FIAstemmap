@@ -4,7 +4,7 @@
 \alias{spatstat_helpers}
 \alias{create_fia_owin}
 \alias{create_fia_ppp}
-\title{Helper functions for spatial point pattern analysis of FIA plots}
+\title{Analyze tree spatial pattern on FIA plots}
 \usage{
 create_fia_owin(linear_unit = "ft", macroplot = FALSE, npoly = 360)
 
@@ -37,7 +37,7 @@ Pacific Northwest FIA region).}
 approximation. Defaults to \code{360}.}
 
 \item{tree_list}{A data frame containing a set of tree records for one FIA
-plot (see Deatils).}
+plot (see Details).}
 
 \item{live_trees}{A logical value, \code{TRUE} to include live trees only (the
 default, i.e., \code{STATUSCD == 1}).}
@@ -57,13 +57,13 @@ to designate as \pkg{spatstat} \code{marks} which carry additional information f
 each data point in a point pattern object.}
 
 \item{mark_as_factor}{An optional subset of \code{mark_cols} to be treated as
-\code{factor} marks. If not already \code{factor}, these will be corced as such upon
+\code{factor} marks. If not already \code{factor}, these will be coerced as such upon
 input. \code{factor} marks are those that take only a finite number of possible
 values (e.g. colors or types).}
 }
 \description{
-Functions that facilitate analysis of FIA tree data using the \pkg{spatstat}
-library.
+Functions that facilitate point pattern analysis of FIA tree data using the
+\pkg{spatstat} library.
 }
 \details{
 \code{create_fia_owin()} returns an object of class \code{"owin"} from the
@@ -108,15 +108,15 @@ summary(w)
 
 plot(w, main = "FIA standard four-subplot design")
 
-# point pattern object for the plantation example dataset
+# point pattern object for the plantation example data
 X <- create_fia_ppp(plantation)
 summary(X)
 
-plot(X, main = "Pine plantation stem map")
+plot(X, pch = 16, main = "Loblolly pine plantation")
 
 # plot trees as trees :)
 X <- create_fia_ppp(plantation, mark_cols = "SPCD")
-plot(X, main = "Pine plantation stem map",
+plot(X, main = "Loblolly pine plantation",
      shape = "arrows", direction = 90, size = 12, cols = "darkgreen",
      background = "gray90", legend = FALSE)
 

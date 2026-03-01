@@ -1,0 +1,17 @@
+bibentry(
+  bibtype = "InProceedings",
+  title = "A stem-map model for predicting tree canopy cover of Forest Inventory and Analysis (FIA) plots",
+  author = c(
+    person("Chris", "Toney", role = "aut", comment = c(ORCID = "0000-0001-5734-6510")),
+    person(c("John",  "D."), "Shaw", role = "aut"),
+    person(c("Mark",  "D."), "Nelson", role = "aut")),
+  year = "2009",
+  booktitle = "Forest Inventory and Analysis (FIA) Symposium 2008",
+  editor = as.person("Will McWilliams [com], Gretchen Moisen [com], Ray Czaplewski [com]"),
+  month = "October 21-23, 2008",
+  address = "Park City, UT",
+  number = "RMRS-P-56CD",
+  organization = "USDA Forest Service, Rocky Mountain Research Station",
+  publisher = "USDA Forest Service, Rocky Mountain Research Station",
+  url = "https://research.fs.usda.gov/treesearch/33381"
+)

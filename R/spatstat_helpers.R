@@ -1,7 +1,7 @@
-#' Helper functions for spatial point pattern analysis of FIA plots
+#' Analyze tree spatial pattern on FIA plots
 #'
-#' Functions that facilitate analysis of FIA tree data using the \pkg{spatstat}
-#' library.
+#' Functions that facilitate point pattern analysis of FIA tree data using the
+#' \pkg{spatstat} library.
 #'
 #' @name spatstat_helpers
 #' @details
@@ -48,7 +48,7 @@
 #' @param npoly Integer value giving the number of edges to use for polygon
 #' approximation. Defaults to `360`.
 #' @param tree_list A data frame containing a set of tree records for one FIA
-#' plot (see Deatils).
+#' plot (see Details).
 #' @param live_trees A logical value, `TRUE` to include live trees only (the
 #' default, i.e., `STATUSCD == 1`).
 #' @param min_dia A numeric value specifying the minimum diameter threshold
@@ -63,7 +63,7 @@
 #' to designate as \pkg{spatstat} `marks` which carry additional information for
 #' each data point in a point pattern object.
 #' @param mark_as_factor An optional subset of `mark_cols` to be treated as
-#' `factor` marks. If not already `factor`, these will be corced as such upon
+#' `factor` marks. If not already `factor`, these will be coerced as such upon
 #' input. `factor` marks are those that take only a finite number of possible
 #' values (e.g. colors or types).
 #'
@@ -78,15 +78,15 @@
 #'
 #' plot(w, main = "FIA standard four-subplot design")
 #'
-#' # point pattern object for the plantation example dataset
+#' # point pattern object for the plantation example data
 #' X <- create_fia_ppp(plantation)
 #' summary(X)
 #'
-#' plot(X, main = "Pine plantation stem map")
+#' plot(X, pch = 16, main = "Loblolly pine plantation")
 #'
 #' # plot trees as trees :)
 #' X <- create_fia_ppp(plantation, mark_cols = "SPCD")
-#' plot(X, main = "Pine plantation stem map",
+#' plot(X, main = "Loblolly pine plantation",
 #'      shape = "arrows", direction = 90, size = 12, cols = "darkgreen",
 #'      background = "gray90", legend = FALSE)
 #'

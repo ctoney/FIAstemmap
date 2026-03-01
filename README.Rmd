@@ -13,15 +13,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 # FIA stem map
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-**This is an implementation update, currently in-development**
+## NOTE: this repo is an implementation update currently in-development
 
-The Forest Inventory and Analysis (FIA) Program of USDA Forest Service provide tree-level measurements from a systematic grid of field plots across all forest ownerships and land uses in the US. **FIAstemmap** is an R package for mapping tree stem locations on FIA plots, modeling individual crown dimensions, and generating plot-level estimates of fractional tree canopy cover. Several stand height metrics can be calculated. Spatial analysis of tree point pattern is facilitated for the standard FIA four-point cluster plot design. Efficient data processing supports national applications. The package provides an updated implementation of the software originally described by Toney et al. 2009 [[1]](#References). The original implementation for modeling plot canopy cover from individual tree measurements has supported several applications of FIA data, including:
+The Forest Inventory and Analysis Program ([FIA](https://research.fs.usda.gov/programs/nfi)) of USDA Forest Service provide tree-level measurements from a systematic grid of field plots across all forest ownerships and land uses in the US. **FIAstemmap** is an R package for mapping tree stem locations on FIA plots, modeling individual crown dimensions, and generating plot-level estimates of fractional tree canopy cover. Several stand height metrics can be calculated. Spatial analysis of tree point pattern is facilitated for the standard FIA four-point cluster plot design. Efficient data processing supports national applications. The package provides an updated implementation of the software originally described by Toney et al. 2009 [[1]](#References). The original implementation for modeling plot canopy cover from individual tree measurements has supported several applications of FIA data, including:
 
 * reference data for classifying vegetation types and mapping tree canopy cover in the LANDFIRE Program [[2, 3, 4, 5]](#References)
 * National Land Cover Database (NLCD) Tree Canopy Cover (TCC) science and development [[6]](#References)
@@ -51,7 +50,7 @@ library(FIAstemmap)
 
 [1] Toney, Chris; Shaw, John D.; Nelson, Mark D. 2009. A stem-map model for predicting tree canopy cover of Forest Inventory and Analysis (FIA) plots. In: McWilliams, Will; Moisen, Gretchen; Czaplewski, Ray, comps. _Forest Inventory and Analysis (FIA) Symposium 2008_; October 21-23, 2008; Park City, UT. Proc. RMRS-P-56CD. Fort Collins, CO: U.S. Department of Agriculture, Forest Service, Rocky Mountain Research Station. 19 p. Available: https://research.fs.usda.gov/treesearch/33381.
 
-[2] LANDFIRE: LANDFIRE Existing Vegetation Cover layer. (LF2024 version releasd 2025 - last update). U.S. Department of Interior, Geological Survey, and U.S. Department of Agriculture. [Online]. Available: https://landfire.gov/vegetation/evc [accessed 2026, Feb 24].
+[2] LANDFIRE: LANDFIRE Existing Vegetation Cover layer. (LF2024 version released 2025 - last update). U.S. Department of Interior, Geological Survey, and U.S. Department of Agriculture. [Online]. Available: https://landfire.gov/vegetation/evc [accessed 2026, Feb 24].
 
 [3] Moore, Annabelle; La Puma, Inga; Dillon, Greg; Smail, Tobin; Schleeweis, Karen; Toney, Chris; Menakis, Jim; Bastian, Henry; Picotte, Josh; Dockter, Daryn; Tolk, Brian. 2024. Twenty years of science and management with LANDFIRE. Connected Science, October 2024. Fort Collins, CO: U.S. Department of Agriculture, Forest Service, Rocky Mountain Research Station. 2 p. Available: https://research.fs.usda.gov/treesearch/68397.
 
