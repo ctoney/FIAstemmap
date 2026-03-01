@@ -6,10 +6,6 @@ template:
   bslib:
     preset: bootstrap
 
-figures:
-  dev: png
-  bg: white
-
 home:
   title: FIA stem map
   sidebar:
