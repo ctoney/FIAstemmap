@@ -6,3 +6,7 @@
 ^docs$
 ^pkgdown$
 ^\.github$
+^FIAstemmap\.Rproj$
+^\.Rproj\.user$
+^CONTRIBUTING\.md$
+^CODE_OF_CONDUCT\.md$

@@ -19,11 +19,12 @@ Description: Maps individual tree stem locations on field plots of the Forest
 License: MIT + file LICENSE
 Depends: R (>= 4.1.0)
 Imports: gdalraster, methods, spatstat.geom
-Suggests: 
+Suggests:
     spatstat.explore,
     spelling,
     testthat (>= 3.0.0)
-URL: https://ctoney.github.io/FIAstemmap/
+URL: https://ctoney.github.io/FIAstemmap/, https://github.com/ctoney/FIAstemmap
+BugReports: https://github.com/ctoney/FIAstemmap/issues
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
