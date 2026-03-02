@@ -19,7 +19,7 @@ FIA tree species common name}
 Common name of surrogate species if applicable}
 \item{\code{b0}}{\code{\link{numeric}}, Regression b0 coefficient}
 \item{\code{b1}}{\code{\link{numeric}}, Regression b1 coefficient}
-\item{\code{b1}}{\code{\link{numeric}}, Regression b2 coefficient}
+\item{\code{b2}}{\code{\link{numeric}}, Regression b2 coefficient}
 \item{\code{reference}}{\code{\link{character}},
 Literature source of the species coefficients (see References)}
 }
@@ -54,6 +54,7 @@ literature, surrogate species were assigned based on subjectively similar
 tree physiognomy.
 }
 \examples{
+# Abies grandis
 cw_coef[cw_coef$SPCD == 17, ]
 }
 \references{

@@ -33,11 +33,12 @@
 #'     Common name of surrogate species if applicable}
 #'   \item{\code{b0}}{\code{\link{numeric}}, Regression b0 coefficient}
 #'   \item{\code{b1}}{\code{\link{numeric}}, Regression b1 coefficient}
-#'   \item{\code{b1}}{\code{\link{numeric}}, Regression b2 coefficient}
+#'   \item{\code{b2}}{\code{\link{numeric}}, Regression b2 coefficient}
 #'   \item{\code{reference}}{\code{\link{character}},
 #'     Literature source of the species coefficients (see References)}
 #' }
 #' @examples
+#' # Abies grandis
 #' cw_coef[cw_coef$SPCD == 17, ]
 #' @source
 #' Toney et al. 2009. A stem-map model for predicting tree canopy cover of
@@ -56,6 +57,53 @@
 #' radius and estimating canopy cover. _Forest Ecology and Management_, 126,
 #' 405-416.
 "cw_coef"
+
+
+#' Sapling crown width adjustment factors
+#'
+#' A species-specific lookup table of estimated crown width (CW) adjustment
+#' factors for saplings based on data from Bragg (2001).
+#' 
+#' @details
+#' FIA "saplings" are trees less than 5.0 in. (12.7 cm) diameter but greater
+#' than or equal to 1.0 in. (2.54 cm) diameter. In general, the data available
+#' to fit regression models predicting crown width (e.g., Bechtold 2003, 2004,
+#' see [cw_coef]) do not include trees with diameter less than 5.0 in.
+#' (12.7 cm). Extrapolating beyond the range of the model fitting data is
+#' undesirable, especially since a quadratic term is used in the regression
+#' equations for some species.
+#' 
+#' Adjustment is based on the proportion of crown width predicted at 5-in.
+#' (12.7 cm), at each 1-in. (2.54 cm) increment below that. Intermediate values
+#' are interpolated in the crown width prediction method. Mean adjustment
+#' factors are used if a species-specific adjustment is not available.
+#' 
+#' @format ## `cw_sapling_adj`
+#' A data frame with 23 rows and 5 columns:
+#' \describe{
+#'   \item{\code{SPCD}}{\code{\link{integer}}, FIA tree species code}
+#'   \item{\code{adj_1inch}}{\code{\link{numeric}},
+#'     CW adjustment factor at 1 in. DIA relative to 5 in. DIA}
+#'   \item{\code{adj_2inch}}{\code{\link{numeric}},
+#'     CW adjustment factor at 2 in. DIA relative to 5 in. DIA}
+#'   \item{\code{adj_3inch}}{\code{\link{numeric}},
+#'     CW adjustment factor at 3 in. DIA relative to 5 in. DIA}
+#'   \item{\code{adj_4inch}}{\code{\link{numeric}},
+#'     CW adjustment factor at 4 in. DIA relative to 5 in. DIA}
+#' }
+#' @examples
+#' # Tsuga canadensis
+#' cw_coef[cw_coef$SPCD == 261, ]
+#' 
+#' cw_sapling_adj[cw_sapling_adj$SPCD == 261, ]
+#' @source
+#' Toney et al. 2009. A stem-map model for predicting tree canopy cover of
+#' Forest Inventory and Analysis (FIA) plots.
+#' \url{https://research.fs.usda.gov/treesearch/33381}.
+#' @references
+#' Bragg, D.C. 2001. A local basal area adjustment for crown width prediction.
+#' _Northern Journal of Applied Forestry_ 18(1):22-28.
+"cw_sapling_adj"
 
 
 #' Tree list for a plot in a loblolly pine plantation
