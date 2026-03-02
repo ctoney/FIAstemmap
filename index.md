@@ -1,4 +1,4 @@
-# FIA stem map
+# FIAstemmap
 
 **NOTE: this repository is for an implementation update *currently under
 development***
