@@ -40,5 +40,5 @@ subplot/microplot covered by a vertical projection of circular crowns.
 ``` r
 crown_overlay_pct(24, plantation[plantation$SUBP == 1 &
                                  plantation$DIA >= 5, ])
-#> Error: 'g_build_collection' is not an exported object from 'namespace:gdalraster'
+#> [1] 87
 ```
