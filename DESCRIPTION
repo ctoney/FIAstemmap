@@ -18,11 +18,13 @@ Description: Maps individual tree stem locations on field plots of the Forest
     with the 'spatstat' library.
 License: MIT + file LICENSE
 Depends: R (>= 4.1.0)
-Imports: gdalraster, methods, spatstat.geom
+Imports: gdalraster (>= 2.4.0.9030), methods, spatstat.geom
 Suggests:
     spatstat.explore,
     spelling,
     testthat (>= 3.0.0)
+Remotes:
+    firelab/gdalraster
 URL: https://ctoney.github.io/FIAstemmap/, https://github.com/ctoney/FIAstemmap
 BugReports: https://github.com/ctoney/FIAstemmap/issues
 Config/testthat/edition: 3
