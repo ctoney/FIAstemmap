@@ -63,7 +63,7 @@
 #'
 #' A species-specific lookup table of estimated adjustment factors for crown
 #' width (CW) of saplings based on data from Bragg (2001).
-#' 
+#'
 #' @details
 #' FIA "saplings" are trees less than 5.0 in. (12.7 cm) diameter but greater
 #' than or equal to 1.0 in. (2.54 cm) diameter. In general, the data available
@@ -72,12 +72,12 @@
 #' (12.7 cm). Extrapolating beyond the range of the model fitting data is
 #' undesirable, especially since a quadratic term is used in the regression
 #' equations for some species.
-#' 
+#'
 #' Adjustment is based on the proportion of crown width predicted for 5-in.
 #' (12.7 cm) diameter, at each 1-in. (2.54 cm) increment below that. Intermediate
 #' values are interpolated in the crown width prediction method. Mean adjustment
 #' factors are used if a species-specific adjustment is not available.
-#' 
+#'
 #' @format ## `cw_sapling_adj`
 #' A data frame with 23 rows and 5 columns:
 #' \describe{
@@ -94,7 +94,7 @@
 #' @examples
 #' # Tsuga canadensis
 #' cw_coef[cw_coef$SPCD == 261, ]
-#' 
+#'
 #' cw_sapling_adj[cw_sapling_adj$SPCD == 261, ]
 #' @source
 #' Toney et al. 2009. A stem-map model for predicting tree canopy cover of

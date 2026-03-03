@@ -66,7 +66,7 @@
 #' `factor` marks. If not already `factor`, these will be coerced as such upon
 #' input. `factor` marks are those that take only a finite number of possible
 #' values (e.g. colors or types).
-#' 
+#'
 #' @references
 #' Baddeley A, Rubak E, Turner R (2015). _Spatial Point Patterns: Methodology
 #' and Applications with R_. Chapman and Hall/CRC Press, London.
@@ -76,10 +76,10 @@
 #' Ripley, B.D. (1977) Modelling spatial patterns. _Journal of the Royal
 #' Statistical Society: Series B (Methodological)_, **39**:2, 172–192.
 #' \url{https://doi.org/10.1111/j.2517-6161.1977.tb01615.x}.
-#' 
+#'
 #' @seealso
 #' \pkg{spatstat} package: \url{https://cran.r-project.org/package=spatstat}
-#' 
+#'
 #' @examples
 #' # observation window for the standard FIA plot design
 #' w <- create_fia_owin()
