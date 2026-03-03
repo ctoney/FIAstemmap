@@ -81,20 +81,19 @@ similar tree physiognomy.
 
 Bechtold, W.A. 2003. Crown-Diameter Prediction Models for 87 Species of
 Stand-Grown Trees in the Eastern United States. *Southern Journal of
-Applied Forestry*, Vol. 27, No. 4, 269-278.
+Applied Forestry*, 27(4): 269-278.
 
 Bechtold, W.A. 2004. Largest-Crown-Width Prediction Models for 53
 Species in the Western United States. *Western Journal of Applied
-Forestry*, Vol. 19, No. 4, 245-251.
+Forestry*, 19(4): 245-251.
 
 Gill, S.J., G.S. Biging, E.C. Murphy. 2000. Modeling conifer tree crown
 radius and estimating canopy cover. *Forest Ecology and Management*,
-126, 405-416.
+126(3): 405-416.
 
 ## Examples
 
 ``` r
-# Abies grandis
 cw_coef[cw_coef$SPCD == 17, ]
 #>   symbol SPCD common_name surrogate   b0   b1    b2       reference
 #> 3   ABGR   17   grand fir      <NA> 5.75 1.11 -0.01 Bechtold (2004)

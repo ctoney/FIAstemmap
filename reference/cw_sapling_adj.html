@@ -95,9 +95,10 @@ see <a href="cw_coef.html">cw_coef</a>) do not include trees with diameter less 
 undesirable, especially since a quadratic term is used in the regression
 equations for some species.</p>
 <p>Adjustment is based on the proportion of crown width predicted for 5-in.
-(12.7 cm) diameter, at each 1-in. (2.54 cm) increment below that. Intermediate
-values are interpolated in the crown width prediction method. Mean adjustment
-factors are used if a species-specific adjustment is not available.</p>
+(12.7 cm) diameter, at each 1-in. (2.54 cm) increment below that.
+Intermediate values are interpolated in the crown width prediction method.
+Mean adjustment factors are used if a species-specific adjustment is not
+available.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -107,8 +108,7 @@ factors are used if a species-specific adjustment is not available.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Tsuga canadensis</span></span></span>
-<span class="r-in"><span><span class="va">cw_coef</span><span class="op">[</span><span class="va">cw_coef</span><span class="op">$</span><span class="va">SPCD</span> <span class="op">==</span> <span class="fl">261</span>, <span class="op">]</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">cw_coef</span><span class="op">[</span><span class="va">cw_coef</span><span class="op">$</span><span class="va">SPCD</span> <span class="op">==</span> <span class="fl">261</span>, <span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     symbol SPCD     common_name surrogate   b0  b1    b2       reference</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 154   TSCA  261 eastern hemlock      &lt;NA&gt; 5.66 1.5 -0.02 Bechtold (2003)</span>
 <span class="r-in"><span></span></span>

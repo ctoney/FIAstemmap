@@ -72,7 +72,6 @@ prediction. *Northern Journal of Applied Forestry* 18(1):22-28.
 ## Examples
 
 ``` r
-# Tsuga canadensis
 cw_coef[cw_coef$SPCD == 261, ]
 #>     symbol SPCD     common_name surrogate   b0  b1    b2       reference
 #> 154   TSCA  261 eastern hemlock      <NA> 5.66 1.5 -0.02 Bechtold (2003)
