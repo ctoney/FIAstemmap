@@ -1,6 +1,6 @@
 #' Compute fractional tree canopy cover of a subplot/microplot by crown overlay
 #'
-#' `crown_overlay_pct()` computes the proportion of a circular polygon covered
+#' `overlay_crowns()` computes the proportion of a circular polygon covered
 #' by a given set of tree crowns modeled as discs and having spatially explicit
 #' stem locations. The sampled area is generally an FIA subplot with radius 24
 #' ft (7.315 m) for trees with diameter \verb{>= 5 in.} (12.7 cm), or an FIA
@@ -27,9 +27,9 @@
 #' # subplot 1 of the `plantation` plot
 #' subp1_trees <- plantation[plantation$SUBP == 1 &
 #'                           plantation$DIA >= 5, ]
-#' crown_overlay_pct(subp1_trees, 24)
+#' overlay_crowns(subp1_trees, 24)
 #' @export
-crown_overlay_pct <- function(tree_list, sample_radius, digits = 1) {
+overlay_crowns <- function(tree_list, sample_radius, digits = 1) {
     if (missing(tree_list) || is.null(tree_list))
         stop("'tree_list' is required", call. = FALSE)
 

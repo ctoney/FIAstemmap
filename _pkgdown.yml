@@ -20,5 +20,5 @@ reference:
 
 - title: Functions
 - contents:
-  - crown_overlay_pct
+  - overlay_crowns
   - spatstat_helpers

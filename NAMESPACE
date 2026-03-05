@@ -3,4 +3,4 @@
 export(.get_tree_list_xy)
 export(create_fia_owin)
 export(create_fia_ppp)
-export(crown_overlay_pct)
+export(overlay_crowns)
