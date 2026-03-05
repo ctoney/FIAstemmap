@@ -45,7 +45,7 @@ The regression equation is of the general form:
 
 where \code{CW} is the predicted tree crown diameter in feet, \code{DIA} is FIA stem
 diameter in inches, and \code{b0}, \code{b1}, \code{b2} are the regression coefficients.
-The quadratic term \code{b2} was not included in the regression models for some
+The quadratic term \code{b2} is not included in the regression models for some
 species, and has been assigned \code{0} in that case for purposes of this lookup
 table.
 

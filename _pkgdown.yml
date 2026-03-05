@@ -21,4 +21,5 @@ reference:
 - title: Functions
 - contents:
   - overlay_crowns
+  - predict_crwidth
   - spatstat_helpers

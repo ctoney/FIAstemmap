@@ -1,6 +1,43 @@
-#' @noRd
+#' Compute predicted tree crown width using species-specific equations
+#'
+#' `predict_crwidth()` computes tree crown width using species-specific
+#' regression equations from the literature.
+#'
+#' @details
+#' Crown width is predicted from tree diameter using coefficients provided in
+#' the lookup table [cw_coef] (see `?cw_coef` for detailed documentation and
+#' references). The method also incorporates adjustment factors used to derive
+#' crown width estimates for FIA "saplings", i.e., trees less than 5.0 in.
+#' (12.7 cm) diameter but greater than or equal to 1.0 in. (2.54 cm) diameter.
+#' Details are described in the documentation for the lookup table
+#' [cw_sapling_adj].
+#'
+#' Large diameter trees in the temperate rain forests of the Pacific Northwest
+#' region can far exceed the range of diameters in the broadly applicable
+#' datasets that have been used to develop crown width prediction equations. To
+#' avoid extrapolation beyond the range of the model fitting data in those
+#' cases, `predict_crwidth()` makes use of the "old growth" equation presented
+#' by Gill et al. (2000) to estimate crown width for nine tree species when
+#' their diameter is greater than 50 in. (127 cm).
+#'
+#' @param tree_list A data frame containing tree records. Must have columns
+#' `SPCD` (FIA integer species code), `STATUSCD` (FIA integer tree status code,
+#' 1 = live) and `DIA` (FIA tree diameter in inches).
+#' @param digits Optional integer indicating the number of digits to keep in the
+#' return values (defaults to `1`).
+#' @return
+#' A numeric vector of length `nrow(tree_list)` with predicted crown width in
+#' feet for live trees. `NA` is returned for trees with `STATUSCD != 1`.
+#'
+#' @references
+#' Gill, S.J., G.S. Biging, E.C. Murphy. 2000. Modeling conifer tree crown
+#' radius and estimating canopy cover. _Forest Ecology and Management_, 126(3):
+#' 405-416.
+#'
+#' @examples
+#' predict_crwidth(plantation)
 #' @export
-predict_crwidth <- function(tree_list) {
+predict_crwidth <- function(tree_list, digits = 1) {
     if (missing(tree_list) || is.null(tree_list))
         stop("'tree_list' is required", call. = FALSE)
 
@@ -26,11 +63,14 @@ predict_crwidth <- function(tree_list) {
     if (any(is.na(tree_list$DIA)))
         stop("'tree_list$DIA' cannot have missing values", call. = FALSE)
 
-    # default regression coefficients if species-specific ones are missing
-    # SPCD == 807, blue oak
-    b_default <- cw_coef[cw_coef$SPCD == 807, c("b0", "b1", "b2")]
+    if (is.null(digits))
+        digits <- 2
 
     cw <- rep_len(NA_real_, nrow(tree_list))
+
+    # define a default equation to use in case a species-specific one is missing
+    # SPCD == 807, blue oak
+    b_default <- cw_coef[cw_coef$SPCD == 807, c("b0", "b1", "b2")]
 
     # special case for large trees of certain species in the PNW region:
     # use the "old growth" equation from Gill et al. (2000)
@@ -47,24 +87,39 @@ predict_crwidth <- function(tree_list) {
         if (nrow(b) == 0)
             b <- b_default
 
-        this_subset <- tree_list$SPCD == spcd & tree_list$STATUSCD == 1 &
-                       is.na(cw)
+        this_subset <-
+            tree_list$SPCD == spcd & tree_list$STATUSCD == 1 & is.na(cw)
 
-        if (length(this_subset) > 0) {
-            cw[this_subset] <- b$b0[1] +
-                               b$b1[1] * pmax(5, tree_list$DIA[this_subset]) +
-                               b$b2[1] * pmax(5, tree_list$DIA[this_subset])^2
-        }
+        cw[this_subset] <-
+            b$b0 + b$b1 * pmax(5, tree_list$DIA[this_subset]) +
+            b$b2 * pmax(5, tree_list$DIA[this_subset])^2
     }
 
     # apply sapling crown width adjustment factors
     saplings <- tree_list$DIA < 5 & tree_list$STATUSCD == 1
     sapling_spp <- unique(tree_list$SPCD[saplings])
-    # species-specific adjustment factors if any
-    spp_adj <- intersect(sapling_spp, cw_sapling_adj$SPCD)
-    # TODO:
-    # ...
+    # species-specific adjustment factors if any (based on Bragg 2001)
+    spcd_adj <- intersect(sapling_spp, cw_sapling_adj$SPCD)
+    for (spcd in spcd_adj) {
+        rowid <- which(cw_sapling_adj$SPCD == spcd)
+        # adjustment factors at 1, 2, 3, 4, 5 inches DIA:
+        adj_factors <- c(as.numeric(cw_sapling_adj[rowid, 2:5]), 1)
+        this_subset <- saplings & tree_list$SPCD == spcd
+        # interpolated adjustment factors for the actual sapling diameters:
+        n <- trunc(tree_list$DIA[this_subset])
+        cw_adj <- (tree_list$DIA[this_subset] - n) *
+                  (adj_factors[n + 1] - adj_factors[n]) + adj_factors[n]
+        cw[this_subset] <- cw[this_subset] * cw_adj
+    }
+    # otherwise use avarage adjustment factors based on Bragg (2001) data
+    # average adjustment factors at 1, 2, 3, 4, 5 inches DIA:
+    adj_factors <- c(0.509, 0.644, 0.767, 0.885, 1.0)
+    this_subset <- saplings & !(tree_list$SPCD %in% cw_sapling_adj$SPCD)
+    # interpolated adjustment factors for the actual sapling diameters:
+    n <- trunc(tree_list$DIA[this_subset])
+    cw_adj <- (tree_list$DIA[this_subset] - n) *
+              (adj_factors[n + 1] - adj_factors[n]) + adj_factors[n]
+    cw[this_subset] <- cw[this_subset] * cw_adj
 
-
-    return(cw)
+    round(cw, digits = digits)
 }

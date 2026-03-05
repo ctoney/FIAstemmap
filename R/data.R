@@ -12,7 +12,7 @@
 #'
 #' where `CW` is the predicted tree crown diameter in feet, `DIA` is FIA stem
 #' diameter in inches, and `b0`, `b1`, `b2` are the regression coefficients.
-#' The quadratic term `b2` was not included in the regression models for some
+#' The quadratic term `b2` is not included in the regression models for some
 #' species, and has been assigned `0` in that case for purposes of this lookup
 #' table.
 #'
