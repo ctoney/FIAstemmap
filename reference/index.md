@@ -14,6 +14,8 @@
 - [`overlay_crowns()`](https://ctoney.github.io/FIAstemmap/reference/overlay_crowns.md)
   : Compute fractional tree canopy cover of a subplot/microplot by crown
   overlay
+- [`predict_crwidth()`](https://ctoney.github.io/FIAstemmap/reference/predict_crwidth.md)
+  : Compute predicted tree crown width using species-specific equations
 - [`create_fia_owin()`](https://ctoney.github.io/FIAstemmap/reference/spatstat_helpers.md)
   [`create_fia_ppp()`](https://ctoney.github.io/FIAstemmap/reference/spatstat_helpers.md)
   : Analyze the spatial pattern of trees on an FIA plot
