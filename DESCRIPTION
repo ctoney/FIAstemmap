@@ -18,7 +18,10 @@ Description: Maps individual tree stem locations on field plots of the Forest
     with the 'spatstat' library.
 License: MIT + file LICENSE
 Depends: R (>= 4.1.0)
-Imports: gdalraster (>= 2.4.0.9030), methods, spatstat.geom
+Imports:
+    gdalraster (>= 2.4.0.9030),
+    methods,
+    spatstat.geom
 Suggests:
     spatstat.explore,
     spelling,
