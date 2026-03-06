@@ -14,6 +14,7 @@ home:
 reference:
 - title: Functions
 - contents:
+  - load_tree_data
   - overlay_crowns
   - predict_crwidth
   - spatstat_helpers
