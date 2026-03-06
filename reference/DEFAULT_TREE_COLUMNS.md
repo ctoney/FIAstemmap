@@ -1,0 +1,29 @@
+# Names of the FIADB TREE columns used by default in FIAstemmap
+
+`DEFAULT_TREE_COLUMNS` is a character vector of column names in the
+FIADB TREE table that are used to compute various tree- and plot-level
+derived variables in FIAstemmap. Note that certain outputs can be
+generated without this full set of TREE attributes, but these are the
+ones generally needed for all functionality in the package.
+
+## Usage
+
+``` r
+DEFAULT_TREE_COLUMNS
+```
+
+## Format
+
+A character vector with 12 elements.
+
+## Source
+
+<https://research.fs.usda.gov/products/dataandtools/fia-datamart>
+
+## Examples
+
+``` r
+DEFAULT_TREE_COLUMNS
+#>  [1] "PLT_CN"    "SUBP"      "TREE"      "AZIMUTH"   "DIST"      "STATUSCD" 
+#>  [7] "SPCD"      "DIA"       "HT"        "ACTUALHT"  "CCLCD"     "TPA_UNADJ"
+```

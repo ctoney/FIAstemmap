@@ -1,14 +1,5 @@
 # Package index
 
-## Datasets
-
-- [`cw_coef`](https://ctoney.github.io/FIAstemmap/reference/cw_coef.md)
-  : Regression coefficients for predicting tree crown width
-- [`cw_sapling_adj`](https://ctoney.github.io/FIAstemmap/reference/cw_sapling_adj.md)
-  : Sapling crown width adjustment factors
-- [`plantation`](https://ctoney.github.io/FIAstemmap/reference/plantation.md)
-  : Tree list for a plot in a loblolly pine plantation
-
 ## Functions
 
 - [`overlay_crowns()`](https://ctoney.github.io/FIAstemmap/reference/overlay_crowns.md)
@@ -19,3 +10,19 @@
 - [`create_fia_owin()`](https://ctoney.github.io/FIAstemmap/reference/spatstat_helpers.md)
   [`create_fia_ppp()`](https://ctoney.github.io/FIAstemmap/reference/spatstat_helpers.md)
   : Analyze the spatial pattern of trees on an FIA plot
+
+## Data
+
+- [`DEFAULT_TREE_COLUMNS`](https://ctoney.github.io/FIAstemmap/reference/DEFAULT_TREE_COLUMNS.md)
+  :
+
+  Names of the FIADB TREE columns used by default in FIAstemmap
+
+- [`cw_coef`](https://ctoney.github.io/FIAstemmap/reference/cw_coef.md)
+  : Regression coefficients for predicting tree crown width
+
+- [`cw_sapling_adj`](https://ctoney.github.io/FIAstemmap/reference/cw_sapling_adj.md)
+  : Sapling crown width adjustment factors
+
+- [`plantation`](https://ctoney.github.io/FIAstemmap/reference/plantation.md)
+  : Tree list for a plot in a loblolly pine plantation
