@@ -1,3 +1,21 @@
+#' Names of the FIADB TREE columns used by default in \pkg{FIAstemmap}
+#'
+#' `DEFAULT_TREE_COLUMNS` is a character vector of column names in the FIADB
+#' TREE table that are used to compute various tree- and plot-level derived
+#' variables in \pkg{FIAstemmap}. Note that certain outputs can be
+#' generated without this full set of TREE attributes, but these are the ones
+#' generally needed for all functionality in the package.
+#'
+#' @format
+#' A character vector with 12 elements.
+#' @examples
+#' DEFAULT_TREE_COLUMNS
+#' @source <https://research.fs.usda.gov/products/dataandtools/fia-datamart>
+#' @export
+DEFAULT_TREE_COLUMNS <- c("PLT_CN", "SUBP", "TREE", "AZIMUTH", "DIST",
+                          "STATUSCD", "SPCD", "DIA", "HT", "ACTUALHT",
+                          "CCLCD", "TPA_UNADJ")
+
 #' Regression coefficients for predicting tree crown width
 #'
 #' A curated set of linear regression coefficients for predicting crown width

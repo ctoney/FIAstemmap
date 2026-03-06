@@ -12,14 +12,15 @@ home:
     structure: [toc, links, community, authors, citation, license]
 
 reference:
-- title: Datasets
-- contents:
-  - cw_coef
-  - cw_sapling_adj
-  - plantation
-
 - title: Functions
 - contents:
   - overlay_crowns
   - predict_crwidth
   - spatstat_helpers
+
+- title: Data
+- contents:
+  - DEFAULT_TREE_COLUMNS
+  - cw_coef
+  - cw_sapling_adj
+  - plantation
