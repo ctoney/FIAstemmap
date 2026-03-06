@@ -2,6 +2,8 @@
 
 ## Functions
 
+- [`load_tree_data()`](https://ctoney.github.io/FIAstemmap/reference/load_tree_data.md)
+  : Load tree data from a file or database connection
 - [`overlay_crowns()`](https://ctoney.github.io/FIAstemmap/reference/overlay_crowns.md)
   : Compute fractional tree canopy cover of a subplot/microplot by crown
   overlay
