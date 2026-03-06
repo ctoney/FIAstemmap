@@ -3,5 +3,6 @@
 export(.get_tree_list_xy)
 export(create_fia_owin)
 export(create_fia_ppp)
+export(load_tree_data)
 export(overlay_crowns)
 export(predict_crwidth)
