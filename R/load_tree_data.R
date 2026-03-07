@@ -159,7 +159,10 @@ load_tree_data <- function(src, table = NULL, columns = DEFAULT_TREE_COLUMNS,
     d <- ds$fetch(-1)
     cli::cli_progress_done()
 
+    # make it a regular data frame without gdalraster attributes
     try(d$FID <- NULL, silent = TRUE)
+    class(d) <- "data.frame"
+    attr(d, "gis") <- NULL
 
     if (nrow(d) == 0)
         cli::cli_alert_danger("No tree records were returned")
