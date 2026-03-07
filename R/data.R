@@ -1,3 +1,7 @@
+# .rda datasets in data/ that are used internally but also intended to be
+# available to users
+utils::globalVariables(c("cw_coef", "cw_sapling_adj"), package = "FIAstemmap")
+
 #' Names of the FIADB TREE columns used by default in \pkg{FIAstemmap}
 #'
 #' `DEFAULT_TREE_COLUMNS` is a character vector of column names in the FIADB
