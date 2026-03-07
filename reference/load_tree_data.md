@@ -1,12 +1,14 @@
 # Load tree data from a file or database connection
 
-`load_tree_data()` fetches tree records from a data source, most
-commonly a comma-separated values (CSV) file, a SQLite database file
-(.db, .sqlite, .gpkg), or a PostgreSQL database connection. Other data
-sources are also possible. File-based sources can be read from
-compressed archives without prior extraction (e.g., .zip), and
-network-hosted files can be read directly without prior download (see
-Details).
+`load_tree_data()` fetches tree records from a data source, typically a
+comma-separated values (CSV) file, a SQLite database file (.db, .sqlite,
+.gpkg), or a PostgreSQL database connection. Other data sources are also
+possible. File-based sources can be read from compressed archives
+without prior extraction if desired (e.g., .zip), and network-hosted
+files can be read directly without prior download (see Details). This
+function provides certain conveniences, but tree data could also be
+loaded in various other ways (e.g.,
+[`read.csv()`](https://rdrr.io/r/utils/read.table.html)).
 
 ## Usage
 
@@ -25,27 +27,30 @@ load_tree_data(src, table = NULL, columns = DEFAULT_TREE_COLUMNS, sql = NULL)
 
   Optional character string giving the name of a table in `src` from
   which tree records will be fetched. Generally needed with database
-  sources containing multiple tables, as opposed to a single-table
-  source such as a CSV file.
+  sources containing multiple tables (as opposed to a single-table
+  source such as a CSV file).
 
 - columns:
 
   Optional character vector specifying a subset of column names in the
-  source table to include in the result set.
+  source table to include in the result set. Defaults to
+  [DEFAULT_TREE_COLUMNS](https://ctoney.github.io/FIAstemmap/reference/DEFAULT_TREE_COLUMNS.md).
+  Can also be set to `NULL` or empty string (`""`) to read all columns
+  in the source table.
 
 - sql:
 
   Optional character string containing a SQL SELECT statement to execute
-  on `src` (instead of selecting all records potentially from a subset
+  on `src` (instead of selecting all records, potentially from a subset
   of columns, i.e., mutually exclusive with `table` and/or `columns`).
 
 ## Value
 
-A data frame containing the tree records fetched from `src`.
+A data frame containing tree records fetched from `src`.
 
 ## Details
 
-A data source is typically specified as one of the following:
+A data source is most commonly specified as one of the following:
 
 CSV file  
 Path to a text file with `".csv"` extension. For files structured as
@@ -53,38 +58,38 @@ CSV, but not ending with the `".csv"` extension, a `"CSV:"` prefix can
 be added before the filename to force loading as CSV format.
 
 SQLite database  
-Path to a SQLite file. File extensions are typically `".db"` or
-`".sqlite"`. GeoPackage SQLite files with `".gpkg"` extension are also
+Path to a SQLite file. The file extension is generally either `".db"` or
+`".sqlite"`, but GeoPackage files with the `".gpkg"` extension are also
 supported.
 
 PostgreSQL database  
 A connection string in one of the following formats:
 
-    src <- "PG:dbname=databasename"
+    "PG:dbname=databasename"
 
-    src <- "PG:dbname='db' host='addr' port='5432' user='x' password='y'"
+    "PG:dbname='db' host='addr' port='5432' user='x' password='y'"
 
-    src <- "PG:service=servicename"
+    "PG:service=servicename"
 
-    src <- "postgresql://[usr[:pwd]@][netloc][:port][/db][?param1=val1&...]"
+    "postgresql://[user[:pwd]@][netloc][:port][/dbname][?param1=val1&...]"
 
 GDAL Virtual File Systems are also supported. This allows, for example,
 reading from compressed archives such as `".zip"` without prior
 extraction. The syntax in that case uses the `"/vsizip/"` prefix:
 
     # relative path to the .zip:
-    src <- "/vsizip/MT_CSV.zip/MT_TREE.csv"
+    f <- "/vsizip/MT_CSV.zip/MT_TREE.csv"
 
     # absolute path to the .zip:
-    src <- "/vsizip//home/ctoney/data/MT_CSV.zip/MT_TREE.csv"
+    f <- "/vsizip//home/ctoney/data/MT_CSV.zip/MT_TREE.csv"
 
     # on Windows:
-    src <- "/vsizip/c:/users/ctoney/MT_CSV.zip/MT_TREE.csv"
+    f <- "/vsizip/c:/users/ctoney/MT_CSV.zip/MT_TREE.csv"
 
 Network-hosted files can also be read without prior download using the
 `"/vsicurl/"` prefix:
 
-    src <- "/vsicurl/https://apps.fs.usda.gov/fia/datamart/CSV/MT_TREE.csv"
+    vsi_f <- "/vsicurl/https://apps.fs.usda.gov/fia/datamart/CSV/MT_TREE.csv"
 
 For more details, including supported VSI prefixes for cloud storage
 services and other virtual file systems, see
@@ -100,6 +105,10 @@ supported by the current GDAL installation can be obtained with:
 
 For more details: <https://gdal.org/en/stable/drivers/vector/index.html>
 
+## See also
+
+[DEFAULT_TREE_COLUMNS](https://ctoney.github.io/FIAstemmap/reference/DEFAULT_TREE_COLUMNS.md)
+
 ## Examples
 
 ``` r
@@ -108,7 +117,7 @@ f <- system.file("extdata/mt_lnf_2022_1cond_tree.csv", package="FIAstemmap")
 tree <- load_tree_data(f)
 #> ! The data source does not have DIST and/or AZIMUTH
 #> ℹ Fetching tree data...
-#> ✔ Fetching tree data... [15ms]
+#> ✔ Fetching tree data... [12ms]
 #> 
 #> ℹ 910 tree records returned
 
