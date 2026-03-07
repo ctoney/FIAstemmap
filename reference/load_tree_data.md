@@ -13,7 +13,13 @@ loaded in various other ways (e.g.,
 ## Usage
 
 ``` r
-load_tree_data(src, table = NULL, columns = DEFAULT_TREE_COLUMNS, sql = NULL)
+load_tree_data(
+  src,
+  table = NULL,
+  columns = DEFAULT_TREE_COLUMNS,
+  sql = NULL,
+  quoted_cols_as_char = TRUE
+)
 ```
 
 ## Arguments
@@ -43,6 +49,12 @@ load_tree_data(src, table = NULL, columns = DEFAULT_TREE_COLUMNS, sql = NULL)
   Optional character string containing a SQL SELECT statement to execute
   on `src` (instead of selecting all records, potentially from a subset
   of columns, i.e., mutually exclusive with `table` and/or `columns`).
+
+- quoted_cols_as_char:
+
+  A logical value indicating whether to auto-detect columns that contain
+  quoted values as `"character"` type, `TRUE` by default. Only used when
+  `src` is a CSV file.
 
 ## Value
 
@@ -105,6 +117,12 @@ supported by the current GDAL installation can be obtained with:
 
 For more details: <https://gdal.org/en/stable/drivers/vector/index.html>
 
+`load_tree_data()` requires GDAL built with support for the PostgreSQL
+client library for access to PostgreSQL databases.
+
+Column names are generally case-sensitive in FIAstemmap functions and
+assumed to follow FIADB all upper case naming.
+
 ## See also
 
 [DEFAULT_TREE_COLUMNS](https://ctoney.github.io/FIAstemmap/reference/DEFAULT_TREE_COLUMNS.md)
@@ -122,11 +140,11 @@ tree <- load_tree_data(f)
 #> ℹ 910 tree records returned
 
 head(tree)
-#>            PLT_CN SUBP TREE STATUSCD  SPCD DIA HT ACTUALHT CCLCD TPA_UNADJ
-#> 1 670951075126144    1    1        2 108.0                                
-#> 2 670951075126144    1    2        1 108.0 1.0  9        9     3 74.965282
-#> 3 670951075126144    2    1        2 108.0                                
-#> 4 670951075126144    2    2        2 108.0                                
-#> 5 670951075126144    2    3        2 108.0                                
-#> 6 670951075126144    2    4        2 108.0                                
+#>            PLT_CN SUBP TREE STATUSCD SPCD DIA HT ACTUALHT CCLCD TPA_UNADJ
+#> 1 670951075126144    1    1        2  108  NA NA       NA    NA        NA
+#> 2 670951075126144    1    2        1  108   1  9        9     3  74.96528
+#> 3 670951075126144    2    1        2  108  NA NA       NA    NA        NA
+#> 4 670951075126144    2    2        2  108  NA NA       NA    NA        NA
+#> 5 670951075126144    2    3        2  108  NA NA       NA    NA        NA
+#> 6 670951075126144    2    4        2  108  NA NA       NA    NA        NA
 ```
