@@ -24,7 +24,7 @@ load_tree_data(src, table = NULL, columns = DEFAULT_TREE_COLUMNS, sql = NULL)
 - table:
 
   Optional character string giving the name of a table in `src` from
-  which tree records will be fetched. Generally needed with RDBMS
+  which tree records will be fetched. Generally needed with database
   sources containing multiple tables, as opposed to a single-table
   source such as a CSV file.
 
@@ -45,4 +45,57 @@ A data frame containing the tree records fetched from `src`.
 
 ## Details
 
-A data source is typically specified as one of the following: **WIP**
+A data source is typically specified as one of the following:
+
+CSV file  
+Path to a text file with `".csv"` extension. For files structured as
+CSV, but not ending with the `".csv"` extension, a `"CSV:"` prefix can
+be added before the filename to force loading as CSV format.
+
+SQLite database  
+Path to a SQLite file. File extensions are typically `".db"` or
+`".sqlite"`. GeoPackage SQLite files with `".gpkg"` extension are also
+supported.
+
+PostgreSQL database  
+A connection string in one of the following formats:
+
+    src <- "PG:dbname=databasename"
+
+    src <- "PG:dbname='db' host='addr' port='5432' user='x' password='y'"
+
+    src <- "PG:service=servicename"
+
+    src <- "postgresql://[usr[:pwd]@][netloc][:port][/db][?param1=val1&...]"
+
+GDAL Virtual File Systems are also supported. This allows, for example,
+reading from compressed archives such as `".zip"` without prior
+extraction. The syntax in that case uses the `"/vsizip/"` prefix:
+
+    # relative path to the .zip:
+    src <- "/vsizip/MT_CSV.zip/MT_TREE.csv"
+
+    # absolute path to the .zip:
+    src <- "/vsizip//home/ctoney/data/MT_CSV.zip/MT_TREE.csv"
+
+    # on Windows:
+    src <- "/vsizip/c:/users/ctoney/MT_CSV.zip/MT_TREE.csv"
+
+Network-hosted files can also be read without prior download using the
+`"vsicurl"` prefix:
+
+    src <- "/vsicurl/https://apps.fs.usda.gov/fia/datamart/CSV/MT_TREE.csv"
+
+For more details, including supported VSI prefixes for cloud storage
+services and other virtual file systems, see
+<https://gdal.org/en/stable/user/virtual_file_systems.html>.
+
+## Note
+
+`src` can be any GDAL supported dataset. A full list of formats
+supported by the current GDAL installation can be obtained with:
+
+    fmt <- gdalraster::gdal_formats()
+    fmt$long_name[fmt$vector]
+
+For more details: <https://gdal.org/en/stable/drivers/vector/index.html>
