@@ -1,0 +1,9 @@
+Source: https://research.fs.usda.gov/products/dataandtools/fia-datamart
+Accessed: Mar 5, 2026
+SQLite, Montana: SQLite_FIADB_MT.db
+
+Lolo National Forest, single-condition forest plots for INVYR 2022:
+select T.PLT_CN, T.SUBP, T.TREE, T.STATUSCD, T.SPCD, T.DIA, T.HT, T.ACTUALHT, T.CCLCD, T.TPA_UNADJ
+from TREE as T inner join COND as C on C.PLT_CN = T.PLT_CN
+where C.CONDID = 1 and C.COND_STATUS_CD = 1 and C.CONDPROP_UNADJ = 1 and C.ADFORCD = 116 and T.INVYR = 2022;
+

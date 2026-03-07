@@ -72,7 +72,7 @@ src <- "/vsizip/c:/users/ctoney/MT_CSV.zip/MT_TREE.csv"
 }\if{html}{\out{</div>}}
 
 Network-hosted files can also be read without prior download using the
-\code{"vsicurl"} prefix:
+\code{"/vsicurl/"} prefix:
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{src <- "/vsicurl/https://apps.fs.usda.gov/fia/datamart/CSV/MT_TREE.csv"
 }\if{html}{\out{</div>}}
@@ -90,4 +90,11 @@ fmt$long_name[fmt$vector]
 }\if{html}{\out{</div>}}
 
 For more details: \url{https://gdal.org/en/stable/drivers/vector/index.html}
+}
+\examples{
+# Lolo NF, single-condition forest plots, INVYR 2022, from public FIADB
+f <- system.file("extdata/mt_lnf_2022_1cond_tree.csv", package="FIAstemmap")
+tree <- load_tree_data(f)
+
+head(tree)
 }

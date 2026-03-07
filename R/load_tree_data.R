@@ -46,7 +46,7 @@
 #' ```
 #'
 #' Network-hosted files can also be read without prior download using the
-#' `"vsicurl"` prefix:
+#' `"/vsicurl/"` prefix:
 #' ```
 #' src <- "/vsicurl/https://apps.fs.usda.gov/fia/datamart/CSV/MT_TREE.csv"
 #' ```
@@ -79,6 +79,12 @@
 #'
 #' For more details: \url{https://gdal.org/en/stable/drivers/vector/index.html}
 #'
+#' @examples
+#' # Lolo NF, single-condition forest plots, INVYR 2022, from public FIADB
+#' f <- system.file("extdata/mt_lnf_2022_1cond_tree.csv", package="FIAstemmap")
+#' tree <- load_tree_data(f)
+#'
+#' head(tree)
 #' @export
 load_tree_data <- function(src, table = NULL, columns = DEFAULT_TREE_COLUMNS,
                            sql = NULL) {
@@ -152,6 +158,8 @@ load_tree_data <- function(src, table = NULL, columns = DEFAULT_TREE_COLUMNS,
     cli::cli_progress_step("Fetching tree data...")
     d <- ds$fetch(-1)
     cli::cli_progress_done()
+
+    try(d$FID <- NULL, silent = TRUE)
 
     if (nrow(d) == 0)
         cli::cli_alert_danger("No tree records were returned")
