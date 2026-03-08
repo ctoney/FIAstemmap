@@ -88,13 +88,12 @@ below, along with the status of each column as required or optional for
 \item \code{DIST}: required distance from subplot center
 \item \code{STATUSCD}: required tree status code (1 = live, 2 = dead)
 \item \code{SPCD}: optional FIA species code
-\item \code{SPGRPCD}: optional FIA species group code
 \item \code{DIA}: optional tree diameter
 \item \code{HT}: optional tree height
 \item \code{ACTUALHT}: optional tree actual height (accounts for broken top)
 \item \code{CCLCD}: optional crown class code
 \item \code{TPA_UNADJ}: optional tree expansion factor (per acre)
-\item \code{CRWIDTH}: optional crown width (may be computed with \strong{TODO})
+\item \code{CRWIDTH}: optional crown width (see \code{predict_crwidth()})
 }
 }
 \examples{

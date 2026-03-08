@@ -26,13 +26,12 @@
 #' * `DIST`: required distance from subplot center
 #' * `STATUSCD`: required tree status code (1 = live, 2 = dead)
 #' * `SPCD`: optional FIA species code
-#' * `SPGRPCD`: optional FIA species group code
 #' * `DIA`: optional tree diameter
 #' * `HT`: optional tree height
 #' * `ACTUALHT`: optional tree actual height (accounts for broken top)
 #' * `CCLCD`: optional crown class code
 #' * `TPA_UNADJ`: optional tree expansion factor (per acre)
-#' * `CRWIDTH`: optional crown width (may be computed with **TODO**)
+#' * `CRWIDTH`: optional crown width (see `predict_crwidth()`)
 #'
 #' @param linear_unit An optional character string specifying the linear
 #' distance unit. Defaults to the native FIA unit of `"ft"`, but may be set to

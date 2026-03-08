@@ -7,7 +7,7 @@
 \format{
 \subsection{\code{plantation}}{
 
-A data frame with 91 rows and 14 columns:
+A data frame with 91 rows and 12 columns:
 \describe{
 \item{\code{PLT_CN}}{\code{\link{character}}, Plot unique identifier}
 \item{\code{SUBP}}{\code{\link{integer}}, Subplot number}
@@ -19,7 +19,6 @@ Distance in feet from subplot center to the stem location}
 \item{\code{STATUSCD}}{\code{\link{integer}},
 Tree status code: 1 = live, 2 = standing dead}
 \item{\code{SPCD}}{\code{\link{integer}}, FIA tree species code}
-\item{\code{SPGRPCD}}{\code{\link{integer}}, FIA tree species group code}
 \item{\code{DIA}}{\code{\link{numeric}},
 Tree diameter at breast height in inches}
 \item{\code{HT}}{\code{\link{integer}}, Tree height in feet}
@@ -28,8 +27,6 @@ Actual height in ft (ACTUALHT < HT indicates a broken top)}
 \item{\code{CCLCD}}{\code{\link{integer}}, Tree crown class code}
 \item{\code{TPA_UNADJ}}{\code{\link{numeric}},
 Trees per acre expansion factor}
-\item{\code{CRWIDTH}}{\code{\link{numeric}},
-Estimated tree crown width in feet}
 }
 }
 }

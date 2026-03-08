@@ -132,7 +132,7 @@ DEFAULT_TREE_COLUMNS <- c("PLT_CN", "SUBP", "TREE", "AZIMUTH", "DIST",
 #' An example tree list for an FIA plot in a loblolly pine plantation.
 #'
 #' @format ## `plantation`
-#' A data frame with 91 rows and 14 columns:
+#' A data frame with 91 rows and 12 columns:
 #' \describe{
 #'   \item{\code{PLT_CN}}{\code{\link{character}}, Plot unique identifier}
 #'   \item{\code{SUBP}}{\code{\link{integer}}, Subplot number}
@@ -144,7 +144,6 @@ DEFAULT_TREE_COLUMNS <- c("PLT_CN", "SUBP", "TREE", "AZIMUTH", "DIST",
 #'   \item{\code{STATUSCD}}{\code{\link{integer}},
 #'     Tree status code: 1 = live, 2 = standing dead}
 #'   \item{\code{SPCD}}{\code{\link{integer}}, FIA tree species code}
-#'   \item{\code{SPGRPCD}}{\code{\link{integer}}, FIA tree species group code}
 #'   \item{\code{DIA}}{\code{\link{numeric}},
 #'     Tree diameter at breast height in inches}
 #'   \item{\code{HT}}{\code{\link{integer}}, Tree height in feet}
@@ -153,8 +152,6 @@ DEFAULT_TREE_COLUMNS <- c("PLT_CN", "SUBP", "TREE", "AZIMUTH", "DIST",
 #'   \item{\code{CCLCD}}{\code{\link{integer}}, Tree crown class code}
 #'   \item{\code{TPA_UNADJ}}{\code{\link{numeric}},
 #'     Trees per acre expansion factor}
-#'   \item{\code{CRWIDTH}}{\code{\link{numeric}},
-#'     Estimated tree crown width in feet}
 #' }
 #' @source <https://research.fs.usda.gov/programs/nfi>
 "plantation"
