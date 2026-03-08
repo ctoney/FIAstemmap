@@ -87,7 +87,7 @@ f <- "/vsizip/c:/users/ctoney/MT_CSV.zip/MT_TREE.csv"
 Network-hosted files can also be read without prior download using the
 \code{"/vsicurl/"} prefix:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{vsi_f <- "/vsicurl/https://apps.fs.usda.gov/fia/datamart/CSV/MT_TREE.csv"
+\if{html}{\out{<div class="sourceCode">}}\preformatted{f <- "/vsicurl/https://apps.fs.usda.gov/fia/datamart/CSV/MT_TREE.csv"
 }\if{html}{\out{</div>}}
 
 For more details, including supported VSI prefixes for cloud storage services

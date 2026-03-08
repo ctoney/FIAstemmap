@@ -1,6 +1,6 @@
 #' Get stem xy coordinates for a tree list
 #'
-#' `.get_tree_list_xy()` returns a named list with two elemnts each containing
+#' `.get_tree_list_xy()` returns a named list with two elements each containing
 #' a numeric vector of the x and y coordinates for trees within the FIA
 #' 4-subplot configuration.
 #'

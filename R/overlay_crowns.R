@@ -53,16 +53,16 @@ overlay_crowns <- function(tree_list, sample_radius, digits = 1) {
 
     crowns <- lapply(seq_len(nrow(tree_list)), \(i) {
         gdalraster::g_create("POINT", c(x[i], y[i])) |>
-          gdalraster::g_buffer(tree_list$CRWIDTH[i] / 2)
+            gdalraster::g_buffer(tree_list$CRWIDTH[i] / 2)
     })
 
     crowns_poly <- gdalraster::g_build_collection(crowns) |>
-      gdalraster::g_unary_union()
+        gdalraster::g_unary_union()
 
     plot_poly <- gdalraster::g_buffer("POINT (0 0)", sample_radius, 90L)
 
     tcc <- gdalraster::g_intersection(plot_poly, crowns_poly) |>
-      gdalraster::g_area() / gdalraster::g_area(plot_poly) * 100
+        gdalraster::g_area() / gdalraster::g_area(plot_poly) * 100
 
     round(tcc, digits)
 }

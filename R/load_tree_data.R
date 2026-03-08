@@ -49,7 +49,7 @@
 #' Network-hosted files can also be read without prior download using the
 #' `"/vsicurl/"` prefix:
 #' ```
-#' vsi_f <- "/vsicurl/https://apps.fs.usda.gov/fia/datamart/CSV/MT_TREE.csv"
+#' f <- "/vsicurl/https://apps.fs.usda.gov/fia/datamart/CSV/MT_TREE.csv"
 #' ```
 #'
 #' For more details, including supported VSI prefixes for cloud storage services
