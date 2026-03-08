@@ -1,0 +1,7 @@
+---
+title: "Stem-map model manuscript (pdf)"
+output: html_document
+pkgdown:
+  as_is: true
+  extension: pdf
+---

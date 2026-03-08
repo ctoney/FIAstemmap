@@ -25,3 +25,9 @@ reference:
   - cw_coef
   - cw_sapling_adj
   - plantation
+
+articles:
+- title: Main content
+  navbar: ~
+  contents:
+  - articles/stem-map-model
