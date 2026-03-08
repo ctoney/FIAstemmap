@@ -30,4 +30,9 @@ articles:
 - title: Main content
   navbar: ~
   contents:
-  - articles/stem-map-model
+  - stem-map-model
+
+external-articles:
+- name: stem-map-model
+  title: Stem-map model manuscript (pdf)
+  href: https://www.fs.usda.gov/rm/pubs/rmrs_p056/rmrs_p056_53_toney.pdf
