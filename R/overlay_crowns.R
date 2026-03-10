@@ -28,6 +28,8 @@
 #' trees <- within(plantation, CRWIDTH <- predict_crwidth(plantation))
 #' trees[trees$SUBP == 1 & trees$DIA >= 5, ] |>
 #'   overlay_crowns(sample_radius = 24)
+#'
+#' plot_crowns(trees, subplot = 1, main = "plantation subplot 1")
 #' @export
 overlay_crowns <- function(tree_list, sample_radius, digits = 1) {
     if (missing(tree_list) || is.null(tree_list))
