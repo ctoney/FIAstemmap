@@ -1,9 +1,9 @@
-# Display modeled tree crowns vertically projected on subplot boundaries
+# Display modeled tree crowns projected vertically on subplot boundaries
 
 `plot_crowns()` draws vertically projected tree crowns as discs overlaid
 on subplot or microplot boundaries. The full four-subplot cluster, or
 individual subplots, can be displayed with trees `>= 5.0` in. (`12.7`
-cm) diameter, or individual microplots can be display with saplings
+cm) diameter. Individual microplots can also be displayed with saplings
 (i.e., trees `< 5` in. diameter).
 
 ## Usage
@@ -14,7 +14,10 @@ plot_crowns(
   subplot = NULL,
   microplot = FALSE,
   linear_unit = "ft",
-  main = ""
+  main = "",
+  crown_col = "#328e13",
+  stem_col = "#b85e00",
+  subp_border_lwd = 3
 )
 ```
 
@@ -27,14 +30,14 @@ plot_crowns(
   = live), `DIA` (tree diameter), `HT` (tree height), `ACTUALHT` (tree
   actual height, `ACTUALHT < HT` indicating a broken top), `DIST` (stem
   distance from subplot/microplot center), `AZIMUTH` (horizontal angle
-  from subplot/microplot center to the stem location, in the range
-  `0:359`), and `CRWIDTH` (tree crown width).
+  from subplot/microplot center to the stem location, in range `0:359`),
+  and `CRWIDTH` (tree crown width).
 
 - subplot:
 
   Optional integer subplot number in the range `1:4` indicating a
   specific subplot for display. May be `NULL` or `NA` to display the
-  full four-point cluster.
+  whole four-point cluster plot.
 
 - microplot:
 
@@ -54,6 +57,20 @@ plot_crowns(
 - main:
 
   Character string giving the main plot title (on top).
+
+- crown_col:
+
+  The color of tree crowns.
+
+- stem_col:
+
+  The color of tree stems when plotting an individual subplot or
+  microplot.
+
+- subp_border_lwd:
+
+  The line width of subplot boundaries, a *positive* number, defaulting
+  to `3`.
 
 ## Value
 

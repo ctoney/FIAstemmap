@@ -8,7 +8,7 @@
   : Compute fractional tree canopy cover of a subplot/microplot by crown
   overlay
 - [`plot_crowns()`](https://ctoney.github.io/FIAstemmap/reference/plot_crowns.md)
-  : Display modeled tree crowns vertically projected on subplot
+  : Display modeled tree crowns projected vertically on subplot
   boundaries
 - [`predict_crwidth()`](https://ctoney.github.io/FIAstemmap/reference/predict_crwidth.md)
   : Compute predicted tree crown width using species-specific equations
