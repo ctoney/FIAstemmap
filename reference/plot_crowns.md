@@ -17,7 +17,8 @@ plot_crowns(
   main = "",
   crown_col = "#328e13",
   stem_col = "#b85e00",
-  subp_border_lwd = 3
+  subp_border_lwd = 3,
+  subp_border_col = "gray62"
 )
 ```
 
@@ -60,17 +61,22 @@ plot_crowns(
 
 - crown_col:
 
-  The color of tree crowns.
+  The color of tree crowns, e.g., either a color name (as listed by
+  [`colors()`](https://rdrr.io/r/grDevices/colors.html)) or a
+  hexadecimal string.
 
 - stem_col:
 
   The color of tree stems when plotting an individual subplot or
-  microplot.
+  microplot (see `crown_col` above).
 
 - subp_border_lwd:
 
-  The line width of subplot boundaries, a *positive* number, defaulting
-  to `3`.
+  The line width of subplot boundaries. Must a positive number.
+
+- subp_border_col:
+
+  The color of subplot boundaries (see `crown_col` above).
 
 ## Value
 
