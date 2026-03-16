@@ -7,6 +7,7 @@
 <url><loc>https://ctoney.github.io/FIAstemmap/authors.html</loc></url>
 <url><loc>https://ctoney.github.io/FIAstemmap/index.html</loc></url>
 <url><loc>https://ctoney.github.io/FIAstemmap/reference/DEFAULT_TREE_COLUMNS.html</loc></url>
+<url><loc>https://ctoney.github.io/FIAstemmap/reference/calc_crwidth.html</loc></url>
 <url><loc>https://ctoney.github.io/FIAstemmap/reference/calc_ht_metrics.html</loc></url>
 <url><loc>https://ctoney.github.io/FIAstemmap/reference/cw_coef.html</loc></url>
 <url><loc>https://ctoney.github.io/FIAstemmap/reference/cw_sapling_adj.html</loc></url>
@@ -15,7 +16,6 @@
 <url><loc>https://ctoney.github.io/FIAstemmap/reference/overlay_crowns.html</loc></url>
 <url><loc>https://ctoney.github.io/FIAstemmap/reference/plantation.html</loc></url>
 <url><loc>https://ctoney.github.io/FIAstemmap/reference/plot_crowns.html</loc></url>
-<url><loc>https://ctoney.github.io/FIAstemmap/reference/predict_crwidth.html</loc></url>
 <url><loc>https://ctoney.github.io/FIAstemmap/reference/spatstat_helpers.html</loc></url>
 </urlset>
 

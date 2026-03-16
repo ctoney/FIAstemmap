@@ -85,7 +85,7 @@ The input, invisibly.
 ## Examples
 
 ``` r
-trees <- within(plantation, CRWIDTH <- predict_crwidth(plantation))
+trees <- within(plantation, CRWIDTH <- calc_crwidth(plantation))
 
 plot_crowns(trees, main = "plantation plot")
 

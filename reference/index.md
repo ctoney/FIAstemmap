@@ -2,6 +2,8 @@
 
 ## Functions
 
+- [`calc_crwidth()`](https://ctoney.github.io/FIAstemmap/reference/calc_crwidth.md)
+  : Compute predicted tree crown width using species-specific equations
 - [`calc_ht_metrics()`](https://ctoney.github.io/FIAstemmap/reference/calc_ht_metrics.md)
   : Calculate plot-level stand height metrics
 - [`load_tree_data()`](https://ctoney.github.io/FIAstemmap/reference/load_tree_data.md)
@@ -12,8 +14,6 @@
 - [`plot_crowns()`](https://ctoney.github.io/FIAstemmap/reference/plot_crowns.md)
   : Display modeled tree crowns projected vertically on subplot
   boundaries
-- [`predict_crwidth()`](https://ctoney.github.io/FIAstemmap/reference/predict_crwidth.md)
-  : Compute predicted tree crown width using species-specific equations
 - [`create_fia_owin()`](https://ctoney.github.io/FIAstemmap/reference/spatstat_helpers.md)
   [`create_fia_ppp()`](https://ctoney.github.io/FIAstemmap/reference/spatstat_helpers.md)
   : Analyze the spatial pattern of trees on an FIA plot
