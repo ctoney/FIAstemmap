@@ -93,7 +93,7 @@ below, along with the status of each column as required or optional for
 \item \code{ACTUALHT}: optional tree actual height (accounts for broken top)
 \item \code{CCLCD}: optional crown class code
 \item \code{TPA_UNADJ}: optional tree expansion factor (per acre)
-\item \code{CRWIDTH}: optional crown width (see \code{predict_crwidth()})
+\item \code{CRWIDTH}: optional crown width (see \code{calc_crwidth()})
 }
 }
 \examples{

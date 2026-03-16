@@ -31,7 +31,7 @@
 #' * `ACTUALHT`: optional tree actual height (accounts for broken top)
 #' * `CCLCD`: optional crown class code
 #' * `TPA_UNADJ`: optional tree expansion factor (per acre)
-#' * `CRWIDTH`: optional crown width (see `predict_crwidth()`)
+#' * `CRWIDTH`: optional crown width (see `calc_crwidth()`)
 #'
 #' @param linear_unit An optional character string specifying the linear
 #' distance unit. Defaults to the native FIA unit of `"ft"`, but may be set to

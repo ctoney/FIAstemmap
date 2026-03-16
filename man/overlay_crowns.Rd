@@ -36,7 +36,7 @@ are specified as distance and azimuth from subplot/microplot center.
 }
 \examples{
 # subplot 1 of the `plantation` plot
-trees <- within(plantation, CRWIDTH <- predict_crwidth(plantation))
+trees <- within(plantation, CRWIDTH <- calc_crwidth(plantation))
 trees[trees$SUBP == 1 & trees$DIA >= 5, ] |>
   overlay_crowns(sample_radius = 24)
 

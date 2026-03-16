@@ -1,6 +1,6 @@
 #' Compute predicted tree crown width using species-specific equations
 #'
-#' `predict_crwidth()` computes tree crown width using species-specific
+#' `calc_crwidth()` computes tree crown width using species-specific
 #' regression equations from the literature.
 #'
 #' @details
@@ -16,7 +16,7 @@
 #' region can far exceed the range of diameters in the broadly applicable
 #' datasets that have been used to develop crown width prediction equations. To
 #' avoid extrapolation beyond the range of the model fitting data in those
-#' cases, `predict_crwidth()` makes use of the "old growth" equation presented
+#' cases, `calc_crwidth()` makes use of the "old growth" equation presented
 #' by Gill et al. (2000) to estimate crown width for nine tree species when
 #' their diameter is greater than 50 in. (127 cm).
 #'
@@ -35,9 +35,9 @@
 #' 405-416.
 #'
 #' @examples
-#' predict_crwidth(plantation)
+#' calc_crwidth(plantation)
 #' @export
-predict_crwidth <- function(tree_list, digits = 1) {
+calc_crwidth <- function(tree_list, digits = 1) {
     if (missing(tree_list) || is.null(tree_list))
         stop("'tree_list' is required", call. = FALSE)
 

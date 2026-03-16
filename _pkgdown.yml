@@ -14,11 +14,11 @@ home:
 reference:
 - title: Functions
 - contents:
+  - calc_crwidth
   - calc_ht_metrics
   - load_tree_data
   - overlay_crowns
   - plot_crowns
-  - predict_crwidth
   - spatstat_helpers
 
 - title: Data
