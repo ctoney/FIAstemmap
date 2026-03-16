@@ -4,7 +4,7 @@
 # FIAstemmap <a href="https://ctoney.github.io/FIAstemmap/"><img src="man/figures/logo.png" align="right" height="138" alt="FIAstemmap website" /></a>
 
 <!-- badges: start -->
-
+[![R-CMD-check](https://github.com/ctoney/FIAstemmap/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ctoney/FIAstemmap/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 **NOTE: this is an implementation update *currently under development***
