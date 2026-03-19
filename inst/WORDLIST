@@ -5,11 +5,13 @@ Bastian
 Bechtold
 Biging
 Blinn
+CMD
 CRC
 Cadaret
 Chengquan
 Connot
 Coulston
+Crookston
 Czaplewski
 DIA
 Dacia
@@ -21,6 +23,7 @@ FIADB
 Finco
 Furnas
 GDAL
+GTR
 Garman
 GeoPackage
 Geoinformation
@@ -58,6 +61,7 @@ Schleeweis
 Shettles
 Smail
 Spaeth
+TCC
 Tavernia
 Tobin
 Tolk
@@ -78,8 +82,10 @@ microplot
 microplots
 midwest
 multitemporal
+overstory
 ownerships
 rangeland
 rangelands
 spatstat
 sqlite
+understory
