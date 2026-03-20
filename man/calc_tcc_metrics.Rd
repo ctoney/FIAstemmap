@@ -76,11 +76,14 @@ metrics, as components of the overall model used to derive a plot-level TCC
 estimate. These additional variables include:
 \itemize{
 \item individual subplot and microplot crown overlays via \code{calc_crown_overlay()}
-\item a stand height metric (\code{meanTreeHtBAW}) via \code{calc_ht_metrics()}
-\item plot-level counts of mature trees and saplings
+\item a stand height metric (\code{meanTreeHtBAW}) and plot-level counts of mature
+trees and saplings via \code{calc_ht_metrics()}
 \item descriptive spatial statistics for the overstory tree point pattern via
 \code{create_fia_ppp() |> spatstat.explore::Lest()}
 }
+}
+\examples{
+calc_tcc_metrics(plantation)
 }
 \references{
 Crookston, N.L. and A.R. Stage. (1999). Percent canopy cover and stand
@@ -93,8 +96,8 @@ Ripley, B.D. (1977). Modelling spatial patterns. \emph{Journal of the Royal
 Statistical Society: Series B (Methodological)}, 39(2): 172–192.
 \url{https://doi.org/10.1111/j.2517-6161.1977.tb01615.x}.
 
-Stoyan, D., and Penttinen, A. (2000). Recent Applications of Point Process
-Methods in Forestry Statistics. \emph{Statistical Science}, 15(1), 61–78.
+Stoyan, D., and Penttinen, A. (2000). Recent applications of point process
+methods in forestry statistics. \emph{Statistical Science}, 15(1), 61–78.
 \url{http://www.jstor.org/stable/2676677}.
 
 Toney, C., J.D. Shaw and M.D. Nelson. 2009. A stem-map model for predicting

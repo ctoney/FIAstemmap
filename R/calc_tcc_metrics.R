@@ -34,8 +34,8 @@
 #' estimate. These additional variables include:
 #'
 #' * individual subplot and microplot crown overlays via `calc_crown_overlay()`
-#' * a stand height metric (`meanTreeHtBAW`) via `calc_ht_metrics()`
-#' * plot-level counts of mature trees and saplings
+#' * a stand height metric (`meanTreeHtBAW`) and plot-level counts of mature
+#' trees and saplings via `calc_ht_metrics()`
 #' * descriptive spatial statistics for the overstory tree point pattern via
 #' `create_fia_ppp() |> spatstat.explore::Lest()`
 #'
@@ -82,8 +82,8 @@
 #' Statistical Society: Series B (Methodological)_, 39(2): 172–192.
 #' \url{https://doi.org/10.1111/j.2517-6161.1977.tb01615.x}.
 #'
-#' Stoyan, D., and Penttinen, A. (2000). Recent Applications of Point Process
-#' Methods in Forestry Statistics. _Statistical Science_, 15(1), 61–78.
+#' Stoyan, D., and Penttinen, A. (2000). Recent applications of point process
+#' methods in forestry statistics. _Statistical Science_, 15(1), 61–78.
 #' \url{http://www.jstor.org/stable/2676677}.
 #'
 #' Toney, C., J.D. Shaw and M.D. Nelson. 2009. A stem-map model for predicting
@@ -98,6 +98,8 @@
 #' [calc_crwidth()], [calc_crown_overlay()], [calc_ht_metrics()],
 #' [create_fia_ppp()]
 #'
+#' @examples
+#' calc_tcc_metrics(plantation)
 calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
                              digits = 1) {
 
@@ -131,7 +133,8 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
 
     model_tcc <- NA_real_
     if (stem_map) {
-        # implement the stem-map canopy cover model from Toney et al. (2009)
+        # "stem-map" canopy cover model (Toney et al. 2009)
+
         # subplot and microplot crown overlays
         subp_overlay <- rep(NA_real_, 4)
         micr_overlay <- rep(NA_real_, 4)
@@ -176,21 +179,23 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
                 model_tcc <- subp_overlay_tcc + micr_overlay_tcc
             }
             else {
-                # apply an adjustment to plot-level canopy cover based on crown
-                # overlay to account for the sapling contribution
+                # apply an adjustment to the plot-level canopy cover derived
+                # from crown overlay to account for the sapling contribution
 
-                # estimated by linear regression using RMRS FIA line-intercept
-                # data for all single-condition DESGNCD == 1 plots through 2005
-                # with subp_overlay_tcc >= 10 (FORTYPCDs 925 and 926 omitted)
+                # linear regression model based on RMRS FIA line-intercept
+                # field measurements for all single-condition DESIGNCD 1 plots
+                # through 2005 that had subp_overlay_tcc >= 10 (FORTYPCDs 925
+                # and 926 omitted)
+                # Toney et al. (2009) Table 2
                 sapling_component <-
                     -8.036 +
                     0.211 * micr_overlay_tcc +
                     0.552 * ht_metrics$numSaplings +
-                    4.367 * log(ht_metrics$meanTreeHtBAW) +
                     -0.131 * ht_metrics$numTrees +
+                    4.367 * log(ht_metrics$meanTreeHtBAW) +
                     0.222 * L_mean
 
-                # do not allow negative sapling adjustment
+                # constrain sapling adjustment >= 0
                 sapling_component <- max(c(sapling_component, 0))
 
                 model_tcc <-
@@ -200,7 +205,9 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
         }
 
     } else {
-        # "FVS method" for percent canopy cover, assuming random tree locations
+        # "FVS method" for tree canopy cover (Crookston and Stage 1999)
+        # assumes random tree locations
+
         if (!("TPA_UNADJ" %in% colnames(tree_list))) {
             stop("'TPA_UNADJ' is a required column in 'tree_list'",
                  call. = FALSE)

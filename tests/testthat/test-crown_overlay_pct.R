@@ -5,4 +5,8 @@ test_that("calc_crown_overlay works", {
         as.data.frame()
     colnames(trees) <- c("AZIMUTH", "DIST", "CRWIDTH")
     expect_equal(calc_crown_overlay(trees, 24, 0), 20)
+
+    # one tree with half the area of a subplot
+    tree_list <- data.frame(DIST = 1, AZIMUTH = 0, CRWIDTH = 33.94113)
+    expect_equal(calc_crown_overlay(tree_list, 24), 50, tolerance = 0.1)
 })
