@@ -42,6 +42,13 @@ Estimated tree canopy cover as percent of the area specified by
 `sample_radius` that is covered by a vertical projection of circular
 crowns.
 
+## Note
+
+This function does not perform an filtering based on `SUBP` (subplot),
+`STATUSCD`(live vs dead trees) or`DIA` (mature trees vs saplings). The
+input tree list is assumed to be filtered to the specific set of live
+trees for one subplot or microplot with the given `sample_radius`.
+
 ## Examples
 
 ``` r

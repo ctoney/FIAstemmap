@@ -1,7 +1,7 @@
-# Calculate plot-level stand height metrics
+# Calculate stand height metrics
 
 `calc_ht_metrics()` computes several stand height metrics for a given
-FIA plot, i.e., across the full four-subplot cluster (see Details).
+tree list (see Details).
 
 ## Usage
 
@@ -30,8 +30,11 @@ described in Details.
 
 ## Details
 
-The following plot-level height metrics are returned in a named list
-with elements:
+Stand height metrics are based on live trees (`STATUSCD == 1`), and are
+are assigned `0` by definition if no live trees are present. Height
+metrics are returned in a named list with the following elements:
+
+- `numTrees`: number of live trees `>= 5.0` in. (`12.7` cm) diameter
 
 - `meanTreeHt`: mean height of trees `>= 5.0` in. (`12.7` cm) diameter
 
@@ -51,21 +54,26 @@ with elements:
   tallest trees `>= 5.0` in. (`12.7` cm) diameter comprising up to `16`
   trees per acre (`39.5` trees per hectare)
 
-- `meanSapHt`: mean height of saplings (trees `>= 1.0` in. but `< 5.0`
+- `numSaplings`: number of live saplings (trees `>= 1.0` in. but `< 5.0`
   in. diameter, i.e., `>= 2.54` cm but `< 12.7` cm)
+
+- `meanSapHt`: mean height of saplings
 
 - `maxSapHt`: height of the tallest sapling
 
-For the purpose of height calculations, canopy dominant/co-dominant
-include "open grown" trees, i.e., include trees with FIA crown class
-code (`CCLCD`) of `1` (open grown), `2` (dominant) or `3` (co-dominant),
-but exclude trees with `CCLCD` of `4` (intermediate) or `5`
-(over-topped).
+For the purpose of height calculations, metrics based on "canopy
+dominant/co-dominant" include open grown trees, i.e., include trees with
+FIA crown class code `CCLCD` of `1` (open grown), `2` (dominant) or `3`
+(co-dominant), but exclude trees with `CCLCD` of `4` (intermediate) or
+`5` (over-topped).
 
 ## Examples
 
 ``` r
 calc_ht_metrics(plantation)
+#> $numTrees
+#> [1] 89
+#> 
 #> $meanTreeHt
 #> [1] 45
 #> 
@@ -83,6 +91,9 @@ calc_ht_metrics(plantation)
 #> 
 #> $predomTreeHt
 #> [1] 50.3
+#> 
+#> $numSaplings
+#> [1] 2
 #> 
 #> $meanSapHt
 #> [1] 33.5

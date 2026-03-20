@@ -97,6 +97,13 @@ return value (defaults to <code>1</code>, will be passed to <code><a href="https
 <code>sample_radius</code> that is covered by a vertical projection of circular
 crowns.</p>
     </div>
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>This function does not perform an filtering based on <code>SUBP</code> (subplot),
+<code>STATUSCD</code>(live vs dead trees) or<code>DIA</code> (mature trees vs saplings). The input
+tree list is assumed to be filtered to the specific set of live trees for
+one subplot or microplot with the given <code>sample_radius</code>.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
