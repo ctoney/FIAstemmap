@@ -99,7 +99,12 @@
 #' [create_fia_ppp()]
 #'
 #' @examples
+#' # spatially explicit "stem-map model"
 #' calc_tcc_metrics(plantation)
+#'
+#' # "FVS method" assuming random tree locations
+#' calc_tcc_metrics(plantation, stem_map = FALSE)
+#' @export
 calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
                              digits = 1) {
 
@@ -109,15 +114,13 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
     if (!(is.logical(full_output) && length(full_output) == 1))
         stop("'full_output' must be a single logical value", call. = FALSE)
 
-    X <- NULL  # spatstat point pattern object
     L_mean <- NA_real_  # predictor variable based on Ripley's K
     if (stem_map) {
-        # validate the input tree list for stem-mapping and get X
-        X <- create_fia_ppp(tree_list)
-
-        # get estimate of the L-function (square root transform of Ripley's K)
+        # validates the input tree list for stem-mapping and gets an estimate
+        # of the L-function (square root transform of Ripley's K)
         # r = 0:12 feet
-        L <- spatstat.explore::Lest(X, r = 0:12)
+        L <- create_fia_ppp(tree_list) |> spatstat.explore::Lest(r = 0:12)
+
         # mean of L at r = 6, 8, 10, 12 ft (Ripley's isotropic edge correction)
         L_mean <- mean(L$iso[c(7, 9, 11, 13)])
     }
@@ -133,7 +136,7 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
 
     model_tcc <- NA_real_
     if (stem_map) {
-        # "stem-map" canopy cover model (Toney et al. 2009)
+        # implement the stem-map canopy cover model (Toney et al. 2009)
 
         # subplot and microplot crown overlays
         subp_overlay <- rep(NA_real_, 4)

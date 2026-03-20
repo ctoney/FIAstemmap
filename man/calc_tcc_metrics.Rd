@@ -83,7 +83,11 @@ trees and saplings via \code{calc_ht_metrics()}
 }
 }
 \examples{
+# spatially explicit "stem-map model"
 calc_tcc_metrics(plantation)
+
+# "FVS method" assuming random tree locations
+calc_tcc_metrics(plantation, stem_map = FALSE)
 }
 \references{
 Crookston, N.L. and A.R. Stage. (1999). Percent canopy cover and stand
