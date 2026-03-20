@@ -6,6 +6,7 @@
 #' @details
 #' The following plot-level height metrics are returned in a named list with
 #' elements:
+#' * `numTrees`: number of live trees `>= 5.0` in. (`12.7` cm) diameter
 #' * `meanTreeHt`: mean height of trees `>= 5.0` in. (`12.7` cm) diameter
 #' * `meanTreeHtBAW`: basal-area weighted mean height of trees `>= 5.0` in.
 #'   (`12.7` cm) diameter
@@ -17,8 +18,9 @@
 #' * `predomTreeHt`: predominant tree height, as the mean height of the tallest
 #'   trees `>= 5.0` in. (`12.7` cm) diameter comprising up to `16` trees per
 #'   acre (`39.5` trees per hectare)
-#' * `meanSapHt`: mean height of saplings (trees `>= 1.0` in. but `< 5.0` in.
+#' * `numSaplings`: number of live saplings (trees `>= 1.0` in. but `< 5.0` in.
 #'   diameter, i.e., `>= 2.54` cm but `< 12.7` cm)
+#' * `meanSapHt`: mean height of saplings
 #' * `maxSapHt`: height of the tallest sapling
 #'
 #' For the purpose of height calculations, canopy dominant/co-dominant include
@@ -41,6 +43,8 @@
 #'
 #' @export
 calc_ht_metrics <- function(tree_list, digits = 1) {
+
+    # TODO: support input in SI units
 
     if (missing(tree_list) || is.null(tree_list))
         stop("'tree_list' is required", call. = FALSE)
@@ -73,12 +77,14 @@ calc_ht_metrics <- function(tree_list, digits = 1) {
     if (any(is.na(sapling_ht)))
         warning("one or more sapling heights are missing", call. = FALSE)
 
-    ht_metrics <- vector(mode = "list", length = 8)
+    ht_metrics <- vector(mode = "list", length = 10)
     ht_metrics[1:length(ht_metrics)] <- 0  # by definition
-    names(ht_metrics) <- c("meanTreeHt", "meanTreeHtBAW", "meanTreeHtDom",
-                           "meanTreeHtDomBAW", "maxTreeHt", "predomTreeHt",
-                           "meanSapHt", "maxSapHt")
+    names(ht_metrics) <- c("numTrees", "meanTreeHt", "meanTreeHtBAW",
+                           "meanTreeHtDom", "meanTreeHtDomBAW", "maxTreeHt",
+                           "predomTreeHt", "numSaplings", "meanSapHt",
+                           "maxSapHt")
 
+    ht_metrics$numTrees <- nrow(trees_in)
     if (nrow(trees_in) > 0) {
         basal_area <- pi * (trees_in$DIA / 2)^2
         ht_metrics$meanTreeHt <-
@@ -114,6 +120,7 @@ calc_ht_metrics <- function(tree_list, digits = 1) {
         ht_metrics$predomTreeHt <- round(sum_ht / n, digits)
     }
 
+    ht_metrics$numSaplings <- nrow(saplings_in)
     if (nrow(saplings_in) > 0) {
         ht_metrics$meanSapHt <-
             round(mean(sapling_ht, na.rm = TRUE), digits)
