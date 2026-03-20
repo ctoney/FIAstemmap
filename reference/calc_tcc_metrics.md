@@ -136,11 +136,11 @@ Station. 19 p. <https://research.fs.usda.gov/treesearch/33381>.
 ## Examples
 
 ``` r
-# spatially explicit "stem-map" method
+# spatially explicit "stem-map model"
 calc_tcc_metrics(plantation)
 #> [1] 88.5
 
-# "FVS" method assuming random tree locations
+# "FVS method" assuming random tree locations
 calc_tcc_metrics(plantation, stem_map = FALSE)
 #> [1] 81.4
 ```
