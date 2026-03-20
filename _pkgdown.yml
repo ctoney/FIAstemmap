@@ -17,6 +17,7 @@ reference:
   - calc_crown_overlay
   - calc_crwidth
   - calc_ht_metrics
+  - calc_tcc_metrics
   - load_tree_data
   - plot_crowns
   - spatstat_helpers
