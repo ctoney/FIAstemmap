@@ -1,8 +1,8 @@
-# Predict plot-level canopy cover from individual tree measurements
+# Compute predicted canopy cover from individual tree measurements
 
-`calc_tcc_metrics()` computes plot-level predicted tree canopy cover
+`calc_tcc_metrics()` computes predicted plot-level tree canopy cover
 (TCC) from tree list data. By default, a full set of stand structure
-metrics used to derive the plot-level TCC prediction are included in the
+metrics used to derive the plot-level TCC value are included in the
 output (see Details).
 
 ## Usage
@@ -55,11 +55,11 @@ calc_tcc_metrics(tree_list, stem_map = TRUE, full_output = TRUE, digits = 1)
 
 ## Value
 
-If `full_output = TRUE`, a named list with the element `model_tcc`
-containing plot-level predicted tree canopy cover percent (`0:100`), and
-additional named elements containing stand structure metrics as
-described in Details. If `full_output = FALSE`, a single numeric value
-of plot-level predicted TCC is returned instead.
+If `full_output = TRUE`, a named list with element `model_tcc`
+containing the plot-level predicted tree canopy cover as percent
+(`0:100`), and additional named elements containing stand structure
+metrics as described in Details. If `full_output = FALSE`, a single
+numeric value of plot-level predicted TCC is returned instead.
 
 ## Details
 
@@ -77,30 +77,70 @@ spatial point pattern of overstory trees as a predictor variable (using
 a square root transformation of Ripley's edge-corrected K function,
 Ripley 1977, Stoyan and Penttinen 2000).
 
-Alternatively, plot-level TCC can be predicted using a simplified
-approach that does not include exact stem placement
+Alternatively, TCC can be predicted using a simplified approach that
+does not include exact stem placement within the plot boundary
 (`stem_map = FALSE`). A random arrangement of stems is assumed in that
 case. This is the method used to estimate tree canopy cover in the
 Forest Vegetation Simulator (Crookston and Stage 1999).
 
-Both methods require estimates of individual tree crown width, which are
-computed with
+Both methods require estimates of individual tree crown widths, which
+are computed with
 [`calc_crwidth()`](https://ctoney.github.io/FIAstemmap/reference/calc_crwidth.md)
 if not provided in the input tree list.
 
 The stem-map method also requires computation of several stand structure
-metrics, as components of the overall model used to derive a plot-level
-TCC estimate. These additional variables include:
+metrics which are used in various components of the overall model used
+to derive a plot-level TCC estimate. These additional variables include:
 
 - individual subplot and microplot crown overlays via
   [`calc_crown_overlay()`](https://ctoney.github.io/FIAstemmap/reference/calc_crown_overlay.md)
 
-- a stand height metric (`meanTreeHtBAW`) and plot-level counts of
-  mature trees and saplings via
+- a stand height metric (`meanTreeHtBAW`), and plot-level counts of
+  mature trees and saplings, via
   [`calc_ht_metrics()`](https://ctoney.github.io/FIAstemmap/reference/calc_ht_metrics.md)
 
 - descriptive spatial statistics for the overstory tree point pattern
   via `create_fia_ppp() |> spatstat.explore::Lest()`
+
+By default, `calc_tcc_metrics()` returns a named list containing the
+plot-level modeled TCC value, along with those additional component
+variables. Specific elements of the returned list include some or all of
+the following, conditionally:
+
+- `model_tcc`: plot-level predicted canopy cover of trees `>= 1` inch
+  (`2.54` cm) diameter, derived by one of the two methods described
+  above depending on the value given for argument
+  `stem_map = TRUE|FALSE`
+
+If the stem-map method is used, then TCC values derived by crown overlay
+on the individual subplot and microplot boundaries are included, along
+with means of the four subplot/microplot values:
+
+- `subpN_crown_overlay`: estimated canopy cover of trees `>= 5-in.`
+  (12.7 cm) diameter in subplot `N` based on crown overlay (`N = 1:4`)
+
+- `subp_overlay_mean`: mean of the four subplot crown overlays
+
+- `micrN_crown_overlay`: estimated canopy cover of saplings in the
+  microplot of subplot `N` based on crown overlay (`N = 1:4`)
+
+- `micr_overlay_mean`: mean of the four microplot crown overlays
+
+A set of spatial point pattern statistics is also included when the
+stem-map method is used. A square root transformation of Ripley's K
+function using isotropic edge correction is computed with
+[`spatstat.explore::Lest()`](https://rdrr.io/pkg/spatstat.explore/man/Lest.html)
+for trees `>= 5-in.` (12.7 cm) diameter within the four-subplot
+observation window. The mean of the following values is a predictor
+variable in a linear regression model used to estimate the sapling
+contribution to total tree canopy cover:
+
+- `L_rft`: Ripley’s L function at `r` feet (`r` = `6`, `8`, `10`, and
+  `12`)
+
+If the argument `full_output = TRUE` (the default), then the output will
+also include all of the the named elements from the output of
+[`calc_ht_metrics()`](https://ctoney.github.io/FIAstemmap/reference/calc_ht_metrics.md).
 
 ## References
 
@@ -136,11 +176,89 @@ Station. 19 p. <https://research.fs.usda.gov/treesearch/33381>.
 ## Examples
 
 ``` r
-# spatially explicit "stem-map model"
+# using the spatially explicit "stem-map model" by default
 calc_tcc_metrics(plantation)
+#> $model_tcc
+#> [1] 88.5
+#> 
+#> $subp1_crown_overlay
+#> [1] 86.9
+#> 
+#> $subp2_crown_overlay
+#> [1] 91.8
+#> 
+#> $subp3_crown_overlay
+#> [1] 80.5
+#> 
+#> $subp4_crown_overlay
+#> [1] 87.3
+#> 
+#> $subp_overlay_mean
+#> [1] 86.625
+#> 
+#> $micr1_crown_overlay
+#> [1] 0
+#> 
+#> $micr2_crown_overlay
+#> [1] 0
+#> 
+#> $micr3_crown_overlay
+#> [1] 19.4
+#> 
+#> $micr4_crown_overlay
+#> [1] 22
+#> 
+#> $micr_overlay_mean
+#> [1] 10.35
+#> 
+#> $L_6ft
+#> [1] 3.868305
+#> 
+#> $L_8ft
+#> [1] 6.627377
+#> 
+#> $L_10ft
+#> [1] 7.300455
+#> 
+#> $L_12ft
+#> [1] 11.35045
+#> 
+#> $numTrees
+#> [1] 89
+#> 
+#> $meanTreeHt
+#> [1] 45
+#> 
+#> $meanTreeHtBAW
+#> [1] 45.4
+#> 
+#> $meanTreeHtDom
+#> [1] 45
+#> 
+#> $meanTreeHtDomBAW
+#> [1] 45.4
+#> 
+#> $maxTreeHt
+#> [1] 51
+#> 
+#> $predomTreeHt
+#> [1] 50.3
+#> 
+#> $numSaplings
+#> [1] 2
+#> 
+#> $meanSapHt
+#> [1] 33.5
+#> 
+#> $maxSapHt
+#> [1] 42
+#> 
+
+# return only the predicted TCC
+calc_tcc_metrics(plantation, full_output = FALSE)
 #> [1] 88.5
 
-# "FVS method" assuming random tree locations
-calc_tcc_metrics(plantation, stem_map = FALSE)
+# using the "FVS method" which assumes random tree locations
+calc_tcc_metrics(plantation, stem_map = FALSE, full_output = FALSE)
 #> [1] 81.4
 ```

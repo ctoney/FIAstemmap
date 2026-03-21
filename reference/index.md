@@ -10,7 +10,7 @@
 - [`calc_ht_metrics()`](https://ctoney.github.io/FIAstemmap/reference/calc_ht_metrics.md)
   : Calculate stand height metrics
 - [`calc_tcc_metrics()`](https://ctoney.github.io/FIAstemmap/reference/calc_tcc_metrics.md)
-  : Predict plot-level canopy cover from individual tree measurements
+  : Compute predicted canopy cover from individual tree measurements
 - [`load_tree_data()`](https://ctoney.github.io/FIAstemmap/reference/load_tree_data.md)
   : Load tree data from a file or database connection
 - [`plot_crowns()`](https://ctoney.github.io/FIAstemmap/reference/plot_crowns.md)
