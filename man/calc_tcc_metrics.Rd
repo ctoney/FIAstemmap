@@ -16,13 +16,13 @@ frame has a column named \code{"CRWIDTH"} it will be used for tree crown width
 values, otherwise, crown widths will be calculated with a call to
 \code{calc_crwidth()}.}
 
-\item{stem_map}{A logical value indicating whether to map individual trees
-explicitly using coordinates specified in terms of distance and azimuth from
-subplot/microplot centers. The default is \code{TRUE}, in which case the input
-\code{tree_list} must contain columns \code{"DIST"} and \code{"AZIMUTH"}. This argument may
-be set to \code{FALSE} if individual tree locations are not available, in which
-case TCC will be predicted assuming a random arrangement of the stems (see
-Details).}
+\item{stem_map}{A logical value indicating whether to map individual tree
+stems explicitly, using coordinates specified in terms of distance and
+azimuth from subplot/microplot centers. The default is \code{TRUE}, in which case
+the input \code{tree_list} must contain columns \code{"DIST"} and \code{"AZIMUTH"}. This
+argument may be set to \code{FALSE} if individual tree locations are not
+available, in which case TCC will be predicted assuming a random arrangement
+of tree locations (see Details).}
 
 \item{full_output}{A logical value indicating whether to include the full set
 of components used to derive the plot-level prediction. By default, the
@@ -43,9 +43,9 @@ predicted TCC is returned instead.
 }
 \description{
 \code{calc_tcc_metrics()} computes predicted plot-level tree canopy cover (TCC)
-from tree list data. By default, a full set of stand structure metrics used
-to derive the plot-level TCC value are included in the output (see
-Details).
+from standard field inventory measurements. By default, a full set of stand
+structure metrics used to derive the plot-level TCC value are included in the
+output (see Details).
 }
 \details{
 This function provides two methods for predicting plot-level TCC.

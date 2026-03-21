@@ -1,9 +1,9 @@
 #' Compute predicted canopy cover from individual tree measurements
 #'
 #' `calc_tcc_metrics()` computes predicted plot-level tree canopy cover (TCC)
-#' from tree list data. By default, a full set of stand structure metrics used
-#' to derive the plot-level TCC value are included in the output (see
-#' Details).
+#' from standard field inventory measurements. By default, a full set of stand
+#' structure metrics used to derive the plot-level TCC value are included in the
+#' output (see Details).
 #'
 #' @details
 #' This function provides two methods for predicting plot-level TCC.
@@ -81,13 +81,13 @@
 #' frame has a column named `"CRWIDTH"` it will be used for tree crown width
 #' values, otherwise, crown widths will be calculated with a call to
 #' `calc_crwidth()`.
-#' @param stem_map A logical value indicating whether to map individual trees
-#' explicitly using coordinates specified in terms of distance and azimuth from
-#' subplot/microplot centers. The default is `TRUE`, in which case the input
-#' `tree_list` must contain columns `"DIST"` and `"AZIMUTH"`. This argument may
-#' be set to `FALSE` if individual tree locations are not available, in which
-#' case TCC will be predicted assuming a random arrangement of the stems (see
-#' Details).
+#' @param stem_map A logical value indicating whether to map individual tree
+#' stems explicitly, using coordinates specified in terms of distance and
+#' azimuth from subplot/microplot centers. The default is `TRUE`, in which case
+#' the input `tree_list` must contain columns `"DIST"` and `"AZIMUTH"`. This
+#' argument may be set to `FALSE` if individual tree locations are not
+#' available, in which case TCC will be predicted assuming a random arrangement
+#' of tree locations (see Details).
 #' @param full_output A logical value indicating whether to include the full set
 #' of components used to derive the plot-level prediction. By default, the
 #' output list includes subplot-level TCC estimates, live tree and sapling
@@ -149,12 +149,13 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
     if (!(is.logical(full_output) && length(full_output) == 1))
         stop("'full_output' must be a single logical value", call. = FALSE)
 
-    L_mean <- NA_real_  # predictor variable based on Ripley's K
+    L_mean <- NA_real_
     if (stem_map) {
-        # validates the input tree list for stem-mapping and gets an estimate
+        # validate the input tree list for stem-mapping and get an estimate
         # of the L-function (square root transform of Ripley's K)
         # r = 0:12 feet
-        L <- create_fia_ppp(tree_list) |> spatstat.explore::Lest(r = 0:12)
+        L <- create_fia_ppp(tree_list) |>
+            spatstat.explore::Lest(r = 0:12, correction = "isotropic")
 
         # mean of L at r = 6, 8, 10, 12 ft (Ripley's isotropic edge corrected)
         L_mean <- mean(L$iso[c(7, 9, 11, 13)])
@@ -243,7 +244,7 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
         }
 
     } else {
-        # "FVS method" for tree canopy cover (Crookston and Stage 1999)
+        # FVS method for percent tree canopy cover (Crookston and Stage 1999)
         # *** assumes random tree locations ***
 
         if (!("TPA_UNADJ" %in% colnames(tree_list))) {
@@ -252,6 +253,7 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
         }
 
         # "uncorrected" total tree canopy cover without accounting for overlap
+        # may be > 100
         # Crookston and Stage (1999) Eq. 1
         tot_crown_area_per_acre <-
             sum(tree_list$TPA_UNADJ[tree_list$STATUSCD == 1] * pi *
@@ -259,7 +261,7 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
 
         uncorrected_tcc <- 100 * tot_crown_area_per_acre / 43560
 
-        # corrected plot canopy cover accounting for overlap
+        # "corrected" TCC accounting for overlap
         # Crookston and Stage (1999) Eq. 2
         model_tcc <- round(100 * (1 - exp(-0.01 * uncorrected_tcc)), digits)
     }

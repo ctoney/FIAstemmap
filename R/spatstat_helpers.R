@@ -103,7 +103,7 @@
 #'      background = "gray90", legend = FALSE)
 #'
 #' # Ripley's K-function
-#' K <- spatstat.explore::Kest(X, rmax = 12)
+#' K <- spatstat.explore::Kest(X, rmax = 12, correction = "isotropic")
 #' plot(K, main = "Ripley's K for the plantation trees")
 #' @export
 create_fia_owin <- function(linear_unit = "ft", macroplot = FALSE,
