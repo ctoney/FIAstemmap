@@ -1,8 +1,8 @@
-#' Predict plot-level canopy cover from individual tree measurements
+#' Compute predicted canopy cover from individual tree measurements
 #'
-#' `calc_tcc_metrics()` computes plot-level predicted tree canopy cover (TCC)
+#' `calc_tcc_metrics()` computes predicted plot-level tree canopy cover (TCC)
 #' from tree list data. By default, a full set of stand structure metrics used
-#' to derive the plot-level TCC prediction are included in the output (see
+#' to derive the plot-level TCC value are included in the output (see
 #' Details).
 #'
 #' @details
@@ -20,26 +20,58 @@
 #' a square root transformation of Ripley's edge-corrected K function, Ripley
 #' 1977, Stoyan and Penttinen 2000).
 #'
-#' Alternatively, plot-level TCC can be predicted using a simplified approach
-#' that does not include exact stem placement (`stem_map = FALSE`). A random
-#' arrangement of stems is assumed in that case. This is the method used to
-#' estimate tree canopy cover in the Forest Vegetation Simulator (Crookston and
-#' Stage 1999).
+#' Alternatively, TCC can be predicted using a simplified approach that does not
+#' include exact stem placement within the plot boundary (`stem_map = FALSE`). A
+#' random arrangement of stems is assumed in that case. This is the method used
+#' to estimate tree canopy cover in the Forest Vegetation Simulator (Crookston
+#' and Stage 1999).
 #'
-#' Both methods require estimates of individual tree crown width, which are
+#' Both methods require estimates of individual tree crown widths, which are
 #' computed with `calc_crwidth()` if not provided in the input tree list.
 #'
 #' The stem-map method also requires computation of several stand structure
-#' metrics, as components of the overall model used to derive a plot-level TCC
-#' estimate. These additional variables include:
+#' metrics which are used in various components of the overall model used to
+#' derive a plot-level TCC estimate. These additional variables include:
 #'
 #' * individual subplot and microplot crown overlays via `calc_crown_overlay()`
-#' * a stand height metric (`meanTreeHtBAW`) and plot-level counts of mature
-#' trees and saplings via `calc_ht_metrics()`
+#' * a stand height metric (`meanTreeHtBAW`), and plot-level counts of mature
+#' trees and saplings, via `calc_ht_metrics()`
 #' * descriptive spatial statistics for the overstory tree point pattern via
 #' `create_fia_ppp() |> spatstat.explore::Lest()`
 #'
+#' By default, `calc_tcc_metrics()` returns a named list containing the
+#' plot-level modeled TCC value, along with those additional component
+#' variables. Specific elements of the returned list include some or all of the
+#' following, conditionally:
 #'
+#' * `model_tcc`: plot-level predicted canopy cover of trees `>= 1` inch
+#' (`2.54` cm)  diameter, derived by one of the two methods described above
+#' depending on the value given for argument `stem_map = TRUE|FALSE`
+#'
+#' If the stem-map method is used, then TCC values derived by crown overlay
+#' on the individual subplot and microplot boundaries are included, along with
+#' means of the four subplot/microplot values:
+#'
+#' * `subpN_crown_overlay`: estimated canopy cover of trees `>= 5-in.`
+#' (12.7 cm) diameter in subplot `N` based on crown overlay (`N = 1:4`)
+#' * `subp_overlay_mean`: mean of the four subplot crown overlays
+#' * `micrN_crown_overlay`: estimated canopy cover of saplings in the microplot
+#' of subplot `N` based on crown overlay (`N = 1:4`)
+#' * `micr_overlay_mean`: mean of the four microplot crown overlays
+#'
+#' A set of spatial point pattern statistics is also included when the stem-map
+#' method is used. A square root transformation of Ripley's K function using
+#' isotropic edge correction is computed with `spatstat.explore::Lest()` for
+#' trees `>= 5-in.` (12.7 cm) diameter within the four-subplot observation
+#' window. The mean of the following values is a predictor variable in a linear
+#' regression model used to estimate the sapling contribution to total tree
+#' canopy cover:
+#'
+#' * `L_rft`: Ripley’s L function at `r` feet (`r` = `6`, `8`, `10`, and `12`)
+#'
+#' If the argument `full_output = TRUE` (the default), then the output will
+#' also include all of the the named elements from the output of
+#' `calc_ht_metrics()`.
 #'
 #' @param tree_list A data frame with tree records for one FIA plot. In general,
 #' the input data frame will have the columns specified in
@@ -65,11 +97,11 @@
 #' return values (defaults to `1`). May be passed to `calc_crwidth()` and
 #' `calc_ht_metrics()`.
 #' @return
-#' If `full_output = TRUE`, a named list with the element `model_tcc` containing
-#' plot-level predicted tree canopy cover percent (`0:100`), and additional
-#' named elements containing stand structure metrics as described in Details.
-#' If `full_output = FALSE`, a single numeric value of plot-level predicted TCC
-#' is returned instead.
+#' If `full_output = TRUE`, a named list with element `model_tcc` containing
+#' the plot-level predicted tree canopy cover as percent (`0:100`), and
+#' additional named elements containing stand structure metrics as described in
+#' Details. If `full_output = FALSE`, a single numeric value of plot-level
+#' predicted TCC is returned instead.
 #'
 #' @references
 #' Crookston, N.L. and A.R. Stage. (1999). Percent canopy cover and stand
@@ -99,11 +131,14 @@
 #' [create_fia_ppp()]
 #'
 #' @examples
-#' # spatially explicit "stem-map model"
+#' # using the spatially explicit "stem-map model" by default
 #' calc_tcc_metrics(plantation)
 #'
-#' # "FVS method" assuming random tree locations
-#' calc_tcc_metrics(plantation, stem_map = FALSE)
+#' # return only the predicted TCC
+#' calc_tcc_metrics(plantation, full_output = FALSE)
+#'
+#' # using the "FVS method" which assumes random tree locations
+#' calc_tcc_metrics(plantation, stem_map = FALSE, full_output = FALSE)
 #' @export
 calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
                              digits = 1) {
@@ -121,7 +156,7 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
         # r = 0:12 feet
         L <- create_fia_ppp(tree_list) |> spatstat.explore::Lest(r = 0:12)
 
-        # mean of L at r = 6, 8, 10, 12 ft (Ripley's isotropic edge correction)
+        # mean of L at r = 6, 8, 10, 12 ft (Ripley's isotropic edge corrected)
         L_mean <- mean(L$iso[c(7, 9, 11, 13)])
     }
 
@@ -142,7 +177,7 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
         subp_overlay <- rep(NA_real_, 4)
         micr_overlay <- rep(NA_real_, 4)
         for (i in 1:4) {
-            # subplot trees
+            # trees in the subplot
             tree_subp <- tree_list[tree_list$SUBP == i &
                                    tree_list$STATUSCD == 1 &
                                    tree_list$DIA >= 5, ]
@@ -153,7 +188,7 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
                 subp_overlay[i] <- calc_crown_overlay(tree_subp, 24)
             }
 
-            # microplot saplings
+            # saplings in the microplot
             sap_micr <- tree_list[tree_list$SUBP == i &
                                   tree_list$STATUSCD == 1 &
                                   tree_list$DIA < 5, ]
@@ -189,7 +224,7 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
                 # field measurements for all single-condition DESIGNCD 1 plots
                 # through 2005 that had subp_overlay_tcc >= 10 (FORTYPCDs 925
                 # and 926 omitted)
-                # Toney et al. (2009) Table 2
+                # coefficients given in Table 2, Toney et al. (2009)
                 sapling_component <-
                     -8.036 +
                     0.211 * micr_overlay_tcc +
@@ -209,25 +244,51 @@ calc_tcc_metrics <- function(tree_list, stem_map = TRUE, full_output = TRUE,
 
     } else {
         # "FVS method" for tree canopy cover (Crookston and Stage 1999)
-        # assumes random tree locations
+        # *** assumes random tree locations ***
 
         if (!("TPA_UNADJ" %in% colnames(tree_list))) {
             stop("'TPA_UNADJ' is a required column in 'tree_list'",
                  call. = FALSE)
         }
 
-        # total "uncorrected" plot canopy cover without accounting for overlap
+        # "uncorrected" total tree canopy cover without accounting for overlap
         # Crookston and Stage (1999) Eq. 1
         tot_crown_area_per_acre <-
             sum(tree_list$TPA_UNADJ[tree_list$STATUSCD == 1] * pi *
                 (tree_list$CRWIDTH[tree_list$STATUSCD == 1] / 2)^2)
 
-        C_uncorrected <- 100 * tot_crown_area_per_acre / 43560
+        uncorrected_tcc <- 100 * tot_crown_area_per_acre / 43560
 
         # corrected plot canopy cover accounting for overlap
         # Crookston and Stage (1999) Eq. 2
-        model_tcc <- round(100 * (1 - exp(-0.01 * C_uncorrected)), digits)
+        model_tcc <- round(100 * (1 - exp(-0.01 * uncorrected_tcc)), digits)
     }
 
-    return(model_tcc)
+    if (full_output) {
+        if (stem_map) {
+            return(c(
+                model_tcc = model_tcc,
+                subp1_crown_overlay = subp_overlay[1],
+                subp2_crown_overlay = subp_overlay[2],
+                subp3_crown_overlay = subp_overlay[3],
+                subp4_crown_overlay = subp_overlay[4],
+                subp_overlay_mean = subp_overlay_tcc,
+                micr1_crown_overlay = micr_overlay[1],
+                micr2_crown_overlay = micr_overlay[2],
+                micr3_crown_overlay = micr_overlay[3],
+                micr4_crown_overlay = micr_overlay[4],
+                micr_overlay_mean = micr_overlay_tcc,
+                L_6ft = L$iso[7],
+                L_8ft = L$iso[9],
+                L_10ft = L$iso[11],
+                L_12ft = L$iso[13],
+                ht_metrics))
+        } else {
+            return(c(
+                model_tcc = model_tcc,
+                ht_metrics))
+        }
+    } else {
+        return(model_tcc)
+    }
 }
