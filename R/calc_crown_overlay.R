@@ -29,6 +29,9 @@
 #' tree list is assumed to be filtered to the specific set of live trees for
 #' one subplot or microplot with the given `sample_radius`.
 #'
+#' @seealso
+#' [calc_tcc_metrics()]
+#'
 #' @examples
 #' # subplot 1 of the `plantation` plot
 #' trees <- within(plantation, CRWIDTH <- calc_crwidth(plantation))

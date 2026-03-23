@@ -2,7 +2,7 @@
 % Please edit documentation in R/calc_crwidth.R
 \name{calc_crwidth}
 \alias{calc_crwidth}
-\title{Compute predicted tree crown width using species-specific equations}
+\title{Predict tree crown widths using species-specific equations}
 \usage{
 calc_crwidth(tree_list, digits = 1)
 }
@@ -24,26 +24,36 @@ regression equations from the literature.
 }
 \details{
 Crown width is predicted from tree diameter using coefficients provided in
-the lookup table \link{cw_coef} (see \code{?cw_coef} for detailed documentation and
-references). The method also incorporates adjustment factors used to derive
-crown width estimates for FIA "saplings", i.e., trees less than 5.0 in.
-(12.7 cm) diameter but greater than or equal to 1.0 in. (2.54 cm) diameter.
-Details are described in the documentation for the lookup table
-\link{cw_sapling_adj}.
+the lookup table \link{cw_coef} (see \code{?cw_coef}) The method also incorporates
+adjustment factors used to derive crown width estimates for FIA "saplings",
+i.e., trees less than 5.0 in. (12.7 cm) diameter but greater than or equal
+to 1.0 in. (2.54 cm) diameter. Details are described in the documentation
+for the lookup table \link{cw_sapling_adj}.
 
 Large diameter trees in the temperate rain forests of the Pacific Northwest
 region can far exceed the range of diameters in the broadly applicable
-datasets that have been used to develop crown width prediction equations. To
-avoid extrapolation beyond the range of the model fitting data in those
-cases, \code{calc_crwidth()} makes use of the "old growth" equation presented
-by Gill et al. (2000) to estimate crown width for nine tree species when
-their diameter is greater than 50 in. (127 cm).
+datasets that have been used to develop crown width prediction equations
+(Bechold 2003, 2004). To avoid extrapolation beyond the range of the model
+fitting data in those cases, \code{calc_crwidth()} makes use of the "old growth"
+equation presented by Gill et al. (2000) to estimate crown width for nine
+tree species when their diameter is greater than 50 in. (127 cm).
 }
 \examples{
 calc_crwidth(plantation)
 }
 \references{
+Bechtold, W.A. 2003. Crown-Diameter Prediction Models for 87 Species of
+Stand-Grown Trees in the Eastern United States. \emph{Southern Journal of Applied
+Forestry}, 27(4): 269-278.
+
+Bechtold, W.A. 2004. Largest-Crown-Width Prediction Models for 53 Species in
+the Western United States. \emph{Western Journal of Applied Forestry}, 19(4):
+245-251.
+
 Gill, S.J., G.S. Biging, E.C. Murphy. 2000. Modeling conifer tree crown
 radius and estimating canopy cover. \emph{Forest Ecology and Management}, 126(3):
 405-416.
+}
+\seealso{
+\link{cw_coef}, \link{cw_sapling_adj}
 }

@@ -3,7 +3,7 @@
 \docType{data}
 \name{plantation}
 \alias{plantation}
-\title{Tree list for a plot in a loblolly pine plantation}
+\title{Pine plantation tree list}
 \format{
 \subsection{\code{plantation}}{
 

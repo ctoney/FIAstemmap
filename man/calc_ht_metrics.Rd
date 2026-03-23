@@ -21,29 +21,29 @@ in Details.
 }
 \description{
 \code{calc_ht_metrics()} computes several stand height metrics for a given tree
-list (see Details).
+list.
 }
 \details{
 Stand height metrics are based on live trees (\code{STATUSCD == 1}), and are
 are assigned \code{0} by definition if no live trees are present. Height metrics
 are returned in a named list with the following elements:
 \itemize{
-\item \code{numTrees}: number of live trees \verb{>= 5.0} in. (\code{12.7} cm) diameter
-\item \code{meanTreeHt}: mean height of trees \verb{>= 5.0} in. (\code{12.7} cm) diameter
-\item \code{meanTreeHtBAW}: basal-area weighted mean height of trees \verb{>= 5.0} in.
+\item \verb{$numTrees}: number of live trees \verb{>= 5.0} in. (\code{12.7} cm) diameter
+\item \verb{$meanTreeHt}: mean height of trees \verb{>= 5.0} in. (\code{12.7} cm) diameter
+\item \verb{$meanTreeHtBAW}: basal-area weighted mean height of trees \verb{>= 5.0} in.
 (\code{12.7} cm) diameter
-\item \code{meanTreeHtDom}: mean height of canopy dominant/co-dominant trees
+\item \verb{$meanTreeHtDom}: mean height of canopy dominant/co-dominant trees
 \verb{>= 5.0} in. (\code{12.7} cm) diameter
-\item \code{meanTreeHtDomBAW}: basal-area weighted mean height of canopy
+\item \verb{$meanTreeHtDomBAW}: basal-area weighted mean height of canopy
 dominant/co-dominant trees \verb{>= 5.0} in. (\code{12.7} cm) diameter
-\item \code{maxTreeHt}: height of the tallest tree \verb{>= 5.0} in. (\code{12.7} cm) diameter
-\item \code{predomTreeHt}: predominant tree height, as the mean height of the tallest
+\item \verb{$maxTreeHt}: height of the tallest tree \verb{>= 5.0} in. (\code{12.7} cm) diameter
+\item \verb{$predomTreeHt}: predominant tree height, as the mean height of the tallest
 trees \verb{>= 5.0} in. (\code{12.7} cm) diameter comprising up to \code{16} trees per
 acre (\code{39.5} trees per hectare)
-\item \code{numSaplings}: number of live saplings (trees \verb{>= 1.0} in. but \verb{< 5.0} in.
+\item \verb{$numSaplings}: number of live saplings (trees \verb{>= 1.0} in. but \verb{< 5.0} in.
 diameter, i.e., \verb{>= 2.54} cm but \verb{< 12.7} cm)
-\item \code{meanSapHt}: mean height of saplings
-\item \code{maxSapHt}: height of the tallest sapling
+\item \verb{$meanSapHt}: mean height of saplings
+\item \verb{$maxSapHt}: height of the tallest sapling
 }
 
 For the purpose of height calculations, metrics based on

@@ -74,3 +74,6 @@ plot_crowns(trees, subplot = 4, main = "plantation subplot 4")
 plot_crowns(trees, subplot = 4, microplot = TRUE,
             main = "plantation microplot 4")
 }
+\seealso{
+\code{\link[=calc_crwidth]{calc_crwidth()}}, \code{\link[=calc_crown_overlay]{calc_crown_overlay()}}
+}

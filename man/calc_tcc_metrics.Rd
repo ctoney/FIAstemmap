@@ -2,7 +2,7 @@
 % Please edit documentation in R/calc_tcc_metrics.R
 \name{calc_tcc_metrics}
 \alias{calc_tcc_metrics}
-\title{Compute predicted canopy cover from individual tree measurements}
+\title{Predict plot-level canopy cover from individual tree measurements}
 \usage{
 calc_tcc_metrics(tree_list, stem_map = TRUE, full_output = TRUE, digits = 1)
 }
@@ -44,8 +44,8 @@ predicted TCC is returned instead.
 \description{
 \code{calc_tcc_metrics()} computes predicted plot-level tree canopy cover (TCC)
 from standard field inventory measurements. By default, a full set of stand
-structure metrics used to derive the plot-level TCC value are included in the
-output (see Details).
+structure variables used to derive the plot-level TCC value are included in
+the output (see Details).
 }
 \details{
 This function provides two methods for predicting plot-level TCC.
@@ -59,7 +59,7 @@ boundary to account for crown overlap explicitly, along with empirical
 modeling of the understory sapling contribution to total canopy cover
 (Toney et al. 2009). The empirical model for the sapling component also uses
 the spatial point pattern of overstory trees as a predictor variable (using
-a square root transformation of Ripley's edge-corrected K function, Ripley
+a square root transformation of Ripley's edge-corrected K-function, Ripley
 1977, Stoyan and Penttinen 2000).
 
 Alternatively, TCC can be predicted using a simplified approach that does not
@@ -87,7 +87,7 @@ plot-level modeled TCC value, along with those additional component
 variables. Specific elements of the returned list include some or all of the
 following, conditionally:
 \itemize{
-\item \code{model_tcc}: plot-level predicted canopy cover of trees \verb{>= 1} inch
+\item \verb{$model_tcc}: plot-level predicted canopy cover of trees \verb{>= 1} inch
 (\code{2.54} cm)  diameter, derived by one of the two methods described above
 depending on the value given for argument \code{stem_map = TRUE|FALSE}
 }
@@ -96,12 +96,12 @@ If the stem-map method is used, then TCC values derived by crown overlay
 on the individual subplot and microplot boundaries are included, along with
 means of the four subplot/microplot values:
 \itemize{
-\item \code{subpN_crown_overlay}: estimated canopy cover of trees \verb{>= 5-in.}
+\item \verb{$subpN_crown_overlay}: estimated canopy cover of trees \verb{>= 5-in.}
 (12.7 cm) diameter in subplot \code{N} based on crown overlay (\code{N = 1:4})
-\item \code{subp_overlay_mean}: mean of the four subplot crown overlays
-\item \code{micrN_crown_overlay}: estimated canopy cover of saplings in the microplot
+\item \verb{$subp_overlay_mean}: mean of the four subplot crown overlays
+\item \verb{$micrN_crown_overlay}: estimated canopy cover of saplings in the microplot
 of subplot \code{N} based on crown overlay (\code{N = 1:4})
-\item \code{micr_overlay_mean}: mean of the four microplot crown overlays
+\item \verb{$micr_overlay_mean}: mean of the four microplot crown overlays
 }
 
 A set of spatial point pattern statistics is also included when the stem-map
@@ -112,7 +112,8 @@ window. The mean of the following values is a predictor variable in a linear
 regression model used to estimate the sapling contribution to total tree
 canopy cover:
 \itemize{
-\item \code{L_rft}: Ripley’s L function at \code{r} feet (\code{r} = \code{6}, \code{8}, \code{10}, and \code{12})
+\item \verb{$L_rft}: estimates of the L-function at \code{r} feet (\code{r} = \code{6}, \code{8}, \code{10},
+and \code{12})
 }
 
 If the argument \code{full_output = TRUE} (the default), then the output will
@@ -123,7 +124,7 @@ also include all of the the named elements from the output of
 # using the spatially explicit "stem-map model" by default
 calc_tcc_metrics(plantation)
 
-# return only the predicted TCC
+# return only the predicted TCC value (`$model_tcc`)
 calc_tcc_metrics(plantation, full_output = FALSE)
 
 # using the "FVS method" which assumes random tree locations

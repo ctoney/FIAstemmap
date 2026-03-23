@@ -48,3 +48,6 @@ trees[trees$SUBP == 1 & trees$DIA >= 5, ] |>
 
 plot_crowns(trees, subplot = 1, main = "plantation subplot 1")
 }
+\seealso{
+\code{\link[=calc_tcc_metrics]{calc_tcc_metrics()}}
+}

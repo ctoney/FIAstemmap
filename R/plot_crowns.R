@@ -37,6 +37,9 @@
 #' @return
 #' The input, invisibly.
 #'
+#' @seealso
+#' [calc_crwidth()], [calc_crown_overlay()]
+#'
 #' @examples
 #' trees <- within(plantation, CRWIDTH <- calc_crwidth(plantation))
 #'

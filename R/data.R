@@ -127,7 +127,7 @@ DEFAULT_TREE_COLUMNS <- c("PLT_CN", "SUBP", "TREE", "AZIMUTH", "DIST",
 "cw_sapling_adj"
 
 
-#' Tree list for a plot in a loblolly pine plantation
+#' Pine plantation tree list
 #'
 #' An example tree list for an FIA plot in a loblolly pine plantation.
 #'

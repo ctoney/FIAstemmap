@@ -1,24 +1,23 @@
-#' Compute predicted tree crown width using species-specific equations
+#' Predict tree crown widths using species-specific equations
 #'
 #' `calc_crwidth()` computes tree crown width using species-specific
 #' regression equations from the literature.
 #'
 #' @details
 #' Crown width is predicted from tree diameter using coefficients provided in
-#' the lookup table [cw_coef] (see `?cw_coef` for detailed documentation and
-#' references). The method also incorporates adjustment factors used to derive
-#' crown width estimates for FIA "saplings", i.e., trees less than 5.0 in.
-#' (12.7 cm) diameter but greater than or equal to 1.0 in. (2.54 cm) diameter.
-#' Details are described in the documentation for the lookup table
-#' [cw_sapling_adj].
+#' the lookup table [cw_coef] (see `?cw_coef`) The method also incorporates
+#' adjustment factors used to derive crown width estimates for FIA "saplings",
+#' i.e., trees less than 5.0 in. (12.7 cm) diameter but greater than or equal
+#' to 1.0 in. (2.54 cm) diameter. Details are described in the documentation
+#' for the lookup table [cw_sapling_adj].
 #'
 #' Large diameter trees in the temperate rain forests of the Pacific Northwest
 #' region can far exceed the range of diameters in the broadly applicable
-#' datasets that have been used to develop crown width prediction equations. To
-#' avoid extrapolation beyond the range of the model fitting data in those
-#' cases, `calc_crwidth()` makes use of the "old growth" equation presented
-#' by Gill et al. (2000) to estimate crown width for nine tree species when
-#' their diameter is greater than 50 in. (127 cm).
+#' datasets that have been used to develop crown width prediction equations
+#' (Bechold 2003, 2004). To avoid extrapolation beyond the range of the model
+#' fitting data in those cases, `calc_crwidth()` makes use of the "old growth"
+#' equation presented by Gill et al. (2000) to estimate crown width for nine
+#' tree species when their diameter is greater than 50 in. (127 cm).
 #'
 #' @param tree_list A data frame containing tree records. Must have columns
 #' `SPCD` (FIA integer species code), `STATUSCD` (FIA integer tree status code,
@@ -30,9 +29,20 @@
 #' feet for live trees. `NA` is returned for trees with `STATUSCD != 1`.
 #'
 #' @references
+#' Bechtold, W.A. 2003. Crown-Diameter Prediction Models for 87 Species of
+#' Stand-Grown Trees in the Eastern United States. _Southern Journal of Applied
+#' Forestry_, 27(4): 269-278.
+#'
+#' Bechtold, W.A. 2004. Largest-Crown-Width Prediction Models for 53 Species in
+#' the Western United States. _Western Journal of Applied Forestry_, 19(4):
+#' 245-251.
+#'
 #' Gill, S.J., G.S. Biging, E.C. Murphy. 2000. Modeling conifer tree crown
 #' radius and estimating canopy cover. _Forest Ecology and Management_, 126(3):
 #' 405-416.
+#'
+#' @seealso
+#' [cw_coef], [cw_sapling_adj]
 #'
 #' @examples
 #' calc_crwidth(plantation)
