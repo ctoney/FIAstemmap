@@ -11,9 +11,9 @@ test_that("calc_ht_metrics works", {
     expected$meanTreeHtDom <- 44.8
     expected$meanTreeHtDomBAW <- 45.3
     expected$maxTreeHt <- 51
-    expected$predomTreeHt <- 51
+    expected$predomTreeHt <- 50.7
     expected$numSaplings <- 2
     expected$meanSapHt <- 34.5
     expected$maxSapHt <- 43
-    expect_equal(calc_ht_metrics(plantation), expected, tolerance = 0.1)
+    expect_equal(calc_ht_metrics(plantation), expected, tolerance = 1e-3)
 })

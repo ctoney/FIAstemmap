@@ -21,10 +21,10 @@ test_that("calc_tcc_metrics works", {
 
     # stem-map method
     tcc_pred <- calc_tcc_metrics(tree_list, full_output = FALSE)
-    expect_equal(tcc_pred, 50, tolerance = 0.1)
+    expect_equal(tcc_pred, 50, tolerance = 1e-3)
 
     # FVS method
     tcc_pred <- calc_tcc_metrics(tree_list, stem_map = FALSE,
                                  full_output = FALSE)
-    expect_equal(tcc_pred, 39.3, tolerance = 0.1)
+    expect_equal(tcc_pred, 39.3, tolerance = 1e-3)
 })
