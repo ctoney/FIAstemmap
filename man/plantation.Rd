@@ -39,4 +39,7 @@ plantation
 \description{
 An example tree list for an FIA plot in a loblolly pine plantation.
 }
+\note{
+A synthetic plot unique identifier is used in example tree list datasets.
+}
 \keyword{datasets}

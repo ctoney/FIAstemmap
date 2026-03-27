@@ -153,5 +153,7 @@ DEFAULT_TREE_COLUMNS <- c("PLT_CN", "SUBP", "TREE", "AZIMUTH", "DIST",
 #'   \item{\code{TPA_UNADJ}}{\code{\link{numeric}},
 #'     Trees per acre expansion factor}
 #' }
+#' @note
+#' A synthetic plot unique identifier is used in example tree list datasets.
 #' @source <https://research.fs.usda.gov/programs/nfi>
 "plantation"
