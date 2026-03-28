@@ -32,7 +32,7 @@ The Forest Inventory and Analysis Program ([FIA](https://research.fs.usda.gov/pr
 * mapping erosion risk [[11]](#references)
 * assessment of tree canopy cover estimation methods [[12, 13]](#references)
 
-Analysis or computation based on the tree spatial pattern within a plot require input data with coordinates of individual stems given as azimuth and distance from the sample center point. Note that FIA no longer provide `AZIMUTH` and `DIST` attributes in the publicly available FIADB `TREE` table. The FIADB User Guide states that these attributes are now available by request from [FIA Spatial Data Services](https://research.fs.usda.gov/programs/fia/sds) [[14]](#references). Tree data without stem locations can still be used in **FIAstemmap** for certain functionality, which includes predicting individual tree crown width and computing several stand structure metrics.
+Computations based on tree spatial pattern within a plot require input data with coordinates of the individual stems given as azimuth and distance from the sample center point. Note that FIA no longer provide the `AZIMUTH` and `DIST` attributes in the publicly available `TREE` table. The FIADB User Guide states that these attributes are now available by request from [FIA Spatial Data Services](https://research.fs.usda.gov/programs/fia/sds) [[14]](#references). Tree data lacking stem locations can be used with **FIAstemmap** for certain functionality, which includes predicting individual tree crown width and computing several stand structure metrics.
 
 ## Installation
 
@@ -45,26 +45,26 @@ pak::pak("firelab/FIAstemmap")
 
 ## Examples
 
-### Predict crown width
+### Predict tree crown width
 
-The data frame `cw_coef` provides a curated set of linear regression coefficients for predicting crown width from stem diameter of tree species in the conterminous US (see `?cw_coef`). The crown width prediction method also addresses potential issues in cases of extrapolation beyond the range of the model fitting data. Details are given in the documentation for `calc_crwidth()`. Input is a data frame of tree records which must have columns `SPCD` (FIA integer species code), `STATUSCD` (FIA integer tree status code, `1` = live) and `DIA` (FIA tree diameter in inches), here using the `plantation` example tree list.
+The data frame `cw_coef` contains a curated set of linear regression coefficients for predicting crown width from stem diameter of tree species in the conterminous US (see `?cw_coef`). The method for crown width prediction attempts to avoid extrapolation beyond the range of the model fitting data by providing reasonable fall backs for the obvious cases. Details are given in the documentation for `calc_crwidth()`. The input is a data frame of tree records which must have columns `SPCD` (FIA integer species code), `STATUSCD` (FIA integer tree status code, `1` = live) and `DIA` (FIA tree diameter in inches). The `plantation` dataset used here is an example tree list included in the package.
 
 ```{r predict-crwidth}
 library(FIAstemmap)
 
-# regression coefficients for estimating tree crown width from diameter
-# ?cw_coef
+# included regression coefficients for estimating tree crown width from diameter
+# see `?cw_coef`
 head(cw_coef)
 
-# add predicted crown widths to the `plantation` tree list
-# `within()` to modify only a copy of the example dataset
+# add a column predicted crown widths to the `plantation` tree list
+# `within()` is used to modify only a copy of the example dataset
 tree_list <- within(plantation, CRWIDTH <- calc_crwidth(plantation))
 str(tree_list)
 ```
 
 ### Exploratory analysis
 
-Plot-level visualization and other exploratory analyses require input data with stem locations provided in columns `AZIMUTH` (horizontal angle from subplot/microplot center to the stem location, in range `0:359`) and `DIST` (stem distance from subplot/microplot center).
+Plot-level visualization and other exploratory analyses require input data with individual stem locations given in columns named `AZIMUTH` (horizontal angle from subplot/microplot center, `0:359`) and `DIST` (distance from subplot/microplot center).
 
 ```{r plot-crowns}
 # display modeled tree crowns projected vertically on the FIA plot boundary
@@ -79,7 +79,7 @@ plot_crowns(tree_list, subplot = 4, microplot = TRUE,
             main = "Loblolly pine plantation microplot 4")
 ```
 
-Helper functions are provided to facilitate analysis of FIA tree lists as Spatial Point Patterns using the **spatstat** library. `create_fia_ppp()` returns an object of class `"ppp"` representing the point pattern of an FIA tree list in the 2-D plane. This object can be used with functions of package **spatstat.explore** for additional plotting capability, computation of descriptive spatial statistics, and other exploratory data analysis.
+Helper functions facilitate the analysis of FIA tree lists as Spatial Point Patterns using the **spatstat** library. `create_fia_ppp()` returns an object of class `"ppp"` representing the point pattern of an FIA tree list in the 2-D plane. This object can be used with functions of **spatstat.explore** which provide additional plotting capabilities, computation of descriptive spatial statistics, and other exploratory data analysis.
 
 ```{r spatstat-explore}
 # point pattern object for the plantation tree list
@@ -91,8 +91,8 @@ plot(X, pch = 16, background = "#EEE9DF", main = "plantation point pattern")
 # compute Ripley's K-function applying isotropic edge correction
 K <- spatstat.explore::Kest(X, rmax = 12, correction = "isotropic")
 
-# plot the estimated K(r) along with theoretical values for a completely random
-# point process, spatial regularity suggested in this case
+# plot estimated K(r) along with theoretical values for a completely random
+# point process, suggesting spatial regularity in this case
 plot(K, main = "Ripley's K for the plantation trees")
 ```
 
@@ -102,24 +102,24 @@ plot(K, main = "Ripley's K for the plantation trees")
 ## compute fractional tree canopy cover of a specific sampled area by overlaying
 ## modeled crowns
 
-# subplot 1 of the `plantation` plot which contains only live trees
+# subplot 1 of the `plantation` plot (contains only live trees)
 tree_list[tree_list$SUBP == 1 & tree_list$DIA >= 5, ] |>
   calc_crown_overlay(sample_radius = 24)
 
-## calculate stand height metrics, which are included by default in the output
-## of `calc_tcc_metrics()` (see below)
+## calculate stand height metrics, which are also included by default in the
+## output of `calc_tcc_metrics()` (see below)
 
 # calc_ht_metrics(plantation)
 
 ## predict plot-level canopy cover from individual tree measurements
 
-# full output, TCC predicted with the "stem-map" model
+# by default, TCC predicted with the "stem-map" model and full output returned
 calc_tcc_metrics(plantation)
 
 # return only the predicted TCC value (`$model_tcc`)
 calc_tcc_metrics(plantation, full_output = FALSE)
 
-# using the "FVS method" which assumes random tree locations
+# using the "FVS method", which assumes that trees are randomly located
 calc_tcc_metrics(plantation, stem_map = FALSE, full_output = FALSE)
 ```
 
