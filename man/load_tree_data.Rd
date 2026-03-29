@@ -110,6 +110,10 @@ support for the PostgreSQL client library (can be checked with
 
 Column names are case-sensitive in \pkg{FIAstemmap} functions, and are
 assumed to follow the FIADB upper case naming convention.
+
+If column \code{PLT_CN} is present, it will be read or coerced if necessary to R
+\code{"character"} type consistent with its data type in FIADB (i.e., a string
+but all digits).
 }
 \examples{
 # Lolo NF, single-condition forest plots, INVYR 2022, from public FIADB

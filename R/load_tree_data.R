@@ -92,6 +92,10 @@
 #' Column names are case-sensitive in \pkg{FIAstemmap} functions, and are
 #' assumed to follow the FIADB upper case naming convention.
 #'
+#' If column `PLT_CN` is present, it will be read or coerced if necessary to R
+#' `"character"` type consistent with its data type in FIADB (i.e., a string
+#' but all digits).
+#'
 #' @seealso
 #' [DEFAULT_TREE_COLUMNS]
 #'
@@ -228,6 +232,9 @@ load_tree_data <- function(src, table = NULL, columns = DEFAULT_TREE_COLUMNS,
     try(d$FID <- NULL, silent = TRUE)
     class(d) <- "data.frame"
     attr(d, "gis") <- NULL
+
+    if ("PLT_CN" %in% colnames(d) && storage.mode(d$PLT_CN) != "character")
+        storage.mode(d$PLT_CN) <- "character"
 
     if (nrow(d) == 0)
         cli::cli_alert_danger("No tree records were returned")
