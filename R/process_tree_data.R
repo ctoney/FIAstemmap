@@ -64,8 +64,8 @@ process_tree_data <- function(tree_table, stem_map = TRUE, full_output = TRUE,
         digits <- 1
 
     plot_id_dt <- storage.mode(tree_table$PLT_CN)
-    if (!(plot_id_dt %in% c("character", "numeric", "integer", "integer64"))) {
-        stop("'PLT_CN' must be character, numeric, integer or integer64",
+    if (!(plot_id_dt %in% c("character", "double", "integer", "integer64"))) {
+        stop("'PLT_CN' must be character, double, integer or integer64",
              call. = FALSE)
     }
     plot_ids <- unique(tree_table$PLT_CN)
