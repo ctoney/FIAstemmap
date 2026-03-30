@@ -4,4 +4,4 @@ We're glad you're thinking about contributing to this open source project of the
 
 ## Public domain
 
-This project is released under [MIT license](https://cran.r-project.org/web/licenses/MIT). Portions of the project are in the public domain within the United States, with copyright and related rights waived worldwide through the [CC0 1.0 Universal public domain dedication](https://creativecommons.org/publicdomain/zero/1.0/). See file inst/COPYRIGHTS for details.
+This project is released under [MIT license](https://cran.r-project.org/web/licenses/MIT). Portions of the project are in the public domain within the United States, with copyright and related rights waived worldwide through the [CC0 1.0 Universal public domain dedication](https://creativecommons.org/publicdomain/zero/1.0/).
