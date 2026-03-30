@@ -89,6 +89,9 @@ process_tree_data <- function(tree_table, stem_map = TRUE, full_output = TRUE,
     tree_list <- tree_table[tree_table$PLT_CN == plot_ids[1], ]
     x <- calc_tcc_metrics(tree_list, stem_map, full_output, digits, window = w)
 
+    cli::cli_alert_info(
+        "The input table contains tree data for {.val {num_plots}} plots.")
+
     out <- vector("list", 1 + length(x))
     names(out) <- c("PLT_CN", names(x))
 
@@ -109,10 +112,14 @@ process_tree_data <- function(tree_table, stem_map = TRUE, full_output = TRUE,
             out[[j]] <- rep_len(NA_real_, num_plots)
     }
 
-    cli::cli_alert_info(
-        "The input table contains tree data for {.val {num_plots}} plots.")
+    cli::cli_progress_bar(
+        "Processing...",
+        format_done = paste0(
+            "{cli::col_green(cli::symbol$tick)} Processed ",
+            "{.val {cli::pb_total}} plots in {cli::pb_elapsed}."),
+        total = num_plots,
+        clear = FALSE)
 
-    cli::cli_progress_bar("Processing...", total = num_plots)
     for (i in seq_along(plot_ids)) {
         tree_list <- tree_table[tree_table$PLT_CN == plot_ids[i], ]
         x <- calc_tcc_metrics(tree_list, stem_map, full_output, digits,
@@ -124,7 +131,6 @@ process_tree_data <- function(tree_table, stem_map = TRUE, full_output = TRUE,
         cli::cli_progress_update()
     }
     cli::cli_progress_done()
-    cli::cli_alert_info("Done.")
 
     as.data.frame(out)
 }

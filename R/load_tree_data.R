@@ -224,7 +224,8 @@ load_tree_data <- function(src, table = NULL, columns = DEFAULT_TREE_COLUMNS,
     if (is.null(sql) && !is.null(columns) && columns[1] != "")
         ds$setSelectedFields(columns)
 
-    cli::cli_progress_step("Fetching tree data...")
+    cli::cli_progress_step("Fetching tree data...",
+                           msg_done = "Fetching tree data.")
     d <- ds$fetch(-1)
     cli::cli_progress_done()
 
