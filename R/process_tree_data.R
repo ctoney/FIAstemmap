@@ -112,8 +112,11 @@ process_tree_data <- function(tree_table, stem_map = TRUE, full_output = TRUE,
             out[[j]] <- rep_len(NA_real_, num_plots)
     }
 
+    orig_show_after <- getOption("cli.progress_show_after")
+    options(cli.progress_show_after = 0)
+
     cli::cli_progress_bar(
-        "Processing...",
+        "Processing",
         format_done = paste0(
             "{cli::col_green(cli::symbol$tick)} Processed ",
             "{.val {cli::pb_total}} plots in {cli::pb_elapsed}."),
@@ -131,6 +134,8 @@ process_tree_data <- function(tree_table, stem_map = TRUE, full_output = TRUE,
         cli::cli_progress_update()
     }
     cli::cli_progress_done()
+
+    options(cli.progress_show_after = orig_show_after)
 
     as.data.frame(out)
 }

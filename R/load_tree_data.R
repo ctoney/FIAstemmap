@@ -116,13 +116,13 @@ load_tree_data <- function(src, table = NULL, columns = DEFAULT_TREE_COLUMNS,
         stop("'src' must be a single character string")
 
     if (!gdalraster::ogr_ds_exists(src)) {
-        cli::cli_alert_danger("connection to {.path {src}} failed")
+        cli::cli_alert_danger("connection to {.val {src}} failed")
         stop("could not connect to 'src'", call. = FALSE)
     }
 
     src_fmt <- gdalraster::ogr_ds_format(src)
     if (is.null(src_fmt)) {
-        cli::cli_alert_danger("unsupported format: {.path {src}}")
+        cli::cli_alert_danger("unsupported format: {.val {src}}")
         stop("'src' is not recognized as a supported format", call. = FALSE)
     }
 
@@ -155,9 +155,9 @@ load_tree_data <- function(src, table = NULL, columns = DEFAULT_TREE_COLUMNS,
             if (gdalraster::ogr_field_index(src, tbl_tmp, "DIST") < 0 ||
                 gdalraster::ogr_field_index(src, tbl_tmp, "AZIMUTH") < 0) {
 
-                cli::cli_alert_warning(
-                    c("the data source does not have ",
-                      "{.field DIST} and/or {.field AZIMUTH}"))
+                cli::cli_alert_warning(paste0(
+                    "The data source does not have {.field DIST} and/or ",
+                    "{.field AZIMUTH}."))
 
                 columns <- columns[!columns %in% c("DIST", "AZIMUTH")]
                 if (length(columns) == 0)
@@ -212,7 +212,7 @@ load_tree_data <- function(src, table = NULL, columns = DEFAULT_TREE_COLUMNS,
     gdalraster::pop_error_handler()
 
     if (!methods::is(ds, "Rcpp_GDALVector")) {
-        cli::cli_alert_danger("Failed to access tree data in {.path {src}}")
+        cli::cli_alert_danger("Failed to access tree data in {.val {src}}")
         if (!is.null(sql))
             stop("execute SQL failed on 'src'", call. = FALSE)
         else
@@ -224,8 +224,7 @@ load_tree_data <- function(src, table = NULL, columns = DEFAULT_TREE_COLUMNS,
     if (is.null(sql) && !is.null(columns) && columns[1] != "")
         ds$setSelectedFields(columns)
 
-    cli::cli_progress_step("Fetching tree data...",
-                           msg_done = "Fetching tree data.")
+    cli::cli_progress_step("Fetching tree data")
     d <- ds$fetch(-1)
     cli::cli_progress_done()
 
