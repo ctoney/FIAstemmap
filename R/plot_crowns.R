@@ -10,9 +10,11 @@
 #' columns `SUBP` (FIA subplot number), `STATUSCD` (FIA integer tree status,
 #' `1` = live), `DIA` (tree diameter), `HT` (tree height), `ACTUALHT` (tree
 #' actual height, `ACTUALHT < HT` indicating a broken top), `DIST` (stem
-#' distance from subplot/microplot center), `AZIMUTH` (horizontal angle from
-#' subplot/microplot center to the stem location, in range `0:359`), and
-#' `CRWIDTH` (tree crown width).
+#' distance from subplot/microplot center) and `AZIMUTH` (horizontal angle from
+#' subplot/microplot center to the stem location, in range `0:359`). If the
+#' input data frame has a column named `"CRWIDTH"` it will be used for tree
+#' crown width values, otherwise, crown widths will be calculated with a call
+#' to `calc_crwidth()`.
 #' @param subplot Optional integer subplot number in the range `1:4` indicating
 #' a specific subplot for display. May be `NULL` or `NA` to display the whole
 #' four-point cluster plot.
@@ -41,13 +43,11 @@
 #' [calc_crwidth()], [calc_crown_overlay()]
 #'
 #' @examples
-#' trees <- within(plantation, CRWIDTH <- calc_crwidth(plantation))
+#' plot_crowns(plantation, main = "plantation plot")
 #'
-#' plot_crowns(trees, main = "plantation plot")
+#' plot_crowns(plantation, subplot = 4, main = "plantation subplot 4")
 #'
-#' plot_crowns(trees, subplot = 4, main = "plantation subplot 4")
-#'
-#' plot_crowns(trees, subplot = 4, microplot = TRUE,
+#' plot_crowns(plantation, subplot = 4, microplot = TRUE,
 #'             main = "plantation microplot 4")
 #' @export
 plot_crowns <- function(tree_list, subplot = NULL, microplot = FALSE,
@@ -61,11 +61,18 @@ plot_crowns <- function(tree_list, subplot = NULL, microplot = FALSE,
     if (!is.data.frame(tree_list))
         stop("'tree_list' must be a data frame", call. = FALSE)
 
+    if (!("CRWIDTH" %in% colnames(tree_list)))
+        tree_list$CRWIDTH <- calc_crwidth(tree_list)
+
     required_cols <- c("SUBP", "STATUSCD", "DIA", "HT", "ACTUALHT", "AZIMUTH",
                        "DIST", "CRWIDTH")
 
-    if (!all(required_cols %in% colnames(tree_list)))
+    if (!all(required_cols %in% colnames(tree_list))) {
+        missing <- setdiff(required_cols, colnames(tree_list))
+        cli::cli_alert_danger(
+            "Missing {length(missing)} column{?s}: {.field {missing}}")
         stop("'tree_list' is missing required columns", call. = FALSE)
+    }
 
     if (!all(unique(tree_list$SUBP) %in% c(1, 2, 3, 4)))
         stop("'tree_list$SUBP' contains invalid subplot numbers", call. = FALSE)

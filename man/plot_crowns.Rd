@@ -21,9 +21,11 @@ plot_crowns(
 columns \code{SUBP} (FIA subplot number), \code{STATUSCD} (FIA integer tree status,
 \code{1} = live), \code{DIA} (tree diameter), \code{HT} (tree height), \code{ACTUALHT} (tree
 actual height, \code{ACTUALHT < HT} indicating a broken top), \code{DIST} (stem
-distance from subplot/microplot center), \code{AZIMUTH} (horizontal angle from
-subplot/microplot center to the stem location, in range \code{0:359}), and
-\code{CRWIDTH} (tree crown width).}
+distance from subplot/microplot center) and \code{AZIMUTH} (horizontal angle from
+subplot/microplot center to the stem location, in range \code{0:359}). If the
+input data frame has a column named \code{"CRWIDTH"} it will be used for tree
+crown width values, otherwise, crown widths will be calculated with a call
+to \code{calc_crwidth()}.}
 
 \item{subplot}{Optional integer subplot number in the range \code{1:4} indicating
 a specific subplot for display. May be \code{NULL} or \code{NA} to display the whole
