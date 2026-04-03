@@ -146,8 +146,8 @@ DEFAULT_TREE_COLUMNS <- c("PLT_CN", "SUBP", "TREE", "AZIMUTH", "DIST",
 #'   \item{\code{SPCD}}{\code{\link{integer}}, FIA tree species code}
 #'   \item{\code{DIA}}{\code{\link{numeric}},
 #'     Tree diameter at breast height in inches}
-#'   \item{\code{HT}}{\code{\link{integer}}, Tree height in feet}
-#'   \item{\code{ACTUALHT}}{\code{\link{integer}},
+#'   \item{\code{HT}}{\code{\link{numeric}}, Tree height in feet}
+#'   \item{\code{ACTUALHT}}{\code{\link{numeric}},
 #'     Actual height in ft (ACTUALHT < HT indicates a broken top)}
 #'   \item{\code{CCLCD}}{\code{\link{integer}}, Tree crown class code}
 #'   \item{\code{TPA_UNADJ}}{\code{\link{numeric}},
