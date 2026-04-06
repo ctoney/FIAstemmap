@@ -67,9 +67,9 @@ width prediction attempts to avoid extrapolation beyond the range of the
 model fitting data by providing reasonable fall backs for the obvious
 cases. Details are given in the documentation for `calc_crwidth()`. The
 input is a data frame of tree records which must have columns `SPCD`
-(FIA integer species code), `STATUSCD` (FIA integer tree status code,
-`1` = live) and `DIA` (FIA tree diameter in inches). The `plantation`
-dataset used here is an example tree list included in the package.
+(FIA species code), `STATUSCD` (FIA tree status code, `1` = live) and
+`DIA` (FIA tree diameter). The `plantation` dataset used here is an
+example tree list included in the package.
 
 ``` r
 library(FIAstemmap)
@@ -184,8 +184,10 @@ plot(K, main = "Ripley's K for the plantation FIA plot")
 
 <img src="man/figures/README-spatstat-explore-2.png" alt="" width="70%" />
 
-``` r
+The `western_redcedar` dataset is another example tree list included in
+the package.
 
+``` r
 ## Spatial point pattern for the western redcedar tree list.
 X <- create_fia_ppp(western_redcedar)
 summary(X)
@@ -211,7 +213,7 @@ plot(X, pch = 16, background = "#fdf6e3",
      main = "Western redcedar point pattern")
 ```
 
-<img src="man/figures/README-spatstat-explore-3.png" alt="" width="70%" />
+<img src="man/figures/README-spatstat-explore-cont-1.png" alt="" width="70%" />
 
 ``` r
 
@@ -220,7 +222,7 @@ K <- spatstat.explore::Kest(X, rmax = 12, correction = "isotropic")
 plot(K, main = "Ripley's K for the western redcedar FIA plot")
 ```
 
-<img src="man/figures/README-spatstat-explore-4.png" alt="" width="70%" />
+<img src="man/figures/README-spatstat-explore-cont-2.png" alt="" width="70%" />
 
 ### Compute stand structure metrics
 

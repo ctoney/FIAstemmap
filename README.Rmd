@@ -47,7 +47,7 @@ pak::pak("firelab/FIAstemmap")
 
 ### Predict tree crown width
 
-The data frame `cw_coef` contains a curated set of linear regression coefficients for predicting crown width from stem diameter of tree species in the conterminous US (see `?cw_coef`). The method for crown width prediction attempts to avoid extrapolation beyond the range of the model fitting data by providing reasonable fall backs for the obvious cases. Details are given in the documentation for `calc_crwidth()`. The input is a data frame of tree records which must have columns `SPCD` (FIA integer species code), `STATUSCD` (FIA integer tree status code, `1` = live) and `DIA` (FIA tree diameter in inches). The `plantation` dataset used here is an example tree list included in the package.
+The data frame `cw_coef` contains a curated set of linear regression coefficients for predicting crown width from stem diameter of tree species in the conterminous US (see `?cw_coef`). The method for crown width prediction attempts to avoid extrapolation beyond the range of the model fitting data by providing reasonable fall backs for the obvious cases. Details are given in the documentation for `calc_crwidth()`. The input is a data frame of tree records which must have columns `SPCD` (FIA species code), `STATUSCD` (FIA tree status code, `1` = live) and `DIA` (FIA tree diameter). The `plantation` dataset used here is an example tree list included in the package.
 
 ```{r predict-crwidth}
 library(FIAstemmap)
@@ -95,7 +95,11 @@ K <- spatstat.explore::Kest(X, rmax = 12, correction = "isotropic")
 # Plot estimated K(r) along with theoretical values for a random point process,
 # suggesting spatial regularity in this case.
 plot(K, main = "Ripley's K for the plantation FIA plot")
+```
 
+The `western_redcedar` dataset is another example tree list included in the package.
+
+```{r spatstat-explore-cont}
 ## Spatial point pattern for the western redcedar tree list.
 X <- create_fia_ppp(western_redcedar)
 summary(X)
