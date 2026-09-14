@@ -73,6 +73,11 @@
 #' output of `calc_ht_metrics()`.
 #' @param meanSapHt A numeric vector, value(s) of `meanTreeHmeanSapHttBAW` from
 #' the output of `calc_ht_metrics()`.
+#' @return
+#' `calc_ht_metrics()` returns a named list of stand height metrics as described
+#' in Details. `calc_landfire_stand_ht()` returns a numeric vector of stand
+#' heights, with length equal to the number of elements in each of the input
+#' vectors.
 #'
 #' @examples
 #' calc_ht_metrics(plantation)

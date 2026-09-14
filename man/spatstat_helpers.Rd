@@ -61,6 +61,13 @@ each data point in a point pattern object.}
 input. \code{factor} marks are those that take only a finite number of possible
 values (e.g. colors or types).}
 }
+\value{
+\code{create_fia_owin()} returns an object of class \code{"owin"} from the
+\pkg{spatstat} library representing the generic 2-D observation window for
+the nationally standard FIA plot design. \code{create_fia_ppp()} returns an object
+of class \code{"ppp"} from \pkg{spatstat} representing the point pattern of an
+FIA tree list in the 2-D plane.
+}
 \description{
 These functions facilitate point pattern analysis of FIA tree data using the
 \pkg{spatstat} library.

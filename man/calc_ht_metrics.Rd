@@ -43,6 +43,12 @@ output of \code{calc_ht_metrics()}.}
 \item{meanSapHt}{A numeric vector, value(s) of \code{meanTreeHmeanSapHttBAW} from
 the output of \code{calc_ht_metrics()}.}
 }
+\value{
+\code{calc_ht_metrics()} returns a named list of stand height metrics as described
+in Details. \code{calc_landfire_stand_ht()} returns a numeric vector of stand
+heights, with length equal to the number of elements in each of the input
+vectors.
+}
 \description{
 These functions compute several stand height metrics from tree list data.
 }

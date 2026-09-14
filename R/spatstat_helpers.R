@@ -65,6 +65,12 @@
 #' `factor` marks. If not already `factor`, these will be coerced as such upon
 #' input. `factor` marks are those that take only a finite number of possible
 #' values (e.g. colors or types).
+#' @return
+#' `create_fia_owin()` returns an object of class `"owin"` from the
+#' \pkg{spatstat} library representing the generic 2-D observation window for
+#' the nationally standard FIA plot design. `create_fia_ppp()` returns an object
+#' of class `"ppp"` from \pkg{spatstat} representing the point pattern of an
+#' FIA tree list in the 2-D plane.
 #'
 #' @references
 #' Baddeley, A., E. Rubak, R. Turner. 2015. _Spatial Point Patterns: Methodology

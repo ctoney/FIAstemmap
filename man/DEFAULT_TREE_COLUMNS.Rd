@@ -3,14 +3,15 @@
 \name{DEFAULT_TREE_COLUMNS}
 \alias{DEFAULT_TREE_COLUMNS}
 \title{Names of the FIADB TREE columns used by default in \pkg{FIAstemmap}}
-\format{
-A character vector with 12 elements.
-}
 \source{
 \url{https://research.fs.usda.gov/products/dataandtools/fia-datamart}
 }
 \usage{
 DEFAULT_TREE_COLUMNS
+}
+\value{
+A character vector of 12 strings containing the names of columns in the
+FIADB TREE table used by default in \pkg{FIAstemmap}.
 }
 \description{
 \code{DEFAULT_TREE_COLUMNS} is a character vector of column names in the FIADB

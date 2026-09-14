@@ -10,8 +10,9 @@ utils::globalVariables(c("cw_coef", "cw_sapling_adj"), package = "FIAstemmap")
 #' generated without this full set of TREE attributes, but these are the ones
 #' generally needed for all functionality in the package.
 #'
-#' @format
-#' A character vector with 12 elements.
+#' @return
+#' A character vector of 12 strings containing the names of columns in the
+#' FIADB TREE table used by default in \pkg{FIAstemmap}.
 #' @examples
 #' DEFAULT_TREE_COLUMNS
 #' @source <https://research.fs.usda.gov/products/dataandtools/fia-datamart>
