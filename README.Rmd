@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/firelab/FIAstemmap/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/firelab/FIAstemmap/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/FIAstemmap)](https://CRAN.R-project.org/package=FIAstemmap)
 <!-- badges: end -->
 
 The Forest Inventory and Analysis Program ([FIA](https://research.fs.usda.gov/programs/nfi)) of USDA Forest Service provide tree-level measurements from a systematic grid of field plots across all forest ownerships and land uses in the US.
@@ -36,11 +37,17 @@ Tree data lacking stem locations can still be used with **FIAstemmap** for certa
 
 ## Installation
 
-You can install the development version of **FIAstemmap** with:
+You can install the released version from CRAN:
 
 ``` r
-# install.packages("pak")
-pak::pak("firelab/FIAstemmap")
+install.packages("FIAstemmap")
+```
+
+Or install the development version from GitHub:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("firelab/FIAstemmap")
 ```
 
 ## Examples
