@@ -2,25 +2,31 @@
 % Please edit documentation in R/calc_cbh_metrics.R
 \name{calc_cbh_metrics}
 \alias{calc_cbh_metrics}
-\title{Calculate canopy base height metrics for an FIA tree list}
+\title{Calculate canopy base height metrics from FIA tree data}
 \usage{
-calc_cbh_metrics(tree_list, digits = 1)
+calc_cbh_metrics(tree_table, plot_id_col = NULL, digits = 1)
 }
 \arguments{
-\item{tree_list}{A data frame with tree records for one FIA plot.  Must have
-columns \code{ACTUALHT} (tree actual height) and \code{UNCRCD} (uncompacted live crown
-ratio as percentage).}
+\item{tree_table}{A data frame with tree records for one or more FIA plots.
+Must have columns \code{ACTUALHT} (tree actual height) and \code{UNCRCD} (uncompacted
+live crown ratio as percentage).}
+
+\item{plot_id_col}{Optional column name in \code{tree_table} of a plot unique
+identifier. If \code{NULL} and no column named \code{PLT_CN} or \code{plt_cn} exists,
+the input data are assumed to be a single tree list. If \code{PLT_CN} or \code{plt_cn}
+exists, it will be used as the plot ID column.}
 
 \item{digits}{Optional integer indicating the number of digits to keep in the
 return values (defaults to \code{1}).}
 }
 \value{
-A list of canopy base height metrics aggregated from individual tree
-crown base heights, with the following named elements: \code{cbh_mean},
-\code{cbh_median}, \code{cbh_pct20} and \code{cbh_min}.
+Canopy base height metrics aggregated from individual tree crown base
+heights: \code{"cbh_mean"}, \code{"cbh_median"}, \code{"cbh_pct20"} and \code{"cbh_min"}. If the
+input contains tree data for a single plot without a plot ID column, a named
+list is returned, otherwise a data frame.
 }
 \description{
-\code{calc_cbh_metrics()} computes canopy base height metrics for an FIA tree list
+\code{calc_cbh_metrics()} computes canopy base height metrics for FIA tree data
 based on measurements of uncompacted live crown ratio (\code{UNCRCD}) of
 individual trees \verb{>= 5.0} in. (\code{12.7} cm) diameter. Canopy base height
 represents the lowest height at which canopy fuel, aggregated across multiple
@@ -30,8 +36,9 @@ height and the uncompacted crown ratio, and computes the mean, median,
 \eqn{20^{th}}{20th} percentile and minimum.
 }
 \examples{
-calc_cbh_metrics(western_redcedar)
-
+f <- system.file("extdata/dfir_plot.csv", package="FIAstemmap")
+trees <- load_tree_data(f, columns = NULL)
+calc_cbh_metrics(trees)
 }
 \references{
 Mast, C.N., L. Vallet, M.D. Hurteau, H. Zald, G.M. Jones, G.A. Woolsey,
