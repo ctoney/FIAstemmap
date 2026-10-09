@@ -34,21 +34,21 @@
 #' [calc_ht_metrics()], [calc_tcc_metrics()]
 #'
 #' @examples
-#' f <- system.file("extdata/dfir_plot.csv", package="FIAstemmap")
-#' trees <- load_tree_data(f, columns = NULL)
-#' calc_cbh_metrics(trees)
+#' system.file("extdata/dfir_plot.csv", package="FIAstemmap") |>
+#'   load_tree_data(columns = NULL) |>
+#'   calc_cbh_metrics()
 #' @export
 calc_cbh_metrics <- function(tree_table, plot_id_col = NULL, digits = 1) {
     if (missing(tree_table) || is.null(tree_table)) {
         stop(cli::format_error(c(
             "{.arg tree_table} is required",
-        "x" = "A required argument is missing or NULL")))
+            "x" = "A required argument is missing or NULL")))
     }
 
     if (!is.data.frame(tree_table)) {
         stop(cli::format_error(c(
             "{.arg tree_table} must be a {.cls data.frame}",
-        "x" = "Invalid input type: {.cls {class(tree_table)}}")))
+            "x" = "Invalid input type: {.cls {class(tree_table)}}")))
     }
 
     has_plot_id_col <- FALSE
@@ -56,7 +56,7 @@ calc_cbh_metrics <- function(tree_table, plot_id_col = NULL, digits = 1) {
         if (!(is.character(plot_id_col) && length(plot_id_col) == 1)) {
             stop(cli::format_error(c(
                 "{.arg plot_id_col} must be a {.cls character} string",
-            "x" = "{.arg plot_id_col} not a length-1 {.cls character} vector")))
+                "x" = "{.arg plot_id_col} not a length-1 {.cls character} vector")))
         }
         has_plot_id_col <- TRUE
     }
@@ -75,7 +75,7 @@ calc_cbh_metrics <- function(tree_table, plot_id_col = NULL, digits = 1) {
     if (!all(required_cols %in% colnames(tree_table))) {
         stop(cli::format_error(c(
             "{.arg tree_table} is missing one or more required columns",
-        "x" = "Missing column(s): {.fld {setdiff(required_cols, colnames(tree_table))}}")))
+            "x" = "Missing column(s): {.fld {setdiff(required_cols, colnames(tree_table))}}")))
     }
 
     if (is.null(digits))
@@ -101,11 +101,14 @@ calc_cbh_metrics <- function(tree_table, plot_id_col = NULL, digits = 1) {
         else
             this_cbh <- cbh
 
-        cbh_mean[i] <- mean(this_cbh, na.rm = TRUE) |> round(digits)
-        cbh_median[i] <- stats::median(this_cbh, na.rm = TRUE) |> round(digits)
+        cbh_mean[i] <- mean(this_cbh, na.rm = TRUE) |>
+            round(digits)
+        cbh_median[i] <- stats::median(this_cbh, na.rm = TRUE) |>
+            round(digits)
         cbh_pct20[i] <- stats::quantile(this_cbh, probs = 0.2, na.rm = TRUE) |>
-                        round(digits)
-        cbh_min[i] <- min(this_cbh, na.rm = TRUE) |> round(digits)
+            round(digits)
+        cbh_min[i] <- min(this_cbh, na.rm = TRUE) |>
+            round(digits)
     }
 
     if (has_plot_id_col) {

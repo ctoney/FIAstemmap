@@ -36,9 +36,9 @@ height and the uncompacted crown ratio, and computes the mean, median,
 \eqn{20^{th}}{20th} percentile and minimum.
 }
 \examples{
-f <- system.file("extdata/dfir_plot.csv", package="FIAstemmap")
-trees <- load_tree_data(f, columns = NULL)
-calc_cbh_metrics(trees)
+system.file("extdata/dfir_plot.csv", package="FIAstemmap") |>
+  load_tree_data(columns = NULL) |>
+  calc_cbh_metrics()
 }
 \references{
 Mast, C.N., L. Vallet, M.D. Hurteau, H. Zald, G.M. Jones, G.A. Woolsey,
